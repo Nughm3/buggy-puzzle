@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.IO;
 using TMPro;
 
 public class MainMenu : MonoBehaviour

@@ -4,17 +4,22 @@ public class PlayerData : MonoBehaviour
 {
     public int level;
 
-    public void SavePlayer() {
-        SaveSystem.SavePlayer(this);
+    public void Save() {
+        SaveSystem.Save(this);
     }
 
-    public void LoadPlayer() {
-        StoredData data = SaveSystem.LoadPlayer();
+    public void Load() {
+        StoredData data = SaveSystem.Load();
         level = data.level;
     }
 
+    public void CreateSave() {
+        level = 1;
+        Save();
+    }
+
     void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) SavePlayer();
-        if (Input.GetKeyDown(KeyCode.R)) LoadPlayer();
+        if (Input.GetKeyDown(KeyCode.E)) Save();
+        if (Input.GetKeyDown(KeyCode.R)) Load();
     }
 }

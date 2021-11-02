@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,5 +14,17 @@ public class GameManager : MonoBehaviour
         game.SetActive(true);
         menu.SetActive(false);
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
+    }
+
+    void Awake() {
+        CheckForSave();
+        FindObjectOfType<PlayerData>().Load();
+    }
+
+    void CheckForSave() {
+        string path = Application.persistentDataPath + "/saveFile.dat";
+        if (!File.Exists(path)) {
+            FindObjectOfType<PlayerData>().CreateSave();
+        }
     }
 }
