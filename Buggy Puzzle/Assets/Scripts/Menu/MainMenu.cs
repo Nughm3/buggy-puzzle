@@ -4,11 +4,12 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+
     public TextMeshPro playButton;
     public TextMeshPro quitButton;
 
-    public TextMeshProUGUI quitYesButton;
-    public TextMeshProUGUI quitNoButton;
+    public TextMeshPro quitYesButton;
+    public TextMeshPro quitNoButton;
 
     public GameObject levelMenu;
     public GameObject quitConfirm;
@@ -24,23 +25,16 @@ public class MainMenu : MonoBehaviour
     }
 
     public void UpdateSelection() {
-        TextMeshPro[] buttons = {playButton, quitButton};
-
-        foreach (TextMeshPro button in buttons) {
-            button.color = Color.black;
-            button.fontStyle = FontStyles.Normal;
+        if (!quitConfirmOpened) {
+            TextMeshPro[] buttons = {playButton, quitButton};
+            foreach (TextMeshPro button in buttons) {button.color = Color.black;}
+            buttons[selectedOption].color = Color.green;
         }
-        buttons[selectedOption].color = Color.green;
-        buttons[selectedOption].fontStyle = FontStyles.Bold;
-
-        TextMeshProUGUI[] quitButtons = {quitYesButton, quitNoButton};
-
-        foreach (TextMeshProUGUI button in quitButtons) {
-            button.color = Color.black;
-            button.fontStyle = FontStyles.Normal;
+        else {
+            TextMeshPro[] quitButtons = {quitYesButton, quitNoButton};
+            foreach (TextMeshPro button in quitButtons) {button.color = Color.black;}
+            quitButtons[quitConfirmSelectedOption].color = Color.green;
         }
-        quitButtons[selectedOption].color = Color.green;
-        quitButtons[selectedOption].fontStyle = FontStyles.Bold;
     }
 
     void SelectUp() {
@@ -88,13 +82,15 @@ public class MainMenu : MonoBehaviour
     }
 
     void Update() {
-        if (!quitConfirmOpened) {
-            if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
-            if (Input.GetKeyDown(KeyCode.Z)) Confirm();
-            quitConfirm.SetActive(false);
+        if (MenuManager.allowInput) {
+            if (!quitConfirmOpened) {
+                if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
+                else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
+                if (Input.GetKeyDown(KeyCode.Z)) Confirm();
+                quitConfirm.SetActive(false);
+            }
+            else QuitConfirm();
         }
-        else QuitConfirm();
 
         UpdateSelection();
     }

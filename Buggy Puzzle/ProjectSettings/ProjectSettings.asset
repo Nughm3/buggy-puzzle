@@ -651,11 +651,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 22922a03-4542-47e9-89d2-52cb6b1fe09f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Buggy Puzzle
+  organizationId: lauedmondyc
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
