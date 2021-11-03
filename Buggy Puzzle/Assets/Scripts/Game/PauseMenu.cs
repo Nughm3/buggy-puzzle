@@ -66,8 +66,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) SelectUp();
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) SelectDown();
+        if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
         if (Input.GetKeyDown(KeyCode.Z)) Confirm();
         else if (Input.GetKeyDown(KeyCode.X)) Unconfirm();
         UpdateSelection();

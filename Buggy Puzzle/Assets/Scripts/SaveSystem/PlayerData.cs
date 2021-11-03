@@ -17,9 +17,4 @@ public class PlayerData : MonoBehaviour
         level = 1;
         Save();
     }
-
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) Save();
-        if (Input.GetKeyDown(KeyCode.R)) Load();
-    }
 }

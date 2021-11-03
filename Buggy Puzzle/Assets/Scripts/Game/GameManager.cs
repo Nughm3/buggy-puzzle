@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
         game.SetActive(true);
         menu.SetActive(false);
+        // FindObjectOfType<LevelMenu>().Back();
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }
 

@@ -61,7 +61,7 @@ public class LevelMenu : MonoBehaviour
         else StartCoroutine(FindObjectOfType<GameManager>().Play(selectedOption + 1));
     }
 
-    void Back() {
+    public void Back() {
         selectedOption = 0;
         Unconfirm();
     }
