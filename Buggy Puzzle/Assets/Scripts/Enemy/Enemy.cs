@@ -5,36 +5,42 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     float speed = 0.05f;
-    bool inMove = false;
     bool allowMove = true;
+    int[] pos = {19, 5};
+    float distance;
 
-    void Update()
+    Enums.Direction direction;
+
+    void Start()
     {
-        if (!inMove)
-        {
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            {
-                StartCoroutine(Move(Enums.Direction.Up));
-            }
+        StartCoroutine(WaitMove());
+    }
+
+    IEnumerator WaitMove() {
+        while (true) {
+            yield return new WaitForSeconds(1f);
+            CalculateDistance();
         }
     }
 
-    float CalcDistance(Enums.Direction dir)
-    {
-        float dist = 0f;
-        switch (dir)
-        {
-            default:
-                break;
+    void CalculateDistance() {
+        float minimumDistance = Mathf.Infinity;
+
+        distance = Mathf.Sqrt(Mathf.Pow((Player.myPos[0]) - transform.position.x, 2) + Mathf.Pow((Player.myPos[1]) - (transform.position.y + 0.8f), 2));
+        if (distance < minimumDistance) {
+            direction = Enums.Direction.Up;
         }
-        return dist / 0.8f;
+
+        if (minimumDistance == Mathf.Infinity) Debug.Log("no dir");
+        if (direction == Enums.Direction.Up) Debug.Log("Up");
+        if (direction == Enums.Direction.Down) Debug.Log("Down");
+        StartCoroutine(Move(direction));
     }
 
     IEnumerator Move(Enums.Direction dir)
     {
         if (allowMove)
         {
-            inMove = true;
             int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
             foreach (int num in movePixels)
             {
@@ -44,8 +50,6 @@ public class Enemy : MonoBehaviour
                 if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
-            yield return new WaitForSeconds(0.05f);
-            inMove = false;
         }
     }
 }

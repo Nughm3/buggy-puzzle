@@ -5,11 +5,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    void Update()
+    Vector2 spawnPos = new Vector2(7.6f,0f);
+
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Instantiate(enemyPrefab, transform.position, transform.rotation);
-        }
+        StartCoroutine(SpawnEnemy());
+    }
+
+    IEnumerator SpawnEnemy() {
+        yield return new WaitForSeconds(1f);
+        Instantiate(enemyPrefab, spawnPos, transform.rotation);
     }
 }
