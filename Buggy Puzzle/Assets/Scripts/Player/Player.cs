@@ -8,12 +8,7 @@ public class Player : MonoBehaviour
     bool inMove = false;
     bool allowMove = true;
     int[] pos = {10,5};
-    public static float[] myPos;
-
-    void Start() {
-        myPos[0] = transform.position.x;
-        myPos[1] = transform.position.y;
-    }
+    public Vector3 myPos = new Vector3(0.4f, 0, 0);
 
     void FixedUpdate()
     {
@@ -49,8 +44,7 @@ public class Player : MonoBehaviour
                     }
                     yield return new WaitForSeconds(0.03f);
                     pos = targetPos;
-                    myPos[0] = transform.position.x;
-                    myPos[1] = transform.position.y;
+                    myPos = transform.position;
                 }
             }
             inMove = false;
