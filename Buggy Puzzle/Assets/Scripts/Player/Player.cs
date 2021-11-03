@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     float speed = 0.05f;
     bool inMove = false;
     bool allowMove = true;
+    int[] pos = {10,5};
 
     void FixedUpdate()
     {
@@ -24,16 +25,26 @@ public class Player : MonoBehaviour
         if (allowMove)
         {
             inMove = true;
+            int[] targetPos = {pos[0], pos[1]};
             int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
-            foreach (int num in movePixels)
-            {
-                if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
-                if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
-                if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
-                if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                yield return new WaitForSeconds(0.01f);
+            if (dir == Enums.Direction.Up) targetPos[1] -= 1;
+            if (dir == Enums.Direction.Down) targetPos[1] += 1;
+            if (dir == Enums.Direction.Left) targetPos[0] -= 1;
+            if (dir == Enums.Direction.Right) targetPos[0] += 1;
+            if (targetPos[0] >= 0 && targetPos[0] < 20 && targetPos[1] >= 0 && targetPos[1] < 11) {
+                if (WallManager.walls[targetPos[1],targetPos[0]] != 1) {
+                    foreach (int num in movePixels)
+                    {
+                        if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
+                        if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
+                        if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
+                        if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
+                        yield return new WaitForSeconds(0.01f);
+                    }
+                    yield return new WaitForSeconds(0.03f);
+                    pos = targetPos;
+                }
             }
-            yield return new WaitForSeconds(0.03f);
             inMove = false;
         }
     }
