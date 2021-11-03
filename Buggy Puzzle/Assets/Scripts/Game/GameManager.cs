@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     public IEnumerator Play(int level) {
         Debug.Log("Started level " + level);
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
+        FindObjectOfType<LevelMenu>().Back();
         game.SetActive(true);
         menu.SetActive(false);
-        // FindObjectOfType<LevelMenu>().Back();
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }
 
