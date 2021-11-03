@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator WaitMove() {
         while (true) {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
             CalculateDistance();
         }
     }
@@ -28,37 +28,49 @@ public class Enemy : MonoBehaviour
     void CalculateDistance() {
         float minimumDistance = Mathf.Infinity;
 
-        myPos = transform.position + new Vector3(0,tileSize,0);
-        distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-        if (distance < minimumDistance) {
-            minimumDistance = distance;
-            direction = Enums.Direction.Up;
+        if (pos[1]-1 >= 0) {
+            if (WallManager.walls[pos[1]-1,pos[0]] == 0) {
+                myPos = transform.position + new Vector3(0,tileSize,0);
+                distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
+                    direction = Enums.Direction.Up;
+                }
+            }
         }
-        Debug.Log("Up: " + distance);
 
-        myPos = transform.position - new Vector3(0,tileSize,0);
-        distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-        if (distance < minimumDistance) {
-            minimumDistance = distance;
-            direction = Enums.Direction.Down;
+        if (pos[1]+1 <= 10) {
+            if (WallManager.walls[pos[1]+1,pos[0]] == 0) {
+                myPos = transform.position - new Vector3(0,tileSize,0);
+                distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
+                    direction = Enums.Direction.Down;
+                }
+            }
         }
-        Debug.Log("Down: " + distance);
 
-        myPos = transform.position - new Vector3(tileSize,0,0);
-        distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-        if (distance < minimumDistance) {
-            minimumDistance = distance;
-            direction = Enums.Direction.Left;
+        if (pos[0]-1 >= 0) {
+            if (WallManager.walls[pos[1],pos[0]-1] == 0) {
+                myPos = transform.position - new Vector3(tileSize,0,0);
+                distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
+                    direction = Enums.Direction.Left;
+                }
+            }
         }
-        Debug.Log("Left: " + distance);
 
-        myPos = transform.position + new Vector3(tileSize,0,0);
-        distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-        if (distance < minimumDistance) {
-            minimumDistance = distance;
-            direction = Enums.Direction.Right;
+        if (pos[0]+1 <= 19) {
+            if (WallManager.walls[pos[1],pos[0]+1] == 0) {
+                myPos = transform.position + new Vector3(tileSize,0,0);
+                distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
+                    direction = Enums.Direction.Right;
+                }
+            }
         }
-        Debug.Log("Right: " + distance);
 
         StartCoroutine(Move(direction));
     }
@@ -68,12 +80,16 @@ public class Enemy : MonoBehaviour
         if (allowMove)
         {
             int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
+            if (dir == Enums.Direction.Up) pos[1] -= 1;
+            if (dir == Enums.Direction.Down) pos[1] += 1;
+            if (dir == Enums.Direction.Left) pos[0] -= 1;
+            if (dir == Enums.Direction.Right) pos[0] += 1;
             foreach (int num in movePixels)
             {
                 if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
-                else if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
-                else if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
-                else if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
+                if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
+                if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
+                if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
         }

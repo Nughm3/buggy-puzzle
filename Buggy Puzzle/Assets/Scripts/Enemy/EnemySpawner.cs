@@ -14,6 +14,10 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy() {
         yield return new WaitForSeconds(1f);
-        Instantiate(enemyPrefab, spawnPos, transform.rotation);
+        while (true) {
+            Instantiate(enemyPrefab, spawnPos, transform.rotation);
+            yield return new WaitForSeconds(3f);
+        }
+        
     }
 }
