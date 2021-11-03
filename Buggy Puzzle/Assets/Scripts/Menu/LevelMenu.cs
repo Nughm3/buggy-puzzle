@@ -6,7 +6,7 @@ using TMPro;
 
 public class LevelMenu : MonoBehaviour
 {
-    
+
     public TextMeshPro levelButton1;
     public TextMeshPro levelButton2;
     public TextMeshPro levelButton3;
@@ -26,53 +26,64 @@ public class LevelMenu : MonoBehaviour
     int selectedOption = 0;
     int options = 11;
 
-    void Awake() {
+    void Awake()
+    {
         UpdateSelection();
     }
 
-    public void UpdateSelection() {
-        TextMeshPro[] buttons = {levelButton1, levelButton2, levelButton3, levelButton4, levelButton5, levelButton6, levelButton7, levelButton8, levelButton9, levelButton10, backButton};
-        foreach (TextMeshPro button in buttons) {button.color = Color.black;}
+    public void UpdateSelection()
+    {
+        TextMeshPro[] buttons = { levelButton1, levelButton2, levelButton3, levelButton4, levelButton5, levelButton6, levelButton7, levelButton8, levelButton9, levelButton10, backButton };
+        foreach (TextMeshPro button in buttons) { button.color = Color.black; }
         buttons[selectedOption].color = Color.green;
     }
 
-    void SelectUp() {
+    void SelectUp()
+    {
         if (selectedOption == 10) selectedOption = 7;
         else if (selectedOption > 4) selectedOption -= 5;
     }
 
-    void SelectDown() {
+    void SelectDown()
+    {
         if (selectedOption > 4 && selectedOption != 10) selectedOption = 10;
         else if (selectedOption < 5) selectedOption += 5;
     }
 
-    void SelectLeft() {
+    void SelectLeft()
+    {
         if (selectedOption > 0) selectedOption--;
         else selectedOption = options - 1;
     }
 
-    void SelectRight() {
+    void SelectRight()
+    {
         if (selectedOption < options - 1) selectedOption++;
         else selectedOption = 0;
     }
 
-    void Confirm() {
+    void Confirm()
+    {
         if (selectedOption == 11) Back();
         else StartCoroutine(FindObjectOfType<GameManager>().Play(selectedOption + 1));
     }
 
-    public void Back() {
+    public void Back()
+    {
         selectedOption = 0;
         Unconfirm();
     }
 
-    void Unconfirm() {
+    void Unconfirm()
+    {
         mainMenu.SetActive(true);
         gameObject.SetActive(false);
     }
 
-    void Update() {
-        if (MenuManager.allowInput) {
+    void Update()
+    {
+        if (MenuManager.allowInput)
+        {
             if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
             else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
             else if (Input.GetKeyDown(KeyCode.LeftArrow)) SelectLeft();

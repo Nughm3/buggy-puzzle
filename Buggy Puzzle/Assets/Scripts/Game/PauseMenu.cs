@@ -12,14 +12,17 @@ public class PauseMenu : MonoBehaviour
     int selectedOption = 0;
     int options = 2;
 
-    void Awake() {
+    void Awake()
+    {
         UpdateSelection();
     }
 
-    public void UpdateSelection() {
-        TextMeshPro[] buttons = {continueButton, quitButton};
+    public void UpdateSelection()
+    {
+        TextMeshPro[] buttons = { continueButton, quitButton };
 
-        foreach (TextMeshPro button in buttons) {
+        foreach (TextMeshPro button in buttons)
+        {
             button.color = Color.black;
             button.fontStyle = FontStyles.Normal;
         }
@@ -27,18 +30,22 @@ public class PauseMenu : MonoBehaviour
         buttons[selectedOption].fontStyle = FontStyles.Bold;
     }
 
-    void SelectUp() {
+    void SelectUp()
+    {
         if (selectedOption > 0) selectedOption--;
         else selectedOption = options - 1;
     }
 
-    void SelectDown() {
+    void SelectDown()
+    {
         if (selectedOption < options - 1) selectedOption++;
         else selectedOption = 0;
     }
 
-    void Confirm() {
-        switch(selectedOption) {
+    void Confirm()
+    {
+        switch (selectedOption)
+        {
             case 0:
                 Continue();
                 return;
@@ -48,15 +55,18 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Unconfirm() {
+    void Unconfirm()
+    {
         PauseManager.isPaused = false;
     }
 
-    void Continue() {
+    void Continue()
+    {
         PauseManager.isPaused = false;
     }
 
-    void Quit() {
+    void Quit()
+    {
         selectedOption = 0;
         PauseManager.isPaused = false;
         Time.timeScale = 1f;
@@ -65,7 +75,8 @@ public class PauseMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Update() {
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
         else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
         if (Input.GetKeyDown(KeyCode.Z)) Confirm();

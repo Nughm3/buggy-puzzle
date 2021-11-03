@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject menu;
     public GameObject game;
 
-    public IEnumerator Play(int level) {
+    public IEnumerator Play(int level)
+    {
         Debug.Log("Started level " + level);
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
         FindObjectOfType<LevelMenu>().Back();
@@ -17,14 +18,17 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }
 
-    void Awake() {
+    void Awake()
+    {
         CheckForSave();
         FindObjectOfType<PlayerData>().Load();
     }
 
-    void CheckForSave() {
+    void CheckForSave()
+    {
         string path = Application.persistentDataPath + "/saveFile.dat";
-        if (!File.Exists(path)) {
+        if (!File.Exists(path))
+        {
             FindObjectOfType<PlayerData>().CreateSave();
         }
     }

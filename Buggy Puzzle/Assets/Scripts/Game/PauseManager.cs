@@ -7,23 +7,28 @@ public class PauseManager : MonoBehaviour
     public static bool isPaused = false;
     public GameObject pauseMenu;
 
-    void Update() {
+    void Update()
+    {
         UpdateSelection();
         if (Input.GetKeyDown(KeyCode.Escape)) Pause();
     }
 
-    void UpdateSelection() {
-        if (isPaused) {
+    void UpdateSelection()
+    {
+        if (isPaused)
+        {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
-        else {
+        else
+        {
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
     }
 
-    void Pause() {
+    void Pause()
+    {
         isPaused = !isPaused;
     }
 }

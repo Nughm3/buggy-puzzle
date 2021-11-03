@@ -19,35 +19,43 @@ public class MainMenu : MonoBehaviour
 
     bool quitConfirmOpened = false;
 
-    void Awake() {
+    void Awake()
+    {
         UpdateSelection();
     }
 
-    public void UpdateSelection() {
-        if (!quitConfirmOpened) {
-            TextMeshPro[] buttons = {playButton, quitButton};
-            foreach (TextMeshPro button in buttons) {button.color = Color.black;}
+    public void UpdateSelection()
+    {
+        if (!quitConfirmOpened)
+        {
+            TextMeshPro[] buttons = { playButton, quitButton };
+            foreach (TextMeshPro button in buttons) { button.color = Color.black; }
             buttons[selectedOption].color = Color.green;
         }
-        else {
-            TextMeshPro[] quitButtons = {quitYesButton, quitNoButton};
-            foreach (TextMeshPro button in quitButtons) {button.color = Color.black;}
+        else
+        {
+            TextMeshPro[] quitButtons = { quitYesButton, quitNoButton };
+            foreach (TextMeshPro button in quitButtons) { button.color = Color.black; }
             quitButtons[quitConfirmSelectedOption].color = Color.green;
         }
     }
 
-    void SelectUp() {
+    void SelectUp()
+    {
         if (selectedOption > 0) selectedOption--;
         else selectedOption = options - 1;
     }
 
-    void SelectDown() {
+    void SelectDown()
+    {
         if (selectedOption < options - 1) selectedOption++;
         else selectedOption = 0;
     }
 
-    void Confirm() {
-        switch(selectedOption) {
+    void Confirm()
+    {
+        switch (selectedOption)
+        {
             case 0:
                 Play();
                 return;
@@ -57,32 +65,39 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    void Play() {
+    void Play()
+    {
         levelMenu.SetActive(true);
         gameObject.SetActive(false);
     }
 
-    void Quit() {
+    void Quit()
+    {
         quitConfirmSelectedOption = 1;
         quitConfirmOpened = true;
     }
 
-    void QuitConfirm() {
+    void QuitConfirm()
+    {
         if (Input.GetKeyDown(KeyCode.X)) quitConfirmOpened = false;
 
         if (Input.GetKeyDown(KeyCode.Z) && quitConfirmSelectedOption == 0) Application.Quit();
         if (Input.GetKeyDown(KeyCode.Z) && quitConfirmSelectedOption == 1) quitConfirmOpened = false;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
             if (quitConfirmSelectedOption == 0) quitConfirmSelectedOption = 1;
             else quitConfirmSelectedOption = 0;
         }
         quitConfirm.SetActive(true);
     }
 
-    void Update() {
-        if (MenuManager.allowInput) {
-            if (!quitConfirmOpened) {
+    void Update()
+    {
+        if (MenuManager.allowInput)
+        {
+            if (!quitConfirmOpened)
+            {
                 if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
                 else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
                 if (Input.GetKeyDown(KeyCode.Z)) Confirm();
