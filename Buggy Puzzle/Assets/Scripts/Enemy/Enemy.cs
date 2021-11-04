@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     Vector3 myPos;
     readonly float tileSize = 0.8f;
     RaycastHit2D moveRay;
+    float waitMoveSpeed = 0.3f;
 
     bool inPlayerRange = false;
     float seePlayerRange = 6.5f;
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 while (inPlayerRange) {
                     CalculateDistance();
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSeconds(waitMoveSpeed);
                 }
             }
             else yield return new WaitForFixedUpdate();
