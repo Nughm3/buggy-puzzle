@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<LevelMenu>().Back();
         game.SetActive(true);
         menu.SetActive(false);
+        FindObjectOfType<Player>().Spawn(level);
         StartCoroutine(FindObjectOfType<EnemySpawner>().SpawnEnemies(level));
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }

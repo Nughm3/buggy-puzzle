@@ -8,7 +8,13 @@ public class Player : MonoBehaviour
     bool inMove = false;
     bool allowMove = true;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
+    public Vector3[] spawnPoints = {new Vector3(-6.8f,0,0),new Vector3(-6.8f,0,0)};
     RaycastHit2D moveRay;
+
+    public void Spawn(int level) {
+        transform.position = spawnPoints[level-1];
+        myPos = transform.position;
+    }
 
     void FixedUpdate()
     {
@@ -47,5 +53,10 @@ public class Player : MonoBehaviour
             }
             inMove = false;
         }
+    }
+
+    public void Reset() {
+        StopAllCoroutines();
+        inMove = false;
     }
 }

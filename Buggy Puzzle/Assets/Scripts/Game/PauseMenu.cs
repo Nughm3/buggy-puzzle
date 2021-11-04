@@ -73,6 +73,8 @@ public class PauseMenu : MonoBehaviour
         menu.SetActive(true);
         game.SetActive(false);
         gameObject.SetActive(false);
+
+        FindObjectOfType<Player>().Reset();
     }
 
     void Update()
