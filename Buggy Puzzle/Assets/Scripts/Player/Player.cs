@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     float speed = 0.05f;
     bool inMove = false;
     bool allowMove = true;
-    int[] pos = {10,5};
-    public Vector3 myPos = new Vector3(0.4f, 0, 0);
+    int[] pos = {1,5};
+    public Vector3 myPos = new Vector3(-6.8f, 0, 0);
 
     void FixedUpdate()
     {
