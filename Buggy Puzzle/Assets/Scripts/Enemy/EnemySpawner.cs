@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
         while (true) {
             Instantiate(enemyPrefab, spawnPos, transform.rotation);
             yield return new WaitForSeconds(3f);
+            break;
         }
         
     }

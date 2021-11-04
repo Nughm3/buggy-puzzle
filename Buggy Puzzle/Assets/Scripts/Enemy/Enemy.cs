@@ -11,17 +11,37 @@ public class Enemy : MonoBehaviour
     Vector3 myPos;
     readonly float tileSize = 0.8f;
 
+    bool inPlayerRange = false;
+    float seePlayerRange = 6.5f;
+
     Enums.Direction direction;
 
     void Start()
     {
+        myPos = transform.position;
         StartCoroutine(WaitMove());
+    }
+
+    void Update() {
+        if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange) {
+            if (!inPlayerRange) Debug.Log("alert");
+            inPlayerRange = true;
+        }
+        else inPlayerRange = false;
+
+        RaycastHit2D test = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos);
+        if (test.collider != null) {
+            // Debug.Log("Something in between");
+        }
     }
 
     IEnumerator WaitMove() {
         while (true) {
-            yield return new WaitForSeconds(0.3f);
-            CalculateDistance();
+            if (inPlayerRange) {
+                yield return new WaitForSeconds(0.3f);
+                CalculateDistance();
+            }
+            else yield return new WaitForFixedUpdate();
         }
     }
 
