@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0015b83fe3c81cd4c9ea43e0d650fcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alertPrefab: {fileID: 685975939848017129, guid: 72d8bc90bab823d44bd58fe498d83932, type: 3}

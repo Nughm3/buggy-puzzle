@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     float speed = 0.05f;
     bool inMove = false;
     bool allowMove = true;
-    int[] pos = {1,5};
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
+    RaycastHit2D moveRay;
 
     void FixedUpdate()
     {
@@ -26,14 +26,13 @@ public class Player : MonoBehaviour
         if (allowMove)
         {
             inMove = true;
-            int[] targetPos = {pos[0], pos[1]};
             int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
-            if (dir == Enums.Direction.Up) targetPos[1] -= 1;
-            if (dir == Enums.Direction.Down) targetPos[1] += 1;
-            if (dir == Enums.Direction.Left) targetPos[0] -= 1;
-            if (dir == Enums.Direction.Right) targetPos[0] += 1;
-            if (targetPos[0] >= 0 && targetPos[0] < 20 && targetPos[1] >= 0 && targetPos[1] < 11) {
-                if (WallManager.walls[targetPos[1],targetPos[0]] != 1) {
+            if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0));
+            if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,-0.8f,0));
+            if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f,0,0));
+            if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f,0,0));
+            if (true) {
+                if (moveRay.collider == null) {
                     foreach (int num in movePixels)
                     {
                         if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
@@ -43,7 +42,6 @@ public class Player : MonoBehaviour
                         yield return new WaitForSeconds(0.01f);
                     }
                     yield return new WaitForSeconds(0.03f);
-                    pos = targetPos;
                     myPos = transform.position;
                 }
             }
