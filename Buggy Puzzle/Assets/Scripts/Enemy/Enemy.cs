@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     Vector3 myPos;
     readonly float tileSize = 0.8f;
     RaycastHit2D moveRay;
-    float waitMoveSpeed;
+    float waitMoveSpeed = 0.3f;
     bool runSpawnAlert = false;
 
     bool inPlayerRange = false;
@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitMove());
-        waitMoveSpeed = Random.Range(0.2f,0.4f);
         myPos = transform.position;
     }
 
@@ -62,7 +61,7 @@ public class Enemy : MonoBehaviour
             if (inPlayerRange) {
                 while (inPlayerRange) {
                     CalculateDistance();
-                    yield return new WaitForSeconds(waitMoveSpeed);
+                    yield return new WaitForSeconds(waitMoveSpeed + Random.Range(-0.1f,0.1f));
                 }
             }
             else yield return new WaitForFixedUpdate();
