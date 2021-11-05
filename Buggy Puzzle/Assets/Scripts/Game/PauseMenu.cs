@@ -73,6 +73,7 @@ public class PauseMenu : MonoBehaviour
 
         FindObjectOfType<EnemySpawner>().RemoveEnemies();
         FindObjectOfType<Player>().Reset();
+        FindObjectOfType<Fade>().StopFade();
 
         menu.SetActive(true);
         game.SetActive(false);

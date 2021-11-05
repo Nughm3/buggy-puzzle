@@ -24,4 +24,9 @@ public class Fade : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    public void StopFade() {
+        StopAllCoroutines();
+        fade.color = new Color(0, 0, 0, 0);
+    }
 }
