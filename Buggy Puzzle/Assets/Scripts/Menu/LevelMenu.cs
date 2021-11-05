@@ -64,7 +64,7 @@ public class LevelMenu : MonoBehaviour
 
     void Confirm()
     {
-        if (selectedOption == 11) Back();
+        if (selectedOption == 10) Back();
         else if (selectedOption + 1 <= FindObjectOfType<PlayerData>().level) StartCoroutine(FindObjectOfType<GameManager>().Play(selectedOption + 1));
         else Debug.Log("level no unlocked yet lol");
     }
