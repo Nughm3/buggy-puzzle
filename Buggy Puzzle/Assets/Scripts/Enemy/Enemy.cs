@@ -135,8 +135,4 @@ public class Enemy : MonoBehaviour
             inMove = false;
         }
     }
-
-    public void Reset() {
-        
-    }
 }
