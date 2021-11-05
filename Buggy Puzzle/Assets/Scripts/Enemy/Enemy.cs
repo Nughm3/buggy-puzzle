@@ -6,45 +6,59 @@ public class Enemy : MonoBehaviour
 {
     float speed = 0.05f;
     bool allowMove = true;
+    bool inMove = false;
     int[] pos = {19, 5};
     float distance;
     Vector3 myPos;
     readonly float tileSize = 0.8f;
     RaycastHit2D moveRay;
     float waitMoveSpeed;
+    bool runSpawnAlert = false;
 
     bool inPlayerRange = false;
     float seePlayerRange = 6.5f;
 
     Enums.Direction direction;
     public GameObject alertPrefab;
+    GameObject myAlert;
 
     void Start()
     {
+        StartCoroutine(WaitMove());
         waitMoveSpeed = Random.Range(0.2f,0.4f);
         myPos = transform.position;
-        StartCoroutine(WaitMove());
     }
 
     void Update() {
         CheckVision();
+        if (inMove) Destroy(myAlert);
     }
 
     void CheckVision() {
         RaycastHit2D lineToPlayer = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos);
         if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null) {
-            if (!inPlayerRange) {
-                Instantiate(alertPrefab, transform.position + new Vector3(0,0.8f,0), transform.rotation);
+            if (runSpawnAlert) {
+                myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.8f,0), transform.rotation);
+                StartCoroutine(WaitAlert());
+                runSpawnAlert = false;
             }
-            inPlayerRange = true;
         }
-        else inPlayerRange = false;
+        else {
+            if (inPlayerRange) Destroy(myAlert);
+            StopCoroutine(WaitAlert());
+            inPlayerRange = false;
+            runSpawnAlert = true;
+        }
+    }
+
+    IEnumerator WaitAlert() {
+        yield return new WaitForSeconds(0.5f);
+        inPlayerRange = true;
     }
 
     public IEnumerator WaitMove() {
         while (true) {
             if (inPlayerRange) {
-                yield return new WaitForSeconds(0.5f);
                 while (inPlayerRange) {
                     CalculateDistance();
                     yield return new WaitForSeconds(waitMoveSpeed);
@@ -104,6 +118,7 @@ public class Enemy : MonoBehaviour
     {
         if (allowMove)
         {
+            inMove = true;
             int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
             if (dir == Enums.Direction.Up) pos[1] -= 1;
             if (dir == Enums.Direction.Down) pos[1] += 1;
@@ -117,6 +132,7 @@ public class Enemy : MonoBehaviour
                 if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
+            inMove = false;
         }
     }
 
