@@ -15,15 +15,17 @@ public class PauseManager : MonoBehaviour
 
     void UpdateSelection()
     {
-        if (isPaused)
-        {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
+        if (!Camera.inScroll) {
+            if (isPaused)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
+            }
         }
     }
 

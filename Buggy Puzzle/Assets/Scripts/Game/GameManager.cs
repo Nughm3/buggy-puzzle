@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
         game.SetActive(true);
         menu.SetActive(false);
         MenuManager.allowInput = true;
+
+        FindObjectOfType<Camera>().ResetCamera();
         FindObjectOfType<Player>().Spawn(level);
         StartCoroutine(FindObjectOfType<EnemySpawner>().SpawnEnemies(level));
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());

@@ -75,6 +75,8 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<Player>().Reset();
         FindObjectOfType<Fade>().StopFade();
 
+        FindObjectOfType<Camera>().ResetCamera();
+
         menu.SetActive(true);
         game.SetActive(false);
         gameObject.SetActive(false);
