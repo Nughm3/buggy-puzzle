@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Play(int level)
     {
+        MenuManager.allowInput = false;
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
         FindObjectOfType<LevelMenu>().Back();
         game.SetActive(true);
         menu.SetActive(false);
+        MenuManager.allowInput = true;
         FindObjectOfType<Player>().Spawn(level);
         StartCoroutine(FindObjectOfType<EnemySpawner>().SpawnEnemies(level));
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());

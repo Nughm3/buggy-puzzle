@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
         RaycastHit2D lineToPlayer = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos);
         if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null) {
             if (runSpawnAlert) {
+                if (myAlert != null) Destroy(myAlert);
                 myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.8f,0), transform.rotation);
                 StartCoroutine(WaitAlert());
                 runSpawnAlert = false;

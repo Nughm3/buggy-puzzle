@@ -61,5 +61,9 @@ public class EnemySpawner : MonoBehaviour
         foreach (var enemy in enemies) {
             Destroy(enemy);
         }
+        var alerts = GameObject.FindGameObjectsWithTag("Alert");
+        foreach (var alert in alerts) {
+            Destroy(alert);
+        }
     }
 }
