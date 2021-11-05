@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     Vector3 myPos;
     readonly float tileSize = 0.8f;
     RaycastHit2D moveRay;
-    float waitMoveSpeed = 0.3f;
+    float waitMoveSpeed;
 
     bool inPlayerRange = false;
     float seePlayerRange = 6.5f;
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        waitMoveSpeed = Random.Range(0.2f,0.4f);
         myPos = transform.position;
         StartCoroutine(WaitMove());
     }
