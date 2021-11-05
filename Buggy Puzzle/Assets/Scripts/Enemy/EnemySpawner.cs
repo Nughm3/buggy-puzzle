@@ -37,7 +37,6 @@ public class EnemySpawner : MonoBehaviour
     float tileSize = 0.8f;
     public GameObject enemyPrefab;
     Vector2 spawnPos;
-    List<GameObject> currentEnemies = new List<GameObject>();
 
     public IEnumerator SpawnEnemies(int level) {
         int[,] currentLevel = new int[11, 20];
@@ -50,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
                     posx = -7.6f + (x * tileSize);
                     posy = 4 - (y * tileSize);
                     spawnPos = new Vector2(posx, posy);
-                    currentEnemies.Add(Instantiate(enemyPrefab, spawnPos, transform.rotation));
+                    Instantiate(enemyPrefab, spawnPos, transform.rotation);
                 }
             }
         }
@@ -58,9 +57,9 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void RemoveEnemies() {
-        foreach (GameObject enemy in currentEnemies) {
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies) {
             Destroy(enemy);
         }
-        currentEnemies.Clear();
     }
 }

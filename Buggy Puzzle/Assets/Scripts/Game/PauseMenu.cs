@@ -70,12 +70,13 @@ public class PauseMenu : MonoBehaviour
         selectedOption = 0;
         PauseManager.isPaused = false;
         Time.timeScale = 1f;
-        menu.SetActive(true);
-        game.SetActive(false);
-        gameObject.SetActive(false);
 
         FindObjectOfType<EnemySpawner>().RemoveEnemies();
         FindObjectOfType<Player>().Reset();
+
+        menu.SetActive(true);
+        game.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void Update()
