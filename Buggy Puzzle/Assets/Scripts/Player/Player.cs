@@ -8,11 +8,12 @@ public class Player : MonoBehaviour
     bool inMove = false;
     bool allowMove = true;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
-    public Vector3[] spawnPoints = {new Vector3(-6.8f,0,0),new Vector3(-6.8f,0,0)};
+    public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
 
-    public void Spawn(int level) {
-        transform.position = spawnPoints[level-1];
+    public void Spawn(int level)
+    {
+        transform.position = spawnPoints[level - 1];
         myPos = transform.position;
     }
 
@@ -33,12 +34,14 @@ public class Player : MonoBehaviour
         {
             inMove = true;
             int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
-            if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0));
-            if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,-0.8f,0));
-            if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f,0,0));
-            if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f,0,0));
-            if (true) {
-                if (moveRay.collider == null) {
+            if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0));
+            if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
+            if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
+            if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
+            if (true)
+            {
+                if (moveRay.collider == null)
+                {
                     foreach (int num in movePixels)
                     {
                         if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
@@ -55,7 +58,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Reset() {
+    public void Reset()
+    {
         StopAllCoroutines();
         inMove = false;
     }

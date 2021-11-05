@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     float speed = 0.05f;
     bool allowMove = true;
     bool inMove = false;
-    int[] pos = {19, 5};
+    int[] pos = { 19, 5 };
     float distance;
     Vector3 myPos;
     readonly float tileSize = 0.8f;
@@ -25,26 +25,30 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitMove());
-        waitMoveSpeed = Random.Range(0.2f,0.4f);
+        waitMoveSpeed = Random.Range(0.2f, 0.4f);
         myPos = transform.position;
     }
 
-    void Update() {
+    void Update()
+    {
         CheckVision();
         if (inMove) Destroy(myAlert);
     }
 
-    void CheckVision() {
+    void CheckVision()
+    {
         RaycastHit2D lineToPlayer = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos);
-        if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null) {
-            if (runSpawnAlert) {
+        if (Vector3.Distance(myPos, FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null)
+        {
+            if (runSpawnAlert)
+            {
                 if (myAlert != null) Destroy(myAlert);
-                myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.8f,0), transform.rotation);
                 StartCoroutine(WaitAlert());
                 runSpawnAlert = false;
             }
         }
-        else {
+        else
+        {
             if (inPlayerRange) Destroy(myAlert);
             StopCoroutine(WaitAlert());
             inPlayerRange = false;
@@ -52,15 +56,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator WaitAlert() {
+    IEnumerator WaitAlert()
+    {
         yield return new WaitForSeconds(0.5f);
         inPlayerRange = true;
     }
 
-    public IEnumerator WaitMove() {
-        while (true) {
-            if (inPlayerRange) {
-                while (inPlayerRange) {
+    public IEnumerator WaitMove()
+    {
+        while (true)
+        {
+            if (inPlayerRange)
+            {
+                while (inPlayerRange)
+                {
                     CalculateDistance();
                     yield return new WaitForSeconds(waitMoveSpeed);
                 }
@@ -69,44 +78,53 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void CalculateDistance() {
+    void CalculateDistance()
+    {
         float minimumDistance = Mathf.Infinity;
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0));
-        if (moveRay.collider == null) {
-            myPos = transform.position + new Vector3(0,tileSize,0);
-            distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0));
+        if (moveRay.collider == null)
+        {
+            myPos = transform.position + new Vector3(0, tileSize, 0);
+            distance = Vector3.Distance(myPos, FindObjectOfType<Player>().myPos);
+            if (distance < minimumDistance)
+            {
                 minimumDistance = distance;
                 direction = Enums.Direction.Up;
             }
         }
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,-0.8f,0));
-        if (moveRay.collider == null) {
-            myPos = transform.position - new Vector3(0,tileSize,0);
-            distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
+        if (moveRay.collider == null)
+        {
+            myPos = transform.position - new Vector3(0, tileSize, 0);
+            distance = Vector3.Distance(myPos, FindObjectOfType<Player>().myPos);
+            if (distance < minimumDistance)
+            {
                 minimumDistance = distance;
                 direction = Enums.Direction.Down;
             }
         }
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f,0,0));
-        if (moveRay.collider == null) {
-            myPos = transform.position - new Vector3(tileSize,0,0);
-            distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
+        if (moveRay.collider == null)
+        {
+            myPos = transform.position - new Vector3(tileSize, 0, 0);
+            distance = Vector3.Distance(myPos, FindObjectOfType<Player>().myPos);
+            if (distance < minimumDistance)
+            {
                 minimumDistance = distance;
                 direction = Enums.Direction.Left;
             }
         }
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f,0,0));
-        if (moveRay.collider == null) {
-            myPos = transform.position + new Vector3(tileSize,0,0);
-            distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
+        if (moveRay.collider == null)
+        {
+            myPos = transform.position + new Vector3(tileSize, 0, 0);
+            distance = Vector3.Distance(myPos, FindObjectOfType<Player>().myPos);
+            if (distance < minimumDistance)
+            {
                 minimumDistance = distance;
                 direction = Enums.Direction.Right;
             }
