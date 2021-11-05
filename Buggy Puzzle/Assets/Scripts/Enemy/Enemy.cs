@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     bool runSpawnAlert = false;
 
     bool inPlayerRange = false;
-    float seePlayerRange = 6.5f;
+    float seePlayerRange = 10f;
 
     Enums.Direction direction;
     public GameObject alertPrefab;
