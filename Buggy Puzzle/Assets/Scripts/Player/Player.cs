@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     float speed = 0.05f;
     bool inMove = false;
-    bool allowMove = true;
+    public static bool allowMove = true;
+    public static bool cameraIsMoving = false;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
@@ -19,7 +20,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!inMove)
+        if (transform.position.x - FindObjectOfType<Camera>().myPos.x < -8.39f || transform.position.x - FindObjectOfType<Camera>().myPos.x > 8.39f || transform.position.y - FindObjectOfType<Camera>().myPos.y < -4.79f || transform.position.y - FindObjectOfType<Camera>().myPos.y > 4.79f) cameraIsMoving = true;
+        if (!inMove && !cameraIsMoving)
         {
             if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Up));
             else if (Input.GetKey(KeyCode.DownArrow)) StartCoroutine(Move(Enums.Direction.Down));
@@ -46,9 +48,9 @@ public class Player : MonoBehaviour
                     if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
                     if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
                     if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                    yield return new WaitForSeconds(0.01f);
+                    yield return null;
                 }
-                yield return new WaitForSeconds(0.03f);
+                yield return null;
                 myPos = transform.position;
             }
             inMove = false;

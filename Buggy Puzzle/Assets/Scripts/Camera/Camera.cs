@@ -6,10 +6,10 @@ public class Camera : MonoBehaviour
 {
     public static bool inScroll = false;
     Vector3 cameraGridPos = new Vector3(0,0,-10);
+    public Vector3 myPos = new Vector3(0, 0, -10);
     float moveX;
     float moveY;
-    float moveSpeed = 0.2f;
-    float waitTime = 0.006f;
+    float moveSpeed = 0.3f;
     int moveAmount;
     bool inScrollArea = false;
     public static bool allowCheckScroll = false;
@@ -61,13 +61,15 @@ public class Camera : MonoBehaviour
                 cameraGridPos += new Vector3(1, 0, 0);
                 moveX = moveSpeed;
             }
-            if (dir == Enums.Direction.Up || dir == Enums.Direction.Down) moveAmount = 48;
-            if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 84;
+            if (dir == Enums.Direction.Up || dir == Enums.Direction.Down) moveAmount = 32;
+            if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 56;
             for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
-                yield return new WaitForSecondsRealtime(waitTime);
+                yield return null;
             }
             inScroll = false;
+            myPos = transform.position;
+            Player.cameraIsMoving = false;
             StartCoroutine(FindObjectOfType<Player>().Move(dir));
         }
     }
