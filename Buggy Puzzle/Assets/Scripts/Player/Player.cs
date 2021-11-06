@@ -38,21 +38,18 @@ public class Player : MonoBehaviour
             if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
             if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
             if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
-            if (true)
+            if (moveRay.collider == null)
             {
-                if (moveRay.collider == null)
+                foreach (int num in movePixels)
                 {
-                    foreach (int num in movePixels)
-                    {
-                        if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
-                        if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
-                        if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
-                        if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                        yield return new WaitForSeconds(0.01f);
-                    }
-                    yield return new WaitForSeconds(0.03f);
-                    myPos = transform.position;
+                    if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
+                    if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
+                    if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
+                    if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
+                    yield return new WaitForSeconds(0.01f);
                 }
+                yield return new WaitForSeconds(0.03f);
+                myPos = transform.position;
             }
             inMove = false;
         }
