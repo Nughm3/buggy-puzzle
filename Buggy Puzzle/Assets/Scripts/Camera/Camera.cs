@@ -65,7 +65,7 @@ public class Camera : MonoBehaviour
             if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 56;
             for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
-                yield return null;
+                yield return new WaitForSecondsRealtime(0.01f);
             }
             inScroll = false;
             myPos = transform.position;

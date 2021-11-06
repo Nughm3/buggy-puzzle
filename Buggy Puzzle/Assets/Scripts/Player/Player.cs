@@ -48,9 +48,9 @@ public class Player : MonoBehaviour
                     if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
                     if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
                     if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                    yield return null;
+                    yield return new WaitForSeconds(0.01f);
                 }
-                yield return null;
+                yield return new WaitForSeconds(0.02f);
                 myPos = transform.position;
             }
             inMove = false;
