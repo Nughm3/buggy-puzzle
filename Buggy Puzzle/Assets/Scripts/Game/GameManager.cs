@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         MenuManager.allowInput = true;
 
         FindObjectOfType<Camera>().ResetCamera();
+        Camera.allowCheckScroll = true;
         FindObjectOfType<Player>().Spawn(level);
         StartCoroutine(FindObjectOfType<EnemySpawner>().SpawnEnemies(level));
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());

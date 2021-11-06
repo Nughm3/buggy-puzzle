@@ -9,11 +9,27 @@ public class Camera : MonoBehaviour
     float moveX;
     float moveY;
     float moveSpeed = 0.2f;
-    float waitTime = 0.01f;
+    float waitTime = 0.006f;
+    int moveAmount;
+    bool inScrollArea = false;
+    public static bool allowCheckScroll = false;
 
     void Update() {
-        if (cameraGridPos == new Vector3(0,0,-10) && FindObjectOfType<Player>().myPos.y >= 4.75f) {
-            StartCoroutine(ScrollCamera(Enums.Direction.Up));
+        if (allowCheckScroll) CheckScroll();
+    }
+
+    void CheckScroll() {
+        if (FindObjectOfType<Player>().myPos.x - transform.position.x < -8.39f || FindObjectOfType<Player>().myPos.x - transform.position.x > 8.39f || FindObjectOfType<Player>().myPos.y - transform.position.y < -4.79f || FindObjectOfType<Player>().myPos.y - transform.position.y > 4.79f) {
+            if (!inScrollArea) {
+                if (FindObjectOfType<Player>().myPos.y - transform.position.y > 4.79f) StartCoroutine(ScrollCamera(Enums.Direction.Up));
+                if (FindObjectOfType<Player>().myPos.y - transform.position.y < -4.79f) StartCoroutine(ScrollCamera(Enums.Direction.Down));
+                if (FindObjectOfType<Player>().myPos.x - transform.position.x < -8.39f) StartCoroutine(ScrollCamera(Enums.Direction.Left));
+                if (FindObjectOfType<Player>().myPos.x - transform.position.x > 8.39f) StartCoroutine(ScrollCamera(Enums.Direction.Right));
+            }
+            inScrollArea = true;
+        }
+        else {
+            inScrollArea = false;
         }
     }
 
@@ -45,7 +61,9 @@ public class Camera : MonoBehaviour
                 cameraGridPos += new Vector3(1, 0, 0);
                 moveX = moveSpeed;
             }
-            for (int i = 0; i < 48; i++) {
+            if (dir == Enums.Direction.Up || dir == Enums.Direction.Down) moveAmount = 48;
+            if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 84;
+            for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
                 yield return new WaitForSecondsRealtime(waitTime);
             }
