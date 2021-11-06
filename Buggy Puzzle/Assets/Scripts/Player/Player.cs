@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
+    public GameObject safeTiles;
 
     public void Spawn(int level)
     {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
             if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
             if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
             if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
-            if (moveRay.collider == null)
+            if (moveRay.collider == null || moveRay.collider == safeTiles.GetComponentInChildren<Collider2D>())
             {
                 foreach (int num in movePixels)
                 {

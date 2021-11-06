@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     Vector2 spawnPos;
 
-    public IEnumerator SpawnEnemies(int level) {
+    public void SpawnEnemies(int level) {
         int[,] currentLevel = new int[11, 20];
         if (level == 1) currentLevel = level1;
         if (level == 2) currentLevel = level2;
@@ -53,7 +53,6 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForFixedUpdate();
     }
 
     public void RemoveEnemies() {

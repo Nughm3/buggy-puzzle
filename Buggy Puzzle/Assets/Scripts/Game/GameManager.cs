@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<Camera>().ResetCamera();
         Camera.allowCheckScroll = true;
         FindObjectOfType<Player>().Spawn(level);
-        StartCoroutine(FindObjectOfType<EnemySpawner>().SpawnEnemies(level));
+        // FindObjectOfType<LevelLoader>().LoadLevel(level);
+        FindObjectOfType<EnemySpawner>().SpawnEnemies(level);
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }
 
