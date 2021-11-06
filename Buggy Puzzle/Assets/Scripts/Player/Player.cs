@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator Move(Enums.Direction dir)
+    public IEnumerator Move(Enums.Direction dir)
     {
         if (allowMove)
         {

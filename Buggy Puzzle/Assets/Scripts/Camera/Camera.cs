@@ -68,6 +68,7 @@ public class Camera : MonoBehaviour
                 yield return new WaitForSecondsRealtime(waitTime);
             }
             inScroll = false;
+            StartCoroutine(FindObjectOfType<Player>().Move(dir));
         }
     }
 }
