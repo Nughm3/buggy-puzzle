@@ -136,11 +136,11 @@ GameObject:
   - component: {fileID: 24471668}
   m_Layer: 0
   m_Name: Level1
-  m_TagString: Untagged
+  m_TagString: Level1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &24471666
 Transform:
   m_ObjectHideFlags: 0
@@ -3628,11 +3628,11 @@ GameObject:
   - component: {fileID: 1085467382}
   m_Layer: 0
   m_Name: Level1
-  m_TagString: Untagged
+  m_TagString: Level1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1085467381
 Transform:
   m_ObjectHideFlags: 0
@@ -4510,11 +4510,11 @@ GameObject:
   - component: {fileID: 1400427329}
   m_Layer: 0
   m_Name: Border1
-  m_TagString: Untagged
+  m_TagString: Level1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1400427328
 Transform:
   m_ObjectHideFlags: 0
@@ -8466,7 +8466,7 @@ GameObject:
   - component: {fileID: 1579525045}
   m_Layer: 0
   m_Name: Level2
-  m_TagString: Untagged
+  m_TagString: Level2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8800,7 +8800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1645483147
 Transform:
   m_ObjectHideFlags: 0
@@ -9568,11 +9568,11 @@ GameObject:
   - component: {fileID: 2040232748}
   m_Layer: 0
   m_Name: Level1
-  m_TagString: Untagged
+  m_TagString: Level1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2040232745
 Transform:
   m_ObjectHideFlags: 0

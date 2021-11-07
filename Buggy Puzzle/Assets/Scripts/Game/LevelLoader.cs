@@ -4,17 +4,27 @@ using System.Collections.Generic;
 
 public class LevelLoader : MonoBehaviour
 {
+    List<List<GameObject>> levels = new List<List<GameObject>>();
+    List<GameObject> level1 = new List<GameObject>();
+    List<GameObject> level2 = new List<GameObject>();
 
-    public void LoadLevel(int level) {
-        var level1 = GameObject.FindGameObjectsWithTag("Level1");
-        var level2 = GameObject.FindGameObjectsWithTag("Level2");
-        HideAllLevels();
-        //Only show the level I need or smth i gtg
+    void Awake() {
+        GameObject[] allGameObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject item in allGameObjects) {if (item.tag == "Level1") level1.Add(item);}
+        foreach (GameObject item in allGameObjects) {if (item.tag == "Level2") level2.Add(item);}
+        levels.Add(level1);
+        levels.Add(level2);
     }
 
-    void HideAllLevels() {
-        var level1 = GameObject.FindGameObjectsWithTag("Level1");
-        var level2 = GameObject.FindGameObjectsWithTag("Level2");
-        foreach (GameObject item in level1) {item.SetActive(false);}
+    public void LoadLevel(int levelNum) {
+        foreach (List<GameObject> level in levels) {
+            foreach (GameObject item in level) {
+                item.SetActive(false);
+            }
+        }
+        foreach (GameObject item in levels[levelNum - 1]) {
+            item.SetActive(true);
+        }
     }
+
 }
