@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
@@ -13,6 +15,8 @@ public class MainMenu : MonoBehaviour
     public GameObject levelMenu;
     public GameObject quitConfirm;
 
+    public TextMeshPro creditsText;
+
     int selectedOption = 0;
     int quitConfirmSelectedOption = 1;
     int options = 2;
@@ -22,6 +26,15 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         UpdateSelection();
+        StartCoroutine(BuggyCredit());
+    }
+
+    IEnumerator BuggyCredit() {
+        yield return new WaitForSeconds(Random.Range(4f,8f));
+        creditsText.text = "goos";
+        yield return new WaitForSeconds(0.69f);
+        creditsText.text = "By Nughm3 and AdminTroller";
+        StartCoroutine(BuggyCredit());
     }
 
     public void UpdateSelection()

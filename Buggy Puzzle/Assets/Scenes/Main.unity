@@ -7814,6 +7814,7 @@ MonoBehaviour:
   quitNoButton: {fileID: 208578151}
   levelMenu: {fileID: 2101572466}
   quitConfirm: {fileID: 904100726}
+  creditsText: {fileID: 709931516}
 --- !u!213 &1529380306
 Sprite:
   m_ObjectHideFlags: 0
