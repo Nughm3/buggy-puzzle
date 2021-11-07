@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
     float speed = 0.05f;
     bool inMove = false;
-    bool allowMove = true;
+    public static bool allowMove = true;
+    public static bool cameraIsMoving = false;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
+    public GameObject safeTiles;
 
     public void Spawn(int level)
     {
@@ -19,7 +21,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!inMove)
+        if (transform.position.x - FindObjectOfType<Camera>().myPos.x < -8.39f || transform.position.x - FindObjectOfType<Camera>().myPos.x > 8.39f || transform.position.y - FindObjectOfType<Camera>().myPos.y < -4.79f || transform.position.y - FindObjectOfType<Camera>().myPos.y > 4.79f) cameraIsMoving = true;
+        if (!inMove && !cameraIsMoving)
         {
             if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Up));
             else if (Input.GetKey(KeyCode.DownArrow)) StartCoroutine(Move(Enums.Direction.Down));
@@ -28,7 +31,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator Move(Enums.Direction dir)
+    public IEnumerator Move(Enums.Direction dir)
     {
         if (allowMove)
         {
@@ -38,21 +41,18 @@ public class Player : MonoBehaviour
             if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
             if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
             if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
-            if (true)
+            if (moveRay.collider == null || moveRay.collider == safeTiles.GetComponentInChildren<Collider2D>())
             {
-                if (moveRay.collider == null)
+                foreach (int num in movePixels)
                 {
-                    foreach (int num in movePixels)
-                    {
-                        if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
-                        if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
-                        if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
-                        if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                        yield return new WaitForSeconds(0.01f);
-                    }
-                    yield return new WaitForSeconds(0.03f);
-                    myPos = transform.position;
+                    if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
+                    if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
+                    if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
+                    if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
+                    yield return new WaitForSeconds(0.01f);
                 }
+                yield return new WaitForSeconds(0.02f);
+                myPos = transform.position;
             }
             inMove = false;
         }
