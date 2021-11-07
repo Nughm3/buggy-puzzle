@@ -12,11 +12,11 @@ public class Enemy : MonoBehaviour
     Vector3 myPos;
     readonly float tileSize = 0.8f;
     RaycastHit2D moveRay;
-    float waitMoveSpeed = 0.3f;
+    float waitMoveSpeed;
     bool runSpawnAlert = false;
 
     bool inPlayerRange = false;
-    float seePlayerRange = 10f;
+    float seePlayerRange = 6.5f;
 
     Enums.Direction direction;
     public GameObject alertPrefab;
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitMove());
-        StartCoroutine(IdleMove());
+        waitMoveSpeed = Random.Range(0.2f,0.4f);
         myPos = transform.position;
     }
 
@@ -39,28 +39,16 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null) {
             if (runSpawnAlert) {
                 if (myAlert != null) Destroy(myAlert);
-                StopCoroutine(IdleMove());
                 myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.8f,0), transform.rotation);
                 StartCoroutine(WaitAlert());
                 runSpawnAlert = false;
             }
         }
         else {
-            if (inPlayerRange) {
-                Destroy(myAlert);
-                StartCoroutine(IdleMove());
-            }
+            if (inPlayerRange) Destroy(myAlert);
             StopCoroutine(WaitAlert());
             inPlayerRange = false;
             runSpawnAlert = true;
-        }
-    }
-
-    IEnumerator IdleMove() {
-        while (true) {
-            yield return new WaitForSeconds(Random.Range(1f,2f));
-            CalculateDistance();
-            if (inPlayerRange) break;
         }
     }
 
@@ -71,10 +59,10 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator WaitMove() {
         while (true) {
-            if (inPlayerRange && !inMove) {
+            if (inPlayerRange) {
                 while (inPlayerRange) {
                     CalculateDistance();
-                    yield return new WaitForSeconds(waitMoveSpeed + Random.Range(-0.1f,0.1f));
+                    yield return new WaitForSeconds(waitMoveSpeed);
                 }
             }
             else yield return new WaitForFixedUpdate();

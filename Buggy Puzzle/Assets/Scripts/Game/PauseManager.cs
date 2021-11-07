@@ -10,23 +10,20 @@ public class PauseManager : MonoBehaviour
     void Update()
     {
         UpdateSelection();
-        if (Input.GetKeyDown(KeyCode.Escape) && !Camera.inScroll) Pause();
-        pauseMenu.transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
+        if (Input.GetKeyDown(KeyCode.Escape)) Pause();
     }
 
     void UpdateSelection()
     {
-        if (!Camera.inScroll) {
-            if (isPaused)
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1f;
-            }
+        if (isPaused)
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 
