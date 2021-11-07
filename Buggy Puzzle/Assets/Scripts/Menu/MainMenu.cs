@@ -26,12 +26,16 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         UpdateSelection();
+    }
+
+    void OnEnable() {
+        creditsText.text = "By Nughm3 and AdminTroller";
         StartCoroutine(BuggyCredit());
     }
 
     IEnumerator BuggyCredit() {
         yield return new WaitForSeconds(Random.Range(4f,8f));
-        creditsText.text = "goos";
+        creditsText.text = "sprites by goos";
         yield return new WaitForSeconds(0.69f);
         creditsText.text = "By Nughm3 and AdminTroller";
         StartCoroutine(BuggyCredit());

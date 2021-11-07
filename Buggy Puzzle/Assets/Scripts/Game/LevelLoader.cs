@@ -10,8 +10,8 @@ public class LevelLoader : MonoBehaviour
 
     void Awake() {
         GameObject[] allGameObjects = Resources.FindObjectsOfTypeAll<GameObject>();
-        foreach (GameObject item in allGameObjects) {if (item.tag == "Level1") level1.Add(item);}
-        foreach (GameObject item in allGameObjects) {if (item.tag == "Level2") level2.Add(item);}
+        foreach (GameObject item in allGameObjects) {if (item.name == "Level1") level1.Add(item);}
+        foreach (GameObject item in allGameObjects) {if (item.name == "Level2") level2.Add(item);}
         levels.Add(level1);
         levels.Add(level2);
     }
