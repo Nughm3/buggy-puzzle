@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
         if (allowMove)
         {
             inMove = true;
-            int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
+            int[] movePixels = { 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1 };
             if (dir == Enums.Direction.Up) animator.SetInteger("State", 1);
             if (dir == Enums.Direction.Down) animator.SetInteger("State", 2);
             if (dir == Enums.Direction.Left) animator.SetInteger("State", 3);

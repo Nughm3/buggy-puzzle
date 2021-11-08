@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         if (allowMove)
         {
             inMove = true;
-            int[] movePixels = { 1, 2, 3, 4, 3, 2, 1 };
+            int[] movePixels = { 1, 2, 2, 3, 3, 2, 2, 1 };
             if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0));
             if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
             if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
