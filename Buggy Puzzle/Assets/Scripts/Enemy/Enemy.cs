@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
             if (runSpawnAlert) {
                 animator.SetInteger("State", 5);
                 if (myAlert != null) Destroy(myAlert);
-                myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.8f,0), transform.rotation);
+                myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.9f,0), transform.rotation);
                 StartCoroutine(WaitAlert());
                 runSpawnAlert = false;
             }
