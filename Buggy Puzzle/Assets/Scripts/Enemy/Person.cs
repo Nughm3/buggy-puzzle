@@ -9,4 +9,8 @@ public class Person : MonoBehaviour
     void Awake() {
         
     }
+
+    void Update() {
+        // if (Input.GetKeyDown(KeyCode.K)) FindObjectOfType<DialogueTrigger>().TriggerDialogue(dialogue);
+    }
 }

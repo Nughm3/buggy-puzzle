@@ -18,6 +18,9 @@ public class DialogueManager : MonoBehaviour
         sentence = dialogue;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+
+        if (FindObjectOfType<Player>().myPos.y > 0) dialogueUI.transform.position = new Vector3(0, -3.8f, 0);
+        else dialogueUI.transform.position = new Vector3(0, 3.8f, 0);
     }
 
     IEnumerator TypeSentence(string sentence) {
@@ -28,7 +31,7 @@ public class DialogueManager : MonoBehaviour
             if (letter.ToString() == "`") currentDialogueText += "<br>";
             else currentDialogueText += letter;
             dialogueText.text = currentDialogueText;
-            yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.02f);
         }
         inSentence = false;
     }

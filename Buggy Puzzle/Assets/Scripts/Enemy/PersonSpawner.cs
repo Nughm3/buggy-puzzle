@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class PersonSpawner : MonoBehaviour
 {
+    string[,] emptyDialogue = new string[11,20] {
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""},
+        {"","","","","","","","","","","","","","","","","","","",""}
+    };
+    string[,] dialogue1;
+
     int[,] level1 = new int[11, 20] {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -39,6 +54,8 @@ public class PersonSpawner : MonoBehaviour
     public GameObject instantiatedObject;
     Vector2 spawnPos;
 
+    void Awake() {AssignDialogue();}
+
     public void SpawnPeople(int level) {
         int[,] currentLevel = new int[11, 20];
         if (level == 1) currentLevel = level1;
@@ -51,7 +68,8 @@ public class PersonSpawner : MonoBehaviour
                     posy = 4 - (y * tileSize);
                     spawnPos = new Vector2(posx, posy);
                     instantiatedObject = Instantiate(personPrefab, spawnPos, transform.rotation);
-                    instantiatedObject.GetComponent<Person>().dialogue = "ok";
+
+                    if (level == 1) instantiatedObject.GetComponent<Person>().dialogue = dialogue1[y, x];
                 }
             }
         }
@@ -65,6 +83,8 @@ public class PersonSpawner : MonoBehaviour
     }
 
     void AssignDialogue() {
-        //returns the dialogue needed for each person
+        dialogue1 = emptyDialogue;
+
+        dialogue1[5,8] = "My name is Jeff and I am`going to kill you. Ok";
     }
 }
