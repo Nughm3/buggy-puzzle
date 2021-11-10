@@ -5,15 +5,11 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshPro nameText;
     public TextMeshPro dialogueText;
-    public GameObject dialogueSprites;
     public bool inDialogue = false;
     bool inSentence = false;
-    bool skipSentence = false;
 
     Queue<string> sentences;
-    Queue<string> names;
 
     void Awake() {
         sentences = new Queue<string>();
@@ -28,7 +24,6 @@ public class DialogueManager : MonoBehaviour
         foreach(string sentence in dialogue.sentences) {
             sentences.Enqueue(sentence);
         }
-        Debug.Log(name);
 
         DisplayNextSentence();
     }
@@ -52,23 +47,17 @@ public class DialogueManager : MonoBehaviour
             if (letter.ToString() == "`") currentDialogueText += "<br>";
             else currentDialogueText += letter;
             dialogueText.text = currentDialogueText;
-            if (!skipSentence) yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.015f);
         }
-        skipSentence = false;
         inSentence = false;
     }
 
     void EndDialogue() {
         inDialogue = false;
-        nameText.text = "";
         dialogueText.text = "";
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Z) && !inSentence) DisplayNextSentence();
-        if (Input.GetKeyDown(KeyCode.X) && inSentence) skipSentence = true;
-
-        if (inDialogue) dialogueSprites.SetActive(true);
-        else dialogueSprites.SetActive(false);
     }
 }
