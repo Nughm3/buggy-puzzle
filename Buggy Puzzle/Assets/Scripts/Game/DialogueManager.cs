@@ -6,35 +6,20 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshPro dialogueText;
+    public GameObject dialogueUI;
     public bool inDialogue = false;
     bool inSentence = false;
-
-    Queue<string> sentences;
-
-    void Awake() {
-        sentences = new Queue<string>();
-    }
+    string sentence;
 
     public void StartDialogue(Dialogue dialogue) {
 
         inDialogue = true;
-
-        sentences.Clear();
-
-        foreach(string sentence in dialogue.sentences) {
-            sentences.Enqueue(sentence);
-        }
+        sentence = dialogue.sentence;
 
         DisplayNextSentence();
     }
 
     public void DisplayNextSentence() {
-        if (sentences.Count == 0) {
-            EndDialogue();
-            return;
-        }
-
-        string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
@@ -58,6 +43,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Z) && !inSentence) DisplayNextSentence();
+        if (Input.GetKeyDown(KeyCode.Z) && !inSentence) EndDialogue();
+        if (inDialogue) dialogueUI.SetActive(true);
+        else dialogueUI.SetActive(false);
     }
 }

@@ -36,6 +36,7 @@ public class PersonSpawner : MonoBehaviour
     float posy;
     float tileSize = 0.8f;
     public GameObject personPrefab;
+    public GameObject instantiatedObject;
     Vector2 spawnPos;
 
     public void SpawnPeople(int level) {
@@ -49,7 +50,7 @@ public class PersonSpawner : MonoBehaviour
                     posx = -7.6f + (x * tileSize);
                     posy = 4 - (y * tileSize);
                     spawnPos = new Vector2(posx, posy);
-                    Instantiate(personPrefab, spawnPos, transform.rotation);
+                    instantiatedObject = Instantiate(personPrefab, spawnPos, transform.rotation);
                 }
             }
         }
@@ -60,5 +61,9 @@ public class PersonSpawner : MonoBehaviour
         foreach (var person in people) {
             Destroy(person);
         }
+    }
+
+    void AssignDialogue() {
+        //returns the dialogue needed for each person
     }
 }

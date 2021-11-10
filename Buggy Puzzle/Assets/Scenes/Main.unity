@@ -9722,6 +9722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1172428803}
+  dialogueUI: {fileID: 611193356}
   inDialogue: 0
 --- !u!1 &1831928640
 GameObject:
