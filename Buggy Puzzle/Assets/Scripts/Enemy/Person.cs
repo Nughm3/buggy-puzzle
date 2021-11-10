@@ -5,12 +5,11 @@ using UnityEngine;
 public class Person : MonoBehaviour
 {
     public string dialogue;
-
-    void Awake() {
-        
-    }
+    public Vector2 tilePos;
 
     void Update() {
-        // if (Input.GetKeyDown(KeyCode.K)) FindObjectOfType<DialogueTrigger>().TriggerDialogue(dialogue);
+
+        // if (Input.GetKeyDown(KeyCode.K)) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+
     }
 }

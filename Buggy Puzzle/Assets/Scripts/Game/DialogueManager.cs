@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -12,6 +11,10 @@ public class DialogueManager : MonoBehaviour
     public bool inDialogue = false;
     bool inSentence = false;
 
+    public void TriggerDialogue(string dialogue) {
+        if (!inDialogue && !Player.inMove) StartDialogue(dialogue);
+    }
+
     public void StartDialogue(string dialogue) {
 
         inDialogue = true;
@@ -19,7 +22,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
 
-        if (FindObjectOfType<Player>().myPos.y > 0) dialogueUI.transform.position = new Vector3(0, -3.8f, 0);
+        if (FindObjectOfType<Player>().myPos.y > 0.5f) dialogueUI.transform.position = new Vector3(0, -3.8f, 0);
         else dialogueUI.transform.position = new Vector3(0, 3.8f, 0);
     }
 
