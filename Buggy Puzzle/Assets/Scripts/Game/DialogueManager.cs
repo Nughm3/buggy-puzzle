@@ -7,19 +7,15 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshPro dialogueText;
     public GameObject dialogueUI;
+
+    string sentence;
     public bool inDialogue = false;
     bool inSentence = false;
-    string sentence;
 
-    public void StartDialogue(Dialogue dialogue) {
+    public void StartDialogue(string dialogue) {
 
         inDialogue = true;
-        sentence = dialogue.sentence;
-
-        DisplayNextSentence();
-    }
-
-    public void DisplayNextSentence() {
+        sentence = dialogue;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }

@@ -5948,6 +5948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personPrefab: {fileID: 9150060135738618519, guid: f47d1772547280a4eb717af2559fa1b1, type: 3}
+  instantiatedObject: {fileID: 0}
 --- !u!1 &919700379
 GameObject:
   m_ObjectHideFlags: 0

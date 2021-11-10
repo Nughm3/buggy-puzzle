@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
-    Dialogue dialogue;
+    public string dialogue;
 
     void Awake() {
         

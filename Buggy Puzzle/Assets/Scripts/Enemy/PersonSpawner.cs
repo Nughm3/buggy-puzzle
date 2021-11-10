@@ -51,6 +51,7 @@ public class PersonSpawner : MonoBehaviour
                     posy = 4 - (y * tileSize);
                     spawnPos = new Vector2(posx, posy);
                     instantiatedObject = Instantiate(personPrefab, spawnPos, transform.rotation);
+                    instantiatedObject.GetComponent<Person>().dialogue = "ok";
                 }
             }
         }
