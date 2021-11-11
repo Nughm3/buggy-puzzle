@@ -9,10 +9,9 @@ public class DialogueManager : MonoBehaviour
 
     string sentence;
     public bool inDialogue = false;
-    bool inSentence = false;
 
     public void TriggerDialogue(string dialogue) {
-        if (!inDialogue && !Player.inMove) StartDialogue(dialogue);
+        if (!inDialogue) StartDialogue(dialogue);
     }
 
     public void StartDialogue(string dialogue) {
@@ -29,23 +28,21 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence) {
         dialogueText.text = "";
         string currentDialogueText = "";
-        inSentence = true;
         foreach (char letter in sentence.ToCharArray()) {
             if (letter.ToString() == "`") currentDialogueText += "<br>";
             else currentDialogueText += letter;
             dialogueText.text = currentDialogueText;
             yield return new WaitForSeconds(0.02f);
         }
-        inSentence = false;
     }
 
-    void EndDialogue() {
+    public void EndDialogue() {
+        StopAllCoroutines();
         inDialogue = false;
         dialogueText.text = "";
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Z) && !inSentence) EndDialogue();
         if (inDialogue) dialogueUI.SetActive(true);
         else dialogueUI.SetActive(false);
     }

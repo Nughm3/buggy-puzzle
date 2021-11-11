@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject menu;
     public GameObject game;
 
+    public static int[] code;
+
     public IEnumerator Play(int level)
     {
         MenuManager.allowInput = false;
@@ -17,13 +19,24 @@ public class GameManager : MonoBehaviour
         menu.SetActive(false);
         MenuManager.allowInput = true;
 
+        GenerateCode(level);
         FindObjectOfType<Camera>().ResetCamera();
         Camera.allowCheckScroll = true;
         FindObjectOfType<Player>().Spawn(level);
         FindObjectOfType<LevelLoader>().LoadLevel(level);
         FindObjectOfType<EnemySpawner>().SpawnEnemies(level);
+        FindObjectOfType<PersonSpawner>().AssignDialogue(code);
         FindObjectOfType<PersonSpawner>().SpawnPeople(level);
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
+    }
+
+    void GenerateCode(int level) {
+        if (level <= 2) code = new int[4];
+        else code = new int[5];
+
+        for (int i = 0; i < code.Length; i++) {
+            code[i] = Random.Range(0,10);
+        }
     }
 
     void Awake()

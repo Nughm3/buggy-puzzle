@@ -54,8 +54,6 @@ public class PersonSpawner : MonoBehaviour
     public GameObject instantiatedObject;
     Vector2 spawnPos;
 
-    void Awake() {AssignDialogue();}
-
     public void SpawnPeople(int level) {
         int[,] currentLevel = new int[11, 20];
         if (level == 1) currentLevel = level1;
@@ -82,9 +80,9 @@ public class PersonSpawner : MonoBehaviour
         }
     }
 
-    void AssignDialogue() {
+    public void AssignDialogue(int[] code) {
         dialogue1 = emptyDialogue;
 
-        dialogue1[5,8] = "My name is Jeff and I am`going to kill you. Ok";
+        dialogue1[5,8] = $"The first digit is {code[0]}.";
     }
 }

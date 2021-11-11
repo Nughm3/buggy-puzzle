@@ -10,10 +10,13 @@ public class Person : MonoBehaviour
 
     void Update() {
 
-        if (Mathf.Abs(tilePos.x - Player.tilePos.x) < 1.1f && Mathf.Abs(tilePos.y - Player.tilePos.y) < 1.1f && !Player.inMove) {
+        if (Mathf.Abs(tilePos.x - Player.tilePos.x) < 1.1f && Mathf.Abs(tilePos.y - Player.tilePos.y) < 1.1f) {
             inPlayerRange = true;
         }
-        else inPlayerRange = false;
+        else {
+            if (inPlayerRange) FindObjectOfType<DialogueManager>().EndDialogue();
+            inPlayerRange = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
     }
