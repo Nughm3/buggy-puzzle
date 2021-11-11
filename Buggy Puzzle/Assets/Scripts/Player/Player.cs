@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public static bool allowMove = true;
     public static bool cameraIsMoving = false;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
-    public Vector2 tilePos = new Vector2(1,5); //make this change and stuff tmr
+    public static Vector2 tilePos = new Vector2(1,5); //make this change and stuff tmr
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
     public GameObject safeTiles;
@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
             if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
             if (moveRay.collider == null || moveRay.collider == safeTiles.GetComponentInChildren<Collider2D>())
             {
+                if (dir == Enums.Direction.Up) tilePos.y -= 1;
+                if (dir == Enums.Direction.Down) tilePos.y += 1;
+                if (dir == Enums.Direction.Left) tilePos.x -= 1;
+                if (dir == Enums.Direction.Right) tilePos.x += 1;
                 foreach (int num in movePixels)
                 {
                     if (dir == Enums.Direction.Up) transform.position += new Vector3(0, speed * num, 0);
