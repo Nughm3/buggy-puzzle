@@ -83,6 +83,6 @@ public class PersonSpawner : MonoBehaviour
     public void AssignDialogue(int[] code) {
         dialogue1 = emptyDialogue;
 
-        dialogue1[5,8] = $"The first digit is {code[0]}.";
+        dialogue1[5,8] = $"The third digit is {code[2]}.";
     }
 }

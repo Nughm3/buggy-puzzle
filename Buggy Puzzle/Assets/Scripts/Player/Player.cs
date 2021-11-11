@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public static bool allowMove = true;
     public static bool cameraIsMoving = false;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
-    public static Vector2 tilePos = new Vector2(1,5); //make this change and stuff tmr
+    public static Vector2 tilePos;
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
     public GameObject safeTiles;
