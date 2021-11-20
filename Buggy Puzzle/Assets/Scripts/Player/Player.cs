@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     public static Vector2 tilePos;
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
     RaycastHit2D moveRay;
-    public GameObject safeTiles;
+    public GameObject tiles;
+    public GameObject borderTiles;
+    LayerMask tileMask;
 
     public void Spawn(int level)
     {
@@ -38,11 +40,11 @@ public class Player : MonoBehaviour
         {
             inMove = true;
             int[] movePixels = { 1, 2, 2, 3, 3, 2, 2, 1 };
-            if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0));
-            if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0));
-            if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0));
-            if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0));
-            if (moveRay.collider == null || moveRay.collider == safeTiles.GetComponentInChildren<Collider2D>())
+            if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0), tileMask);
+            if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0), tileMask);
+            if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0), tileMask);
+            if (dir == Enums.Direction.Right) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f, 0, 0), tileMask);
+            if (moveRay.collider == null)
             {
                 if (dir == Enums.Direction.Up) tilePos.y -= 1;
                 if (dir == Enums.Direction.Down) tilePos.y += 1;
@@ -67,5 +69,9 @@ public class Player : MonoBehaviour
     {
         StopAllCoroutines();
         inMove = false;
+    }
+
+    void Awake() {
+        tileMask = LayerMask.GetMask("Tiles");
     }
 }

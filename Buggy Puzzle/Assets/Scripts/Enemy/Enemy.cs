@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     GameObject myAlert;
     public Animator animator;
 
+    LayerMask tileMask;
+
     void Start()
     {
         StartCoroutine(WaitMove());
@@ -35,7 +37,7 @@ public class Enemy : MonoBehaviour
     }
 
     void CheckVision() {
-        RaycastHit2D lineToPlayer = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos);
+        RaycastHit2D lineToPlayer = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos, tileMask);
         if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null) {
             if (runSpawnAlert) {
                 animator.SetInteger("State", 5);
@@ -76,7 +78,7 @@ public class Enemy : MonoBehaviour
     void CalculateDistance() {
         float minimumDistance = Mathf.Infinity;
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0));
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0), tileMask);
         if (moveRay.collider == null) {
             myPos = transform.position + new Vector3(0,tileSize,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
@@ -86,7 +88,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,-0.8f,0));
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,-0.8f,0), tileMask);
         if (moveRay.collider == null) {
             myPos = transform.position - new Vector3(0,tileSize,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
@@ -96,7 +98,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f,0,0));
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f,0,0), tileMask);
         if (moveRay.collider == null) {
             myPos = transform.position - new Vector3(tileSize,0,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
@@ -106,7 +108,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f,0,0));
+        moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0.8f,0,0), tileMask);
         if (moveRay.collider == null) {
             myPos = transform.position + new Vector3(tileSize,0,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
@@ -139,5 +141,9 @@ public class Enemy : MonoBehaviour
             }
             inMove = false;
         }
+    }
+
+    void Awake() {
+        tileMask = LayerMask.GetMask("Tiles");
     }
 }
