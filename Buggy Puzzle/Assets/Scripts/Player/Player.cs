@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public GameObject tiles;
     public GameObject borderTiles;
     LayerMask tileMask;
+    bool allowHurt = true;
 
     public void Spawn(int level)
     {
@@ -62,6 +63,12 @@ public class Player : MonoBehaviour
                 myPos = transform.position;
             }
             inMove = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag == "Enemy" && allowHurt) {
+            Debug.Log("ow");
         }
     }
 
