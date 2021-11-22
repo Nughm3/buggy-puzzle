@@ -42,8 +42,15 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        SetResolution();
         CheckForSave();
         FindObjectOfType<PlayerData>().Load();
+    }
+
+    void SetResolution() {
+        if (Screen.width / Screen.height != 16 / 9) {
+            Screen.SetResolution(1920,1080,true);
+        }
     }
 
     void CheckForSave()
