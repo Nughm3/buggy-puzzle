@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public GameObject borderTiles;
     LayerMask tileMask;
     bool allowHurt = true;
+    public GameObject codeMenu;
 
     public void Spawn(int level)
     {
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
     {
         StopAllCoroutines();
         inMove = false;
+        allowMove = true;
     }
 
     void Awake() {
