@@ -7,8 +7,10 @@ public class StartTimer : MonoBehaviour
 {
     TextMeshPro startText;
     float waitTime = 0.5f;
+    public static bool timerRunning = false;
 
     public IEnumerator Timer() {
+        timerRunning = true;
         startText = gameObject.GetComponent<TextMeshPro>();
         while (FindObjectOfType<Fade>().GetComponent<SpriteRenderer>().color.a > 0) {
             yield return null;
@@ -25,5 +27,6 @@ public class StartTimer : MonoBehaviour
         StartCoroutine(FindObjectOfType<Timer>().ReduceTimer());
         yield return new WaitForSeconds(waitTime/2);
         startText.text = "";
+        timerRunning = false;
     }
 }
