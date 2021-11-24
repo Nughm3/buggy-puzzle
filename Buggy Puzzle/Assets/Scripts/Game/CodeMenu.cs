@@ -11,11 +11,15 @@ public class CodeMenu : MonoBehaviour
     int options = 13;
     string codeInput = "____";
     int codeInputIndex = 0;
+    string[] codeArray = new string[4];
     public static bool menuOpened;
 
     void Awake()
     {
         UpdateSelection();
+        foreach (int num in GameManager.code) {
+            Debug.Log(num);
+        }
     }
 
     public void Show() {
@@ -88,7 +92,21 @@ public class CodeMenu : MonoBehaviour
             codeInputIndex += 1;
         }
         if (selectedOption == 9) {
-            // Debug.Log("Confirm");
+            if (codeInputIndex == 4) {
+                int loopIndex = 0;
+                foreach (char temp in codeInput) {
+                    codeArray[loopIndex] = temp.ToString();
+                    loopIndex += 1;
+                }
+                int correctDigits = 0;
+                for (int i = 0; i < 4; i++) {if (codeArray[i] == GameManager.code[i].ToString()) correctDigits += 1;}
+                if (correctDigits >= 4) {
+                    Debug.Log("yay");
+                }
+                else {
+                    Debug.Log("wrong lol");
+                }
+            }
         }
         if (selectedOption == 11 && codeInputIndex > 0) {
             var tempCode = codeInput;

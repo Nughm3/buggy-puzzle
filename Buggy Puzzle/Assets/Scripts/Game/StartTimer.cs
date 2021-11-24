@@ -6,6 +6,7 @@ using TMPro;
 public class StartTimer : MonoBehaviour
 {
     TextMeshPro startText;
+    float waitTime = 0.5f;
 
     public IEnumerator Timer() {
         startText = gameObject.GetComponent<TextMeshPro>();
@@ -13,14 +14,14 @@ public class StartTimer : MonoBehaviour
             yield return null;
         }
         startText.text = "3";
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(waitTime);
         startText.text = "2";
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(waitTime);
         startText.text = "1";
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(waitTime);
         startText.text = "Start!";
         Player.allowMove = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(waitTime/2);
         startText.text = "";
     }
 }
