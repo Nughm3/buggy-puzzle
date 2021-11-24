@@ -71,7 +71,7 @@ public class CodeMenu : MonoBehaviour
         selectedOption = 0;
         codeInputIndex = 0;
         codeInput = "____";
-        Player.allowMove = true;
+        if (!Player.inMove) Player.allowMove = true;
         gameObject.SetActive(false);
     }
 

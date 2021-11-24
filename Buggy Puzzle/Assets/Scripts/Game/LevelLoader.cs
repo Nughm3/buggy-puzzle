@@ -17,6 +17,8 @@ public class LevelLoader : MonoBehaviour
     }
 
     public void LoadLevel(int levelNum) {
+        FindObjectOfType<CodeMachine>().Spawn(levelNum);
+
         foreach (List<GameObject> level in levels) {
             foreach (GameObject item in level) {
                 item.SetActive(false);
