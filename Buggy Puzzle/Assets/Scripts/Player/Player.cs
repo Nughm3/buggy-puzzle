@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator Move(Enums.Direction dir)
     {
-        if (allowMove)
+        if (allowMove && !CodeMenu.menuOpened)
         {
             inMove = true;
             int[] movePixels = { 1, 2, 2, 3, 3, 2, 2, 1 };
@@ -67,10 +67,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OpenCodeMenu() {
+        codeMenu.GetComponent<CodeMenu>().Show();
+    }
+
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Enemy" && allowHurt) {
             Debug.Log("ow");
         }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened) OpenCodeMenu();
     }
 
     public void Reset()

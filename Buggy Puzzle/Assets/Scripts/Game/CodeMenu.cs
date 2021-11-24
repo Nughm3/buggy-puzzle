@@ -11,14 +11,17 @@ public class CodeMenu : MonoBehaviour
     int options = 13;
     string codeInput = "____";
     int codeInputIndex = 0;
+    public static bool menuOpened;
 
     void Awake()
     {
         UpdateSelection();
     }
 
-    void OnEnable() {
-        Player.allowMove = false;
+    public void Show() {
+        gameObject.SetActive(true);
+        transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
+        menuOpened = true;
     }
 
     public void UpdateSelection()
@@ -71,8 +74,8 @@ public class CodeMenu : MonoBehaviour
         selectedOption = 0;
         codeInputIndex = 0;
         codeInput = "____";
-        if (!Player.inMove) Player.allowMove = true;
         gameObject.SetActive(false);
+        menuOpened = false;
     }
 
     void ChooseButton(int number) {
@@ -85,7 +88,7 @@ public class CodeMenu : MonoBehaviour
             codeInputIndex += 1;
         }
         if (selectedOption == 9) {
-            Debug.Log("Confirm");
+            // Debug.Log("Confirm");
         }
         if (selectedOption == 11 && codeInputIndex > 0) {
             var tempCode = codeInput;

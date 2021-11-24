@@ -18,6 +18,9 @@ public class Person : MonoBehaviour
             inPlayerRange = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+        if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange) {
+            if (DialogueManager.inDialogue) FindObjectOfType<DialogueManager>().EndDialogue();
+            else FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+        }
     }
 }

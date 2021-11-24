@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueUI;
 
     string sentence;
-    public bool inDialogue = false;
+    public static bool inDialogue = false;
 
     public void TriggerDialogue(string dialogue) {
         if (!inDialogue) StartDialogue(dialogue);
