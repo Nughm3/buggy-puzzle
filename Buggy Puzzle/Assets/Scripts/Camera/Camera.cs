@@ -22,6 +22,7 @@ public class Camera : MonoBehaviour
     void CheckScroll() {
         if (FindObjectOfType<Player>().myPos.x - transform.position.x < -8.39f || FindObjectOfType<Player>().myPos.x - transform.position.x > 8.39f || FindObjectOfType<Player>().myPos.y - transform.position.y < -4.79f || FindObjectOfType<Player>().myPos.y - transform.position.y > 4.79f) {
             if (!inScrollArea) {
+                Player.cameraIsMoving = true;
                 if (FindObjectOfType<Player>().myPos.y - transform.position.y > 4.79f) StartCoroutine(ScrollCamera(Enums.Direction.Up));
                 if (FindObjectOfType<Player>().myPos.y - transform.position.y < -4.79f) StartCoroutine(ScrollCamera(Enums.Direction.Down));
                 if (FindObjectOfType<Player>().myPos.x - transform.position.x < -8.39f) StartCoroutine(ScrollCamera(Enums.Direction.Left));
@@ -35,6 +36,8 @@ public class Camera : MonoBehaviour
     }
 
     public void ResetCamera() {
+        Player.cameraIsMoving = false;
+        inScroll = false;
         transform.position = new Vector3(0,0,-10);
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;

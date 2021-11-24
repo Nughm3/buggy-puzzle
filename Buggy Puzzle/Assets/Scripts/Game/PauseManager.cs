@@ -10,7 +10,7 @@ public class PauseManager : MonoBehaviour
     void Update()
     {
         UpdateSelection();
-        if (Input.GetKeyDown(KeyCode.Escape) && !Camera.inScroll) Pause();
+        if (Input.GetKeyDown(KeyCode.Escape) && !Camera.inScroll && !CodeMenu.menuOpened) Pause();
         pauseMenu.transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
     }
 
@@ -20,11 +20,13 @@ public class PauseManager : MonoBehaviour
             if (isPaused)
             {
                 pauseMenu.SetActive(true);
+                PauseMenu.menuOpened = true;
                 Time.timeScale = 0f;
             }
             else
             {
                 pauseMenu.SetActive(false);
+                PauseMenu.menuOpened = false;
                 Time.timeScale = 1f;
             }
         }

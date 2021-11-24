@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (transform.position.x - FindObjectOfType<Camera>().myPos.x < -8.39f || transform.position.x - FindObjectOfType<Camera>().myPos.x > 8.39f || transform.position.y - FindObjectOfType<Camera>().myPos.y < -4.79f || transform.position.y - FindObjectOfType<Camera>().myPos.y > 4.79f) cameraIsMoving = true;
+        // if (transform.position.x - FindObjectOfType<Camera>().myPos.x < -8.39f || transform.position.x - FindObjectOfType<Camera>().myPos.x > 8.39f || transform.position.y - FindObjectOfType<Camera>().myPos.y < -4.79f || transform.position.y - FindObjectOfType<Camera>().myPos.y > 4.79f) cameraIsMoving = true;
         if (!inMove && !cameraIsMoving)
         {
             if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Up));
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened) OpenCodeMenu();
+        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened) OpenCodeMenu();
     }
 
     public void Reset()

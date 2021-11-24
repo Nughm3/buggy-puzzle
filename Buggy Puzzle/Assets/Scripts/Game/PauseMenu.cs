@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
 
     int selectedOption = 0;
     int options = 2;
+    public static bool menuOpened;
 
     void Awake()
     {
@@ -55,11 +56,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Unconfirm()
-    {
-        PauseManager.isPaused = false;
-    }
-
     void Continue()
     {
         PauseManager.isPaused = false;
@@ -91,7 +87,7 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
         else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
         if (Input.GetKeyDown(KeyCode.Z)) Confirm();
-        else if (Input.GetKeyDown(KeyCode.X)) Unconfirm();
+        else if (Input.GetKeyDown(KeyCode.X)) Continue();
         UpdateSelection();
     }
 }

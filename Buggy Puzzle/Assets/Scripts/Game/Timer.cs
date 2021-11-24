@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     int[] timerMinutes = {5, 7};
     string extra0;
     public bool stopTimer = false;
-    int minutes, seconds;
+    public static int minutes, seconds;
 
     void Awake() {
         timerTextUI = gameObject.GetComponentInChildren<TextMeshPro>();
@@ -45,6 +45,8 @@ public class Timer : MonoBehaviour
     }
 
     public void SetTimer(int level) {
+        transform.position = new Vector3(7.9f, 4.6f, 0);
+
         minutes = timerMinutes[level-1];
         seconds = 0;
     }

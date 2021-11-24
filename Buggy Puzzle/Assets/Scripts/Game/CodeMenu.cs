@@ -102,9 +102,11 @@ public class CodeMenu : MonoBehaviour
                 for (int i = 0; i < 4; i++) {if (codeArray[i] == GameManager.code[i].ToString()) correctDigits += 1;}
                 if (correctDigits >= 4) {
                     Debug.Log("yay");
+                    FindObjectOfType<Timer>().StopTimer();
                 }
                 else {
-                    Debug.Log("wrong lol");
+                    if (Timer.minutes < 1) Timer.seconds = 1;
+                    else Timer.minutes -= 1;
                 }
             }
         }
