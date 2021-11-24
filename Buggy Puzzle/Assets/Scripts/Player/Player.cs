@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     float speed = 0.05f;
     public static bool inMove = false;
-    public static bool allowMove = true;
+    public static bool allowMove = false;
     public static bool cameraIsMoving = false;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public static Vector2 tilePos;
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     {
         StopAllCoroutines();
         inMove = false;
-        allowMove = true;
+        allowMove = false;
     }
 
     void Awake() {

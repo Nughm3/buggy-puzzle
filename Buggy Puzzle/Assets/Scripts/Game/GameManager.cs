@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<EnemySpawner>().SpawnEnemies(level);
         FindObjectOfType<PersonSpawner>().AssignDialogue(code);
         FindObjectOfType<PersonSpawner>().SpawnPeople(level);
-        yield return StartCoroutine(FindObjectOfType<Fade>().FadeIn());
+        StartCoroutine(FindObjectOfType<StartTimer>().Timer());
+        StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }
 
     void GenerateCode(int level) {

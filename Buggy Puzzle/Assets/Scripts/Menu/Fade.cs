@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fade : MonoBehaviour
 {
     public SpriteRenderer fade;
-    float fadeSpeed = 0.02f;
+    float fadeSpeed = 0.04f;
 
     public IEnumerator FadeIn()
     {
