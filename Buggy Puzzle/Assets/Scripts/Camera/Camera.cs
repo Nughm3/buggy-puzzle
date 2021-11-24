@@ -13,6 +13,7 @@ public class Camera : MonoBehaviour
     int moveAmount;
     bool inScrollArea = false;
     public static bool allowCheckScroll = false;
+    public GameObject timer;
 
     void Update() {
         if (allowCheckScroll) CheckScroll();
@@ -65,6 +66,7 @@ public class Camera : MonoBehaviour
             if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 56;
             for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
+                timer.transform.position = new Vector3(transform.position.x + 7.9f, transform.position.y + 4.6f, 0);
                 yield return new WaitForSecondsRealtime(0.01f);
             }
             inScroll = false;

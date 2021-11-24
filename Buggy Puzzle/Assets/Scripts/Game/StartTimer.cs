@@ -21,6 +21,8 @@ public class StartTimer : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         startText.text = "Start!";
         Player.allowMove = true;
+        FindObjectOfType<Timer>().stopTimer = false;
+        StartCoroutine(FindObjectOfType<Timer>().ReduceTimer());
         yield return new WaitForSeconds(waitTime/2);
         startText.text = "";
     }

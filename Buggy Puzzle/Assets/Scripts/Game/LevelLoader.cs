@@ -18,6 +18,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(int levelNum) {
         FindObjectOfType<CodeMachine>().Spawn(levelNum);
+        FindObjectOfType<Timer>().SetTimer(levelNum);
 
         foreach (List<GameObject> level in levels) {
             foreach (GameObject item in level) {
