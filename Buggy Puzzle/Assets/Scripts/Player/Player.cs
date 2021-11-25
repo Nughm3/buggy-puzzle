@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        // if (transform.position.x - FindObjectOfType<Camera>().myPos.x < -8.39f || transform.position.x - FindObjectOfType<Camera>().myPos.x > 8.39f || transform.position.y - FindObjectOfType<Camera>().myPos.y < -4.79f || transform.position.y - FindObjectOfType<Camera>().myPos.y > 4.79f) cameraIsMoving = true;
         if (!inMove && !cameraIsMoving)
         {
             if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Up));
@@ -41,7 +40,7 @@ public class Player : MonoBehaviour
         if (allowMove && !CodeMenu.menuOpened)
         {
             inMove = true;
-            int[] movePixels = { 1, 2, 2, 3, 3, 2, 2, 1 };
+            int[] movePixels = { 2, 3, 3, 3, 3, 2 };
             if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0), tileMask);
             if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0), tileMask);
             if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0), tileMask);
@@ -58,9 +57,9 @@ public class Player : MonoBehaviour
                     if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
                     if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
                     if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                    yield return new WaitForSeconds(0.01f);
+                    yield return new WaitForSeconds(Time.deltaTime * 0.75f);
                 }
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
                 myPos = transform.position;
             }
             inMove = false;

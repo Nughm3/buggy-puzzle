@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using System.IO;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject menu;
     public GameObject game;
+    public TextMeshPro tempFPS;
 
     public static int[] code;
 

@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
             if (letter.ToString() == "`") currentDialogueText += "<br>";
             else currentDialogueText += letter;
             dialogueText.text = currentDialogueText;
-            yield return new WaitForSeconds(0.02f);
+            yield return null;
         }
     }
 

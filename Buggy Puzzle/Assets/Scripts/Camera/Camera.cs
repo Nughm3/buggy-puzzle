@@ -9,7 +9,7 @@ public class Camera : MonoBehaviour
     public Vector3 myPos = new Vector3(0, 0, -10);
     float moveX;
     float moveY;
-    float moveSpeed = 0.3f;
+    float moveSpeed = 0.4f;
     int moveAmount;
     bool inScrollArea = false;
     public static bool allowCheckScroll = false;
@@ -65,12 +65,12 @@ public class Camera : MonoBehaviour
                 cameraGridPos += new Vector3(1, 0, 0);
                 moveX = moveSpeed;
             }
-            if (dir == Enums.Direction.Up || dir == Enums.Direction.Down) moveAmount = 32;
-            if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 56;
+            if (dir == Enums.Direction.Up || dir == Enums.Direction.Down) moveAmount = 24;
+            if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 42;
             for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
                 timer.transform.position = new Vector3(transform.position.x + 7.9f, transform.position.y + 4.6f, 0);
-                yield return new WaitForSecondsRealtime(0.01f);
+                yield return new WaitForSecondsRealtime(Time.deltaTime * 0.75f);
             }
             inScroll = false;
             myPos = transform.position;

@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertPrefab: {fileID: 685975939848017129, guid: 72d8bc90bab823d44bd58fe498d83932, type: 3}
   animator: {fileID: 0}
+  safeTiles: {fileID: 0}
 --- !u!95 &1385481464
 Animator:
   serializedVersion: 4
@@ -146,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9}
+  m_Size: {x: 0.4, y: 0.6}
   m_EdgeRadius: 0
 --- !u!50 &8604499023699768432
 Rigidbody2D:
