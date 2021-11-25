@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
         SetResolution();
         CheckForSave();
         FindObjectOfType<PlayerData>().Load();
