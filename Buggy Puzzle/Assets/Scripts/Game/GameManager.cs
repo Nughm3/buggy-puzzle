@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         Player.tilePos = new Vector2(1,5);
         FindObjectOfType<Player>().Spawn(level);
         FindObjectOfType<LevelLoader>().LoadLevel(level);
-        FindObjectOfType<EnemySpawner>().SpawnEnemies(level);
+        FindObjectOfType<EntitySpawner>().SpawnEntities(level);
         FindObjectOfType<PersonSpawner>().AssignDialogue(code);
         FindObjectOfType<PersonSpawner>().SpawnPeople(level);
         StartCoroutine(FindObjectOfType<StartTimer>().Timer());

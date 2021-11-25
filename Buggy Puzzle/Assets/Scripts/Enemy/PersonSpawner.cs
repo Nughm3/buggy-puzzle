@@ -51,7 +51,7 @@ public class PersonSpawner : MonoBehaviour
     float posy;
     float tileSize = 0.8f;
     public GameObject personPrefab;
-    public GameObject instantiatedObject;
+    GameObject instantiatedObject;
     Vector2 spawnPos;
 
     public void SpawnPeople(int level) {

@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
     }
 
     IEnumerator WaitAlert() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(Time.deltaTime * 30);
         inPlayerRange = true;
     }
 
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             if (inPlayerRange && !inMove) {
                 while (inPlayerRange) {
                     CalculateDistance();
-                    yield return new WaitForSeconds(waitMoveSpeed + Random.Range(-0.1f,0.1f));
+                    yield return new WaitForSeconds((waitMoveSpeed + Random.Range(-0.1f,0.1f)) * Time.deltaTime * 60);
                 }
             }
             else yield return new WaitForFixedUpdate();

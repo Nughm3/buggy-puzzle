@@ -68,7 +68,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         FindObjectOfType<DialogueManager>().EndDialogue();
-        FindObjectOfType<EnemySpawner>().RemoveEnemies();
+        FindObjectOfType<EntitySpawner>().RemoveEnemies();
         FindObjectOfType<PersonSpawner>().RemovePeople();
         FindObjectOfType<Timer>().StopTimer();
         FindObjectOfType<Player>().Reset();

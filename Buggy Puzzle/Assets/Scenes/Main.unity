@@ -7495,7 +7495,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personPrefab: {fileID: 9150060135738618519, guid: f47d1772547280a4eb717af2559fa1b1, type: 3}
-  instantiatedObject: {fileID: 0}
 --- !u!1 &919700379
 GameObject:
   m_ObjectHideFlags: 0
@@ -7537,10 +7536,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 919700379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f208b61feb9b35940bf3b5a66d274df6, type: 3}
+  m_Script: {fileID: 11500000, guid: 32f8f704e0d7ea54f9fadfd4acbf1830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3058268186378349975, guid: d6b0a46e8af4dc5409179b163c74ce52, type: 3}
+  personPrefab: {fileID: 9150060135738618519, guid: f47d1772547280a4eb717af2559fa1b1, type: 3}
 --- !u!1 &957532713
 GameObject:
   m_ObjectHideFlags: 0
