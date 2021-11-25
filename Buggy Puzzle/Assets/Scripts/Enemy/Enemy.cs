@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             if (inPlayerRange && !inMove) {
                 while (inPlayerRange) {
                     CalculateDistance();
-                    yield return new WaitForSeconds((waitMoveSpeed + Random.Range(-0.1f,0.1f)) * Time.deltaTime * 60);
+                    yield return new WaitForSeconds(waitMoveSpeed + Random.Range(-0.1f,0.1f));
                 }
             }
             else yield return new WaitForFixedUpdate();

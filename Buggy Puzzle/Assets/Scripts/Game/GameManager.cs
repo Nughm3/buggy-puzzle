@@ -24,12 +24,10 @@ public class GameManager : MonoBehaviour
         GenerateCode(level);
         FindObjectOfType<Camera>().ResetCamera();
         Camera.allowCheckScroll = true;
-        Player.tilePos = new Vector2(1,5);
         FindObjectOfType<Player>().Spawn(level);
         FindObjectOfType<LevelLoader>().LoadLevel(level);
+        FindObjectOfType<EntitySpawner>().AssignDialogue(code);
         FindObjectOfType<EntitySpawner>().SpawnEntities(level);
-        FindObjectOfType<PersonSpawner>().AssignDialogue(code);
-        FindObjectOfType<PersonSpawner>().SpawnPeople(level);
         StartCoroutine(FindObjectOfType<StartTimer>().Timer());
         StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }

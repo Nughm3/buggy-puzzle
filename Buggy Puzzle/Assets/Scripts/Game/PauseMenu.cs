@@ -69,7 +69,7 @@ public class PauseMenu : MonoBehaviour
 
         FindObjectOfType<DialogueManager>().EndDialogue();
         FindObjectOfType<EntitySpawner>().RemoveEnemies();
-        FindObjectOfType<PersonSpawner>().RemovePeople();
+        FindObjectOfType<EntitySpawner>().RemovePeople();
         FindObjectOfType<Timer>().StopTimer();
         FindObjectOfType<Player>().Reset();
         FindObjectOfType<Fade>().StopFade();
