@@ -46,7 +46,7 @@ public class Camera : MonoBehaviour
     public IEnumerator ScrollCamera(Enums.Direction dir) {
         if (!inScroll) {
             inScroll = true;
-            Time.timeScale = 0f;
+            Player.allowMove = false;
             moveX = 0;
             moveY = 0;
             if (dir == Enums.Direction.Up) {
@@ -70,10 +70,11 @@ public class Camera : MonoBehaviour
             for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
                 timer.transform.position = new Vector3(transform.position.x + 7.9f, transform.position.y + 4.6f, 0);
-                yield return new WaitForSecondsRealtime(Time.deltaTime * 0.75f);
+                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
             }
             inScroll = false;
             myPos = transform.position;
+            Player.allowMove = true;
             Player.cameraIsMoving = false;
             StartCoroutine(FindObjectOfType<Player>().Move(dir));
         }
