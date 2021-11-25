@@ -897,7 +897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Debug Defuser
+  m_text: Buggy Puzzle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0735c2b0956160a46bf001bc0e2b2375, type: 2}
   m_sharedMaterial: {fileID: 8468331935721040933, guid: 0735c2b0956160a46bf001bc0e2b2375, type: 2}
