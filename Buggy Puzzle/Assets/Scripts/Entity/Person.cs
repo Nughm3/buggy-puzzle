@@ -9,7 +9,6 @@ public class Person : MonoBehaviour
     bool inPlayerRange = false;
 
     void Update() {
-
         if (Mathf.Abs(tilePos.x - Player.tilePos.x) < 1.1f && Mathf.Abs(tilePos.y - Player.tilePos.y) < 1.1f) {
             inPlayerRange = true;
         }

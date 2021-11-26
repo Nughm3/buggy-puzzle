@@ -83,11 +83,12 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator TakeDamage(int damage) {
+        FindObjectOfType<AudioManager>().PlaySound("damage");
         inHurt = true;
         health -= 1;
         if (health < 0) health = 0;
         if (health == 0) Death("enemy");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         inHurt = false;
     }
 
