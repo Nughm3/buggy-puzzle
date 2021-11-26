@@ -36,7 +36,9 @@ public class Timer : MonoBehaviour
             if (stopTimer) break;
             else yield return new WaitForSeconds(1);
         }
-        if (!stopTimer) Debug.Log("you are die");
+        if (!stopTimer) {
+            FindObjectOfType<Player>().Death("time");
+        }
         yield return null;
     }
 

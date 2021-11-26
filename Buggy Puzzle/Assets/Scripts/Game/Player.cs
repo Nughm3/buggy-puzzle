@@ -91,14 +91,18 @@ public class Player : MonoBehaviour
         inHurt = false;
     }
 
-    void Death(string type) {
+    public void Death(string type) {
         isAlive = false;
         gameObject.SetActive(false);
         if (type == "enemy") Debug.Log("you are died to enemy");
+        if (type == "time") Debug.Log("you are died to time");
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened) OpenCodeMenu();
+
+        if (inHurt) gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.5f);
+        else gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1);
     }
 
     public void Reset()
