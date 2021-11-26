@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     void Update() {
         if (Player.isAlive) CheckVision();
-        else animator.SetInteger("State", 0);
+        else animator.SetInteger("State", 6);
         if (inMove) Destroy(myAlert);
     }
 
