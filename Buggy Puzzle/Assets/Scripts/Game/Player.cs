@@ -8,15 +8,19 @@ public class Player : MonoBehaviour
     public static bool inMove = false;
     public static bool allowMove = false;
     public static bool cameraIsMoving = false;
+
+    bool inHurt = false;
+    public static int health = 3;
+    
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public static Vector2 tilePos = new Vector2(22,17);
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
-    RaycastHit2D moveRay;
+
     public GameObject tiles;
     public GameObject borderTiles;
-    LayerMask tileMask;
-    bool allowHurt = true;
     public GameObject codeMenu;
+    LayerMask tileMask;
+    RaycastHit2D moveRay;
 
     public void Spawn(int level)
     {
@@ -71,9 +75,18 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Enemy" && allowHurt) {
-            Debug.Log("ow");
+        if (other.gameObject.tag == "Enemy" && !inHurt) {
+            StartCoroutine(TakeDamage(1));
         }
+    }
+
+    IEnumerator TakeDamage(int damage) {
+        Debug.Log("ow");
+        inHurt = true;
+        health -= 1;
+        if (health < 0) health = 0;
+        yield return new WaitForSeconds(2);
+        inHurt = false;
     }
 
     void Update() {

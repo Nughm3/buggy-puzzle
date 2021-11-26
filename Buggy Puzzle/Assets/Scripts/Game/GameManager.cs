@@ -43,16 +43,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
         SetResolution();
         CheckForSave();
         FindObjectOfType<PlayerData>().Load();
     }
 
     void SetResolution() {
-        if (Screen.width / Screen.height != 16 / 9) {
-            Screen.SetResolution(1920,1080,true);
-        }
+        Screen.SetResolution(1920,1080,true);
+        Application.targetFrameRate = 60;
     }
 
     void CheckForSave()
