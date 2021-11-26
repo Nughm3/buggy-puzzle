@@ -37,8 +37,23 @@ public class GameManager : MonoBehaviour
         if (level <= 2) code = new int[4];
         else code = new int[5];
 
-        for (int i = 0; i < code.Length; i++) {
-            code[i] = Random.Range(0,10);
+        if (level == 1) {
+            for (int i = 0; i < code.Length; i++) {
+                code[i] = Random.Range(0,10);
+            }
+        }
+        if (level == 2) {
+            int random = Random.Range(0,2);
+            if (random == 0) {
+                code[1] = Random.Range(0,4);
+                code[3] = code[1] * Random.Range(0,4);
+            }
+            else {
+                code[3] = Random.Range(0,4);
+                code[1] = code[3] * Random.Range(0,4);
+            }
+            code[0] = Random.Range(0,10);
+            code[2] = Random.Range(0,10);
         }
     }
 
