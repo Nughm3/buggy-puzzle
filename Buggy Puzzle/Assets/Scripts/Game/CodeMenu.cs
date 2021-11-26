@@ -12,6 +12,7 @@ public class CodeMenu : MonoBehaviour
     string codeInput = "____";
     int codeInputIndex = 0;
     string[] codeArray = new string[4];
+    public static bool codeIsReversed = false;
     public static bool menuOpened;
 
     void Awake()
@@ -99,13 +100,23 @@ public class CodeMenu : MonoBehaviour
                     loopIndex += 1;
                 }
                 int correctDigits = 0;
-                for (int i = 0; i < 4; i++) {if (codeArray[i] == GameManager.code[i].ToString()) correctDigits += 1;}
+                for (int i = 0; i < 4; i++) {
+                    if (!codeIsReversed) {
+                        if (codeArray[i] == GameManager.code[i].ToString()) correctDigits += 1;
+                    }
+                    else {
+                        if (codeArray[i] == GameManager.code[3-i].ToString()) correctDigits += 1;
+                    }
+                }
                 if (correctDigits >= 4) {
                     Debug.Log("yay");
                     FindObjectOfType<Timer>().StopTimer();
                 }
                 else {
-                    if (Timer.minutes < 1) Timer.seconds = 1;
+                    if (Timer.minutes < 1) {
+                        Timer.seconds = 0;
+                        Unconfirm();
+                    }
                     else Timer.minutes -= 1;
                 }
             }

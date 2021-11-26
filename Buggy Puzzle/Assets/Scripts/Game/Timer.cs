@@ -28,10 +28,12 @@ public class Timer : MonoBehaviour
 
     public IEnumerator ReduceTimer() {
         while (minutes > 0 || seconds > 0) {
-            seconds -= 1;
-            if (seconds < 0) {
-                minutes -= 1;
-                seconds = 59;
+            if (!stopTimer) {
+                seconds -= 1;
+                if (seconds < 0) {
+                    minutes -= 1;
+                    seconds = 59;
+                }
             }
             if (stopTimer) break;
             else yield return new WaitForSeconds(1);
