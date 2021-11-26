@@ -13,6 +13,7 @@ public class PlayerData : MonoBehaviour
     {
         StoredData data = SaveSystem.Load();
         level = data.level;
+        level = 2;
     }
 
     public void CreateSave()

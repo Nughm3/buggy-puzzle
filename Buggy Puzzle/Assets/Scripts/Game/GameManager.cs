@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     {
         MenuManager.allowInput = false;
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
-        if (levelMenu.activeInHierarchy) FindObjectOfType<LevelMenu>().Back();
         game.SetActive(true);
         menu.SetActive(false);
         MenuManager.allowInput = true;

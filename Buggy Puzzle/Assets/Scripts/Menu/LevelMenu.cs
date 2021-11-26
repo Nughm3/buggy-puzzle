@@ -23,7 +23,7 @@ public class LevelMenu : MonoBehaviour
     public GameObject menu;
     public GameObject game;
 
-    int selectedOption = 0;
+    public static int selectedOption = 0;
     int options = 11;
 
     void Awake()
