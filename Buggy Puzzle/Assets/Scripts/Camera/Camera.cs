@@ -39,6 +39,7 @@ public class Camera : MonoBehaviour
         Player.cameraIsMoving = false;
         inScroll = false;
         transform.position = new Vector3(0,0,-10);
+        myPos = new Vector3(0, 0, -10);
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;
     }
