@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     float speed = 0.05f;
+    int spinDir;
     bool allowMove = true;
     bool inMove = false;
     float distance;
@@ -32,11 +33,15 @@ public class Enemy : MonoBehaviour
         StartCoroutine(WaitMove());
         myPos = transform.position;
         animator = GetComponent<Animator>();
+        spinDir = Random.Range(0,2);
     }
 
     void Update() {
         if (Player.isAlive) CheckVision();
-        else animator.SetInteger("State", 6);
+        else {
+            animator.SetInteger("State", 6);
+            transform.Rotate(0,0,800*Time.deltaTime * (spinDir - 0.5f)*2);
+        }
         if (inMove) Destroy(myAlert);
     }
 

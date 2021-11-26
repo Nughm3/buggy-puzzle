@@ -1,14 +1,12 @@
 using UnityEngine;
+using System.Collections;
 using TMPro;
 
-public class PauseMenu : MonoBehaviour
+public class DeathMenu : MonoBehaviour
 {
-    public TextMeshPro continueButton;
+    public TextMeshPro retryButton;
     public TextMeshPro quitButton;
-
-    public GameObject menu;
-    public GameObject game;
-    public GameObject player;
+    public GameObject pauseMenu;
 
     int selectedOption = 0;
     int options = 2;
@@ -21,7 +19,7 @@ public class PauseMenu : MonoBehaviour
 
     public void UpdateSelection()
     {
-        TextMeshPro[] buttons = { continueButton, quitButton };
+        TextMeshPro[] buttons = { retryButton, quitButton };
 
         foreach (TextMeshPro button in buttons)
         {
@@ -30,6 +28,10 @@ public class PauseMenu : MonoBehaviour
         }
         buttons[selectedOption].color = Color.green;
         buttons[selectedOption].fontStyle = FontStyles.Bold;
+    }
+
+    public void Show() {
+        gameObject.SetActive(true);
     }
 
     void SelectUp()
@@ -49,7 +51,7 @@ public class PauseMenu : MonoBehaviour
         switch (selectedOption)
         {
             case 0:
-                Continue();
+                Retry();
                 return;
             case 1:
                 Quit();
@@ -57,31 +59,16 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Continue()
+    void Retry()
     {
-        PauseManager.isPaused = false;
+        
     }
 
-    public void Quit()
+    void Quit()
     {
         selectedOption = 0;
-        PauseManager.isPaused = false;
-        Time.timeScale = 1f;
-
-        FindObjectOfType<DialogueManager>().EndDialogue();
-        FindObjectOfType<EntitySpawner>().RemoveEnemies();
-        FindObjectOfType<EntitySpawner>().RemovePeople();
-        FindObjectOfType<Timer>().StopTimer();
-        player.SetActive(true);
-        FindObjectOfType<Player>().Reset();
-        FindObjectOfType<Fade>().StopFade();
-        FindObjectOfType<Hearts>().Reset();
-
-        Camera.allowCheckScroll = false;
-        FindObjectOfType<Camera>().ResetCamera();
-
-        menu.SetActive(true);
-        game.SetActive(false);
+        pauseMenu.SetActive(true);
+        FindObjectOfType<PauseMenu>().Quit();
         gameObject.SetActive(false);
     }
 
@@ -90,7 +77,6 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
         else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
         if (Input.GetKeyDown(KeyCode.Z)) Confirm();
-        else if (Input.GetKeyDown(KeyCode.X)) Continue();
         UpdateSelection();
     }
 }

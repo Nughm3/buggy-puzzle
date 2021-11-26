@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject tiles;
     public GameObject borderTiles;
     public GameObject codeMenu;
+    public GameObject deathMenu;
     LayerMask tileMask;
     RaycastHit2D moveRay;
 
@@ -94,9 +95,9 @@ public class Player : MonoBehaviour
 
     public void Death(string type) {
         isAlive = false;
+        deathMenu.SetActive(true);
+        FindObjectOfType<Timer>().StopTimer();
         gameObject.SetActive(false);
-        if (type == "enemy") Debug.Log("you are died to enemy");
-        if (type == "time") Debug.Log("you are died to time");
     }
 
     void Update() {
