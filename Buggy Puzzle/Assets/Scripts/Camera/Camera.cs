@@ -14,9 +14,10 @@ public class Camera : MonoBehaviour
     bool inScrollArea = false;
     public static bool allowCheckScroll = false;
     public GameObject timer;
+    public GameObject hearts;
 
     void Update() {
-        if (allowCheckScroll) CheckScroll();
+        if (allowCheckScroll && Player.isAlive) CheckScroll();
     }
 
     void CheckScroll() {
@@ -70,7 +71,8 @@ public class Camera : MonoBehaviour
             if (dir == Enums.Direction.Left || dir == Enums.Direction.Right) moveAmount = 42;
             for (int i = 0; i < moveAmount; i++) {
                 transform.position += new Vector3(moveX, moveY, 0);
-                timer.transform.position = new Vector3(transform.position.x + 7.9f, transform.position.y + 4.6f, 0);
+                hearts.transform.position = new Vector3(transform.position.x - 8.45f, transform.position.y + 4.6f, 0);
+                timer.transform.position = new Vector3(transform.position.x + 8f, transform.position.y + 4.7f, 0);
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
             }
             inScroll = false;

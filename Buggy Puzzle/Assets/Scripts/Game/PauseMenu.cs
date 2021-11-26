@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject menu;
     public GameObject game;
+    public GameObject player;
 
     int selectedOption = 0;
     int options = 2;
@@ -71,8 +72,10 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<EntitySpawner>().RemoveEnemies();
         FindObjectOfType<EntitySpawner>().RemovePeople();
         FindObjectOfType<Timer>().StopTimer();
+        player.SetActive(true);
         FindObjectOfType<Player>().Reset();
         FindObjectOfType<Fade>().StopFade();
+        FindObjectOfType<Hearts>().Reset();
 
         Camera.allowCheckScroll = false;
         FindObjectOfType<Camera>().ResetCamera();

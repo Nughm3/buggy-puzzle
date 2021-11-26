@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Update() {
-        CheckVision();
+        if (Player.isAlive) CheckVision();
         if (inMove) Destroy(myAlert);
     }
 
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         while (true) {
             if (inPlayerRange && !inMove) {
                 while (inPlayerRange) {
-                    CalculateDistance();
+                    if (Player.isAlive) CalculateDistance();
                     yield return new WaitForSeconds(waitMoveSpeed + Random.Range(-0.1f,0.1f));
                 }
             }

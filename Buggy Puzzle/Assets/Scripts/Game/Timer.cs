@@ -45,7 +45,7 @@ public class Timer : MonoBehaviour
     }
 
     public void SetTimer(int level) {
-        transform.position = new Vector3(7.9f, 4.6f, 0);
+        transform.position = new Vector3(8f, 4.7f, 0);
 
         minutes = timerMinutes[level-1];
         seconds = 0;

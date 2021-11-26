@@ -10,7 +10,9 @@ public class CodeMachine : MonoBehaviour
     }
 
     void Update() {
-        if (Vector3.Distance(transform.position, FindObjectOfType<Player>().transform.position) < 2f) inPlayerRange = true;
-        else inPlayerRange = false;
+        if (Player.isAlive) {
+            if (Vector3.Distance(transform.position, FindObjectOfType<Player>().transform.position) < 2f) inPlayerRange = true;
+            else inPlayerRange = false;
+        }
     }
 }

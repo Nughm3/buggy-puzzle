@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     bool inHurt = false;
     public static int health = 3;
+    public static int maxHealth = 3;
+    public static bool isAlive = true;
     
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public static Vector2 tilePos = new Vector2(22,17);
@@ -74,19 +76,25 @@ public class Player : MonoBehaviour
         codeMenu.GetComponent<CodeMenu>().Show();
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionStay2D(Collision2D other) {
         if (other.gameObject.tag == "Enemy" && !inHurt) {
             StartCoroutine(TakeDamage(1));
         }
     }
 
     IEnumerator TakeDamage(int damage) {
-        Debug.Log("ow");
         inHurt = true;
         health -= 1;
         if (health < 0) health = 0;
+        if (health == 0) Death("enemy");
         yield return new WaitForSeconds(2);
         inHurt = false;
+    }
+
+    void Death(string type) {
+        isAlive = false;
+        gameObject.SetActive(false);
+        if (type == "enemy") Debug.Log("you are died to enemy");
     }
 
     void Update() {
@@ -98,6 +106,9 @@ public class Player : MonoBehaviour
         StopAllCoroutines();
         inMove = false;
         allowMove = false;
+        inHurt = false;
+        health = 3;
+        isAlive = true;
     }
 
     void Awake() {
