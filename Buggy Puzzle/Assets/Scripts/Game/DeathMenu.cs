@@ -79,6 +79,7 @@ public class DeathMenu : MonoBehaviour
         selectedOption = 0;
         pauseMenu.SetActive(true);
         FindObjectOfType<PauseMenu>().Quit();
+        menuOpened = false;
         gameObject.SetActive(false);
     }
 
