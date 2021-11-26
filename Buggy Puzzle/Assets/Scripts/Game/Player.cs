@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         StopAllCoroutines();
+        tilePos = new Vector2(22,17);
         inMove = false;
         allowMove = false;
         inHurt = false;
