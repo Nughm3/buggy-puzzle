@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject menu;
     public GameObject game;
+    public GameObject levelMenu;
     public TextMeshPro tempFPS;
 
     public static int[] code;
@@ -16,10 +17,11 @@ public class GameManager : MonoBehaviour
     {
         MenuManager.allowInput = false;
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
-        FindObjectOfType<LevelMenu>().Back();
+        if (levelMenu.activeInHierarchy) FindObjectOfType<LevelMenu>().Back();
         game.SetActive(true);
         menu.SetActive(false);
         MenuManager.allowInput = true;
+        DeathMenu.level = level;
 
         GenerateCode(level);
         FindObjectOfType<Camera>().ResetCamera();
@@ -60,5 +62,9 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<PlayerData>().CreateSave();
         }
+    }
+
+    public void Retry(int level) {
+        StartCoroutine(Play(level));
     }
 }

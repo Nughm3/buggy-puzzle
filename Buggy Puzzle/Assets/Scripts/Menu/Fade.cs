@@ -29,4 +29,8 @@ public class Fade : MonoBehaviour
         StopAllCoroutines();
         fade.color = new Color(0, 0, 0, 0);
     }
+
+    void Update() {
+        transform.position = new Vector3(FindObjectOfType<Camera>().transform.position.x, FindObjectOfType<Camera>().transform.position.y, 0);
+    }
 }
