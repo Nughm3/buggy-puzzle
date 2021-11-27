@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         menu.SetActive(false);
         MenuManager.allowInput = true;
         DeathMenu.level = level;
+        WinMenu.level = level;
 
         GenerateCode(level);
         FindObjectOfType<Camera>().ResetCamera();
@@ -47,7 +48,9 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < code.Length; i++) {
                 code[i] = Random.Range(0,10);
             }
-            CodeMenu.codeIsReversed = true;
+            int temp = Random.Range(0,2);
+            if (temp == 0) CodeMenu.codeIsReversed = false;
+            else CodeMenu.codeIsReversed = true;
         }
     }
 

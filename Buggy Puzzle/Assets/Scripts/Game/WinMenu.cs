@@ -2,15 +2,17 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 
-public class DeathMenu : MonoBehaviour
+public class WinMenu : MonoBehaviour
 {
+    public TextMeshPro nextButton;
     public TextMeshPro retryButton;
     public TextMeshPro quitButton;
-    public TextMeshPro codeText;
+    public TextMeshPro healthText;
+    public TextMeshPro timeText;
     public GameObject pauseMenu;
 
     int selectedOption = 0;
-    int options = 2;
+    int options = 3;
     public static bool menuOpened;
     public static int level;
     bool allowInput = true;
@@ -22,12 +24,15 @@ public class DeathMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
-        codeText.text = GameManager.code[0].ToString() + GameManager.code[1].ToString() + GameManager.code[2].ToString() + GameManager.code[3].ToString();
+        string extra0 = "";
+        if (60 - Timer.seconds < 10) extra0 = "0";
+        healthText.text = Player.health.ToString() + "/" + Player.maxHealth.ToString();
+        timeText.text = (4 - Timer.minutes).ToString() + ":" + extra0 + (60 - Timer.seconds).ToString();
     }
 
     public void UpdateSelection()
     {
-        TextMeshPro[] buttons = { retryButton, quitButton };
+        TextMeshPro[] buttons = { nextButton, retryButton, quitButton };
 
         foreach (TextMeshPro button in buttons)
         {
@@ -55,18 +60,34 @@ public class DeathMenu : MonoBehaviour
         switch (selectedOption)
         {
             case 0:
-                StartCoroutine(Retry());
+                StartCoroutine(Next());
                 return;
             case 1:
+                StartCoroutine(Retry());
+                return;
+            case 2:
                 Quit();
                 return;
         }
+    }
+
+    IEnumerator Next() {
+        allowInput = false;
+        yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
+        pauseMenu.SetActive(true);
+        FindObjectOfType<PauseMenu>().Quit();
+        FindObjectOfType<Fade>().fade.color = new Color(0, 0, 0, 1);
+        FindObjectOfType<GameManager>().Retry(level + 1);
+        menuOpened = false;
+        allowInput = true;
+        gameObject.SetActive(false);
     }
 
     IEnumerator Retry()
     {
         allowInput = false;
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
+        selectedOption = 0;
         pauseMenu.SetActive(true);
         FindObjectOfType<PauseMenu>().Quit();
         FindObjectOfType<Fade>().fade.color = new Color(0, 0, 0, 1);

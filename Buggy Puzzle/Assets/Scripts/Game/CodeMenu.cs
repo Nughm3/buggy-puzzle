@@ -6,6 +6,7 @@ public class CodeMenu : MonoBehaviour
 {
     public TextMeshPro[] buttonsList;
     public TextMeshPro codeText;
+    public GameObject winMenu;
 
     int selectedOption = 0;
     int options = 13;
@@ -109,7 +110,9 @@ public class CodeMenu : MonoBehaviour
                     }
                 }
                 if (correctDigits >= 4) {
-                    Debug.Log("yay");
+                    winMenu.SetActive(true);
+                    Unconfirm();
+                    Player.allowMove = false;
                     FindObjectOfType<Timer>().StopTimer();
                 }
                 else {

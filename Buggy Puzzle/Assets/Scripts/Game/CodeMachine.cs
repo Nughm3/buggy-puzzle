@@ -11,7 +11,7 @@ public class CodeMachine : MonoBehaviour
 
     void Update() {
         if (Player.isAlive) {
-            if (Vector3.Distance(transform.position, FindObjectOfType<Player>().transform.position) < 2f) inPlayerRange = true;
+            if (Vector3.Distance(transform.position, FindObjectOfType<Player>().transform.position) < 2f && !WinMenu.menuOpened) inPlayerRange = true;
             else inPlayerRange = false;
         }
     }
