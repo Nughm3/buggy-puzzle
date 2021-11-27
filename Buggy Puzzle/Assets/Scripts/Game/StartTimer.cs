@@ -8,6 +8,7 @@ public class StartTimer : MonoBehaviour
     public TextMeshPro timerText;
     public TextMeshPro codeText;
     public SpriteRenderer fade;
+    public GameObject instruction;
     float waitTime = 0.5f;
     public static bool timerRunning = false;
     bool digitsShown = false;
@@ -25,11 +26,13 @@ public class StartTimer : MonoBehaviour
             fade.color += new Color(0, 0, 0, 0.04f);
             yield return new WaitForFixedUpdate();
         }
+        instruction.SetActive(true);
         digitsShown = true;
     }
 
     IEnumerator Timer() {
         digitsShown = false;
+        instruction.SetActive(false);
         while (fade.color.a > 0 || codeText.color.a > 0)
         {
             codeText.color -= new Color(0, 0, 0, 0.16f);

@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public TextMeshPro tempFPS;
 
     public static int[] code;
+    public static int currentLevel;
 
     public IEnumerator Play(int level)
     {
+        currentLevel = level;
         MenuManager.allowInput = false;
         yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
         game.SetActive(true);

@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
         inMove = false;
         allowMove = false;
         inHurt = false;
-        health = 3;
+        health = maxHealth;
         isAlive = true;
     }
 
