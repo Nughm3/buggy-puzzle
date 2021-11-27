@@ -17,10 +17,10 @@ public class Person : MonoBehaviour
             inPlayerRange = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange) {
+        if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange && !CodeMenu.menuOpened && !BugMenu.menuOpened) {
             if (DialogueManager.inDialogue) FindObjectOfType<DialogueManager>().EndDialogue();
             else {
-                if (BugManager.bug == "scary") {
+                if (BugManager.bug == "Scary") {
                     int random = Random.Range(0,2);
                     if (random == 0) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
                     else FindObjectOfType<DialogueManager>().TriggerDialogue("You don't look familiar...");

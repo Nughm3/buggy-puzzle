@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened) OpenCodeMenu();
+        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened && !BugMenu.menuOpened) OpenCodeMenu();
 
         if (inHurt) gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.5f);
         else gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1);

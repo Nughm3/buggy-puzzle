@@ -50,6 +50,7 @@ public class StartTimer : MonoBehaviour
         Player.allowMove = true;
         FindObjectOfType<Timer>().stopTimer = false;
         StartCoroutine(FindObjectOfType<Timer>().ReduceTimer());
+        StartCoroutine(FindObjectOfType<BugManager>().BugTimer());
         yield return new WaitForSeconds(waitTime/2);
         timerText.text = "";
         timerRunning = false;

@@ -135,12 +135,14 @@ public class CodeMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) SelectLeft();
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) SelectRight();
-        else if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
-        if (Input.GetKeyDown(KeyCode.Z)) Confirm();
-        else if (Input.GetKeyDown(KeyCode.X)) Unconfirm();
-        UpdateSelection();
+        if (!BugMenu.menuOpened) {
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) SelectLeft();
+            else if (Input.GetKeyDown(KeyCode.RightArrow)) SelectRight();
+            else if (Input.GetKeyDown(KeyCode.UpArrow)) SelectUp();
+            else if (Input.GetKeyDown(KeyCode.DownArrow)) SelectDown();
+            if (Input.GetKeyDown(KeyCode.Z)) Confirm();
+            else if (Input.GetKeyDown(KeyCode.X)) Unconfirm();
+            UpdateSelection();
+        }
     }
 }
