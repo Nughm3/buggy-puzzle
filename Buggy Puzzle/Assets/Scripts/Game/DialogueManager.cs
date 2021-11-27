@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
 
-        if (FindObjectOfType<Player>().myPos.y > 0.5f) dialogueUI.transform.position = new Vector3(0, -3.8f, 0) + new Vector3(FindObjectOfType<Camera>().transform.position.x, FindObjectOfType<Camera>().transform.position.y, 0);
+        if (FindObjectOfType<Player>().myPos.y - FindObjectOfType<Camera>().transform.position.y > 0.5f) dialogueUI.transform.position = new Vector3(0, -3.8f, 0) + new Vector3(FindObjectOfType<Camera>().transform.position.x, FindObjectOfType<Camera>().transform.position.y, 0);
         else dialogueUI.transform.position = new Vector3(0, 3.8f, 0) + new Vector3(FindObjectOfType<Camera>().transform.position.x, FindObjectOfType<Camera>().transform.position.y, 0);
     }
 
