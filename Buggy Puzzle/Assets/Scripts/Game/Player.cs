@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     {
         transform.position = spawnPoints[level - 1];
         myPos = transform.position;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
     }
 
     void FixedUpdate()
