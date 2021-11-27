@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator BuggyCredit() {
         yield return new WaitForSeconds(Random.Range(4f,8f));
-        creditsText.text = "sprites by goos";
+        creditsText.text = "sprites by mi_gusta";
         yield return new WaitForSeconds(0.69f);
         creditsText.text = "By Nughm3 and AdminTroller";
         StartCoroutine(BuggyCredit());

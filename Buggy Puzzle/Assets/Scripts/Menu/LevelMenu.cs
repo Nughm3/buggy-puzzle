@@ -19,6 +19,8 @@ public class LevelMenu : MonoBehaviour
     public TextMeshPro levelButton10;
     public TextMeshPro backButton;
 
+    public SpriteRenderer[] buttons;
+
     public GameObject mainMenu;
     public GameObject menu;
     public GameObject game;
@@ -29,6 +31,7 @@ public class LevelMenu : MonoBehaviour
     void Awake()
     {
         UpdateSelection();
+        ColorButtons();
     }
 
     public void UpdateSelection()
@@ -92,5 +95,13 @@ public class LevelMenu : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.X)) Unconfirm();
         }
         UpdateSelection();
+        ColorButtons();
+    }
+
+    void ColorButtons() {
+        int level = FindObjectOfType<PlayerData>().level;
+        for (int i = 0; i < level-1; i++) buttons[i].color = new Color(0,0.8f,0);
+        buttons[level-1].color = new Color(1,1,0);
+        for (int i = level; i < 10; i++) buttons[i].color = new Color(1,0,0);
     }
 }
