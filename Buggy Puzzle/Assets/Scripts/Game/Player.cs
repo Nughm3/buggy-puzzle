@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     public static bool cameraIsMoving = false;
 
     bool inHurt = false;
-    public static int health = 3;
-    public static int maxHealth = 3;
+    public static int health = 5;
+    public static int maxHealth = 5;
     public static bool isAlive = true;
+    float speedMultiplier = 0.75f;
     
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public static Vector2 tilePos = new Vector2(22,17);
@@ -48,6 +49,11 @@ public class Player : MonoBehaviour
         {
             inMove = true;
             int[] movePixels = { 2, 3, 3, 3, 3, 2 };
+            speedMultiplier = 0.75f;
+            if (BugManager.speedMultiplier == 2) {
+                movePixels = new int[] {5, 6, 5};
+                speedMultiplier = 0.5f;
+            }
             if (dir == Enums.Direction.Up) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, 0.8f, 0), tileMask);
             if (dir == Enums.Direction.Down) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0, -0.8f, 0), tileMask);
             if (dir == Enums.Direction.Left) moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(-0.8f, 0, 0), tileMask);
@@ -64,9 +70,9 @@ public class Player : MonoBehaviour
                     if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
                     if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
                     if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                    yield return new WaitForSeconds(Time.deltaTime * 0.75f);
+                    yield return new WaitForSeconds(Time.deltaTime * speedMultiplier);
                 }
-                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
+                yield return new WaitForSeconds(Time.deltaTime * speedMultiplier);
                 myPos = transform.position;
             }
             inMove = false;
@@ -86,7 +92,7 @@ public class Player : MonoBehaviour
     IEnumerator TakeDamage(int damage) {
         FindObjectOfType<AudioManager>().PlaySound("damage");
         inHurt = true;
-        health -= 1;
+        health -= 1 * BugManager.damageMultiplier;
         if (health < 0) health = 0;
         if (health == 0) Death("enemy");
         yield return new WaitForSeconds(1.5f);
