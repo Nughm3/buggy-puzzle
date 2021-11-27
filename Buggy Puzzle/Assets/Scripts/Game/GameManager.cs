@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject menu;
     public GameObject game;
     public GameObject levelMenu;
+    public GameObject bugManager;
     public TextMeshPro tempFPS;
 
     public static int[] code;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         WinMenu.level = level;
 
         GenerateCode(level);
+        bugManager.SetActive(true);
         FindObjectOfType<Camera>().ResetCamera();
         Camera.allowCheckScroll = true;
         FindObjectOfType<Player>().Spawn(level);
@@ -79,5 +81,9 @@ public class GameManager : MonoBehaviour
 
     public void Retry(int level) {
         StartCoroutine(Play(level));
+    }
+
+    void Update() {
+        if (WinMenu.menuOpened || DeathMenu.menuOpened) Time.timeScale = 1f;
     }
 }

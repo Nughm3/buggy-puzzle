@@ -10,6 +10,7 @@ public class WinMenu : MonoBehaviour
     public TextMeshPro healthText;
     public TextMeshPro timeText;
     public GameObject pauseMenu;
+    public GameObject bugManager;
 
     int selectedOption = 0;
     int options = 3;
@@ -24,6 +25,7 @@ public class WinMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
+        bugManager.SetActive(false);
         string extra0 = "";
         if (60 - Timer.seconds < 10) extra0 = "0";
         healthText.text = Player.health.ToString() + "/" + Player.maxHealth.ToString();

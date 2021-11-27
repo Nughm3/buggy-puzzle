@@ -8,6 +8,7 @@ public class DeathMenu : MonoBehaviour
     public TextMeshPro quitButton;
     public TextMeshPro codeText;
     public GameObject pauseMenu;
+    public GameObject bugManager;
 
     int selectedOption = 0;
     int options = 2;
@@ -22,6 +23,7 @@ public class DeathMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
+        bugManager.SetActive(false);
         codeText.text = GameManager.code[0].ToString() + GameManager.code[1].ToString() + GameManager.code[2].ToString() + GameManager.code[3].ToString();
     }
 

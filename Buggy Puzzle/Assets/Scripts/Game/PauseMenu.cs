@@ -76,7 +76,6 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<Player>().Reset();
         FindObjectOfType<Fade>().StopFade();
         FindObjectOfType<Hearts>().Reset();
-        FindObjectOfType<BugManager>().Reset();
 
         Camera.allowCheckScroll = false;
         FindObjectOfType<Camera>().ResetCamera();

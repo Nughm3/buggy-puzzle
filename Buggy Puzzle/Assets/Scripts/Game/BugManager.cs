@@ -21,6 +21,10 @@ public class BugManager : MonoBehaviour
         }
     }
 
+    void OnEnable() {
+        Reset();
+    }
+
     public IEnumerator BugTimer() {
         while (true) {
             yield return new WaitForSeconds(15);

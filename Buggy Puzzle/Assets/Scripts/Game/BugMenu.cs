@@ -64,7 +64,7 @@ public class BugMenu : MonoBehaviour
         if (random == 4) info[3].text = "What's this?";
     }
 
-    void Reset() {
+    public void Reset() {
         allowInput = false;
         foreach (TextMeshPro text in info) {text.color = new Color(text.color[0], text.color[1], text.color[2], 0);}
         fade.color = new Color(1, 1, 1, 0);
@@ -76,5 +76,7 @@ public class BugMenu : MonoBehaviour
     void Update() {
         if (Input.GetKeyDown(KeyCode.Z) && allowInput) done = true;
         transform.position = new Vector3(FindObjectOfType<Camera>().transform.position.x, FindObjectOfType<Camera>().transform.position.y, 0);
+
+        if (WinMenu.menuOpened || DeathMenu.menuOpened) gameObject.SetActive(false);
     }
 }
