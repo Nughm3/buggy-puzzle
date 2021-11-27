@@ -29,7 +29,7 @@ public class WinMenu : MonoBehaviour
         string extra0 = "";
         if (60 - Timer.seconds < 10) extra0 = "0";
         healthText.text = Player.health.ToString() + "/" + Player.maxHealth.ToString();
-        timeText.text = (4 - Timer.minutes).ToString() + ":" + extra0 + (60 - Timer.seconds).ToString();
+        timeText.text = ((Timer.timerMinutes[level-1] - 1) - Timer.minutes).ToString() + ":" + extra0 + (60 - Timer.seconds).ToString();
 
         if (FindObjectOfType<PlayerData>().level < level + 1) FindObjectOfType<PlayerData>().level = level + 1;
         FindObjectOfType<PlayerData>().Save();

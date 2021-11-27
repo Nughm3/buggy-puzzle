@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().color -= new Color(0,0,0,0.02f);
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
             }
-            for (int i = 0; i < 60; i++) {
+            for (int i = 0; i < 40; i++) {
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
                 if (BugManager.bug != "Sneak") break;
             }
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened && !BugMenu.menuOpened) OpenCodeMenu();
+        if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened && !BugMenu.menuOpened && Timer.minutes + Timer.seconds > 0) OpenCodeMenu();
     }
 
     public void Reset()

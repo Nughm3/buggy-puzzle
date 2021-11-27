@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
     string timerText;
     TextMeshPro timerTextUI;
-    int[] timerMinutes = {5, 7};
+    public static int[] timerMinutes = {5, 7};
     string extra0;
     public bool stopTimer = false;
     public static int minutes, seconds;
