@@ -12,6 +12,9 @@ public class BugManager : MonoBehaviour
             damageMultiplier = 2;
             speedMultiplier = 2;
         }
+        if (bug == "scary") {
+
+        }
     }
 
     public void Reset() {

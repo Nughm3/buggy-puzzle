@@ -87,14 +87,19 @@ public class Enemy : MonoBehaviour
 
     void CalculateDistance() {
         float minimumDistance = Mathf.Infinity;
+        float maximumDistance = Mathf.NegativeInfinity;
 
         moveRay = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0), tileMask);
         moveRaySafe = Physics2D.Linecast(transform.position, transform.position + new Vector3(0,0.8f,0), safeMask);
         if (moveRay.collider == null && moveRaySafe.collider == null) {
             myPos = transform.position + new Vector3(0,tileSize,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+            if (distance < minimumDistance && BugManager.bug != "scary") {
                 minimumDistance = distance;
+                direction = Enums.Direction.Up;
+            }
+            if (distance > maximumDistance && BugManager.bug == "scary") {
+                maximumDistance = distance;
                 direction = Enums.Direction.Up;
             }
         }
@@ -104,8 +109,12 @@ public class Enemy : MonoBehaviour
         if (moveRay.collider == null && moveRaySafe.collider == null) {
             myPos = transform.position - new Vector3(0,tileSize,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+            if (distance < minimumDistance && BugManager.bug != "scary") {
                 minimumDistance = distance;
+                direction = Enums.Direction.Down;
+            }
+            if (distance > maximumDistance && BugManager.bug == "scary") {
+                maximumDistance = distance;
                 direction = Enums.Direction.Down;
             }
         }
@@ -115,8 +124,12 @@ public class Enemy : MonoBehaviour
         if (moveRay.collider == null && moveRaySafe.collider == null) {
             myPos = transform.position - new Vector3(tileSize,0,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+            if (distance < minimumDistance && BugManager.bug != "scary") {
                 minimumDistance = distance;
+                direction = Enums.Direction.Left;
+            }
+            if (distance > maximumDistance && BugManager.bug == "scary") {
+                maximumDistance = distance;
                 direction = Enums.Direction.Left;
             }
         }
@@ -126,8 +139,12 @@ public class Enemy : MonoBehaviour
         if (moveRay.collider == null && moveRaySafe.collider == null) {
             myPos = transform.position + new Vector3(tileSize,0,0);
             distance = Vector3.Distance(myPos,FindObjectOfType<Player>().myPos);
-            if (distance < minimumDistance) {
+            if (distance < minimumDistance && BugManager.bug != "scary") {
                 minimumDistance = distance;
+                direction = Enums.Direction.Right;
+            }
+            if (distance > maximumDistance && BugManager.bug == "scary") {
+                maximumDistance = distance;
                 direction = Enums.Direction.Right;
             }
         }

@@ -19,7 +19,14 @@ public class Person : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange) {
             if (DialogueManager.inDialogue) FindObjectOfType<DialogueManager>().EndDialogue();
-            else FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+            else {
+                if (BugManager.bug == "scary") {
+                    int random = Random.Range(0,2);
+                    if (random == 0) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+                    else FindObjectOfType<DialogueManager>().TriggerDialogue("You don't look familiar...");
+                }
+                else FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+            }
         }
     }
 }
