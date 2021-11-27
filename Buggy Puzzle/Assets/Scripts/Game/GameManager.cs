@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<LevelLoader>().LoadLevel(level);
         FindObjectOfType<EntitySpawner>().AssignDialogue(code);
         FindObjectOfType<EntitySpawner>().SpawnEntities(level);
-        StartCoroutine(FindObjectOfType<StartTimer>().Timer());
+        StartCoroutine(FindObjectOfType<StartTimer>().ShowDigits());
         StartCoroutine(FindObjectOfType<Fade>().FadeIn());
     }
 
