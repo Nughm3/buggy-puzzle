@@ -93,10 +93,45 @@ public class Player : MonoBehaviour
         FindObjectOfType<AudioManager>().PlaySound("damage");
         inHurt = true;
         health -= 1 * BugManager.damageMultiplier;
+        StartCoroutine(IFrames());
         if (health < 0) health = 0;
         if (health == 0) Death("enemy");
         yield return new WaitForSeconds(1.5f);
         inHurt = false;
+    }
+
+    IEnumerator IFrames() {
+        while (inHurt && BugManager.bug != "Sneak") {
+            if (inHurt && BugManager.bug != "Sneak") gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0f);
+            if (!inHurt && BugManager.bug != "Sneak") gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
+            yield return new WaitForSeconds(Time.deltaTime * 2f);
+            if (inHurt && BugManager.bug != "Sneak") gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
+            if (!inHurt && BugManager.bug != "Sneak") gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
+            yield return new WaitForSeconds(Time.deltaTime * 2f);
+        }
+    }
+
+    public IEnumerator SneakPulse() {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.25f);
+        while (BugManager.bug == "Sneak") {
+            while (gameObject.GetComponent<SpriteRenderer>().color.a > 0 && BugManager.bug == "Sneak") {
+                gameObject.GetComponent<SpriteRenderer>().color -= new Color(0,0,0,0.02f);
+                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
+            }
+            for (int i = 0; i < 60; i++) {
+                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
+                if (BugManager.bug != "Sneak") break;
+            }
+            while (gameObject.GetComponent<SpriteRenderer>().color.a < 0.25 && BugManager.bug == "Sneak") {
+                gameObject.GetComponent<SpriteRenderer>().color += new Color(0,0,0,0.015f);
+                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
+            }
+            for (int i = 0; i < 10; i++) {
+                yield return new WaitForSeconds(Time.deltaTime * 0.75f);
+                if (BugManager.bug != "Sneak") break;
+            }
+        }
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
     }
 
     public void Death(string type) {
@@ -108,9 +143,6 @@ public class Player : MonoBehaviour
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened && !BugMenu.menuOpened) OpenCodeMenu();
-
-        if (inHurt) gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.5f);
-        else gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1);
     }
 
     public void Reset()

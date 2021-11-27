@@ -9,15 +9,12 @@ public class BugManager : MonoBehaviour
     public static string bug;
     public static int damageMultiplier;
     public static int speedMultiplier;
-    string[] bugList = {"Speed", "Scary"};
+    string[] bugList = {"Speed", "Scary", "Sneak"};
 
     void Update() {
         if (bug == "Speed") {
             damageMultiplier = 2;
             speedMultiplier = 2;
-        }
-        if (bug == "Scary") {
-
         }
     }
 
@@ -26,6 +23,17 @@ public class BugManager : MonoBehaviour
     }
 
     public IEnumerator BugTimer() {
+        yield return new WaitForSeconds(10);
+            if (Player.isAlive) {
+                string currentBug = bug;
+                Reset();
+                while (true) {
+                    bug = bugList[Random.Range(0, bugList.Length)];
+                    if (bug != currentBug) break;
+                }
+                if (bug == "Sneak") StartCoroutine(FindObjectOfType<Player>().SneakPulse());
+                bugMenu.SetActive(true);
+            }
         while (true) {
             yield return new WaitForSeconds(15);
             if (Player.isAlive) {
@@ -35,6 +43,7 @@ public class BugManager : MonoBehaviour
                     bug = bugList[Random.Range(0, bugList.Length)];
                     if (bug != currentBug) break;
                 }
+                if (bug == "Sneak") StartCoroutine(FindObjectOfType<Player>().SneakPulse());
                 bugMenu.SetActive(true);
             }
         }
