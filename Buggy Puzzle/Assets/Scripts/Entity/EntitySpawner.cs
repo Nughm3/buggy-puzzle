@@ -282,11 +282,20 @@ public class EntitySpawner : MonoBehaviour
         dialogue9 = emptyDialogue;
         dialogue10 = emptyDialogue;
 
+        int[] randomOrder = {0, 1, 2, 3};
+        for (int i = 0; i < randomOrder.Length - 1; i++) 
+        {
+            int rand = Random.Range(i, randomOrder.Length);
+            int temp = randomOrder[rand];
+            randomOrder[rand] = randomOrder[i];
+            randomOrder[i] = temp;
+        }
+
         string[] dialogueArray = {$"The 3rd digit is {code[2]}.", $"The 2nd digit is {code[1]}.", $"The 4th digit is {code[3]}.", $"The 1st digit is {code[0]}."};
-        dialogue1[28,17] = dialogueArray[0];
-        dialogue1[39,1] = dialogueArray[1];
-        dialogue1[4,9] = dialogueArray[2];
-        dialogue1[31,29] = dialogueArray[3];
+        dialogue1[28,17] = dialogueArray[randomOrder[0]];
+        dialogue1[39,1] = dialogueArray[randomOrder[1]];
+        dialogue1[4,9] = dialogueArray[randomOrder[2]];
+        dialogue1[31,29] = dialogueArray[randomOrder[3]];
 
         dialogue2[39,5] = $"The 1st digit is {code[0]}.";
         dialogue2[2,17] = $"The 2nd digit is {code[1]}.";
@@ -296,18 +305,10 @@ public class EntitySpawner : MonoBehaviour
         if (code[3] > code[random]) dialogue2[7,30] = $"The 4th digit is {code[3] - code[random]} more than the {digitPrefix[random]} digit.";
         if (code[3] == code[random]) dialogue2[7,30] = $"The 4th digit is the same as the {digitPrefix[random]} digit.";
 
-        dialogue5[28,17] = $"The 3rd digit is {code[2]}.";
-        dialogue5[39,1] = $"The 2nd digit is {code[1]}.";
-        dialogue5[4,9] = $"The 4th digit is {code[3]}.";
-        dialogue5[31,29] = $"The 1st digit is {code[0]}.";
-
-        // for (int i = 0; i < decklist.Length - 1; i++) 
-        // {
-        //     int rnd = Random.Range(i, decklist.Length);
-        //     tempGO = decklist[rnd];
-        //     decklist[rnd] = decklist[i];
-        //     decklist[i] = tempGO;
-        // }
+        // dialogue5[28,17] = $"The 3rd digit is {code[2]}.";
+        // dialogue5[39,1] = $"The 2nd digit is {code[1]}.";
+        // dialogue5[4,9] = $"The 4th digit is {code[3]}.";
+        // dialogue5[31,29] = $"The 1st digit is {code[0]}.";
     }
 
     void Awake() {

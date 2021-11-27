@@ -36,7 +36,7 @@ public class BugManager : MonoBehaviour
             }
         while (true) {
             yield return new WaitForSeconds(15);
-            if (Player.isAlive) {
+            if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
                 string currentBug = bug;
                 Reset();
                 while (true) {

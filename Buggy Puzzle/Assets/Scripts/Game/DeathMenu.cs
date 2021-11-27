@@ -23,6 +23,7 @@ public class DeathMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
+        BugMenu.menuOpened = false;
         bugManager.SetActive(false);
         codeText.text = GameManager.code[0].ToString() + GameManager.code[1].ToString() + GameManager.code[2].ToString() + GameManager.code[3].ToString();
     }

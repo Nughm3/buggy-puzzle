@@ -10,10 +10,17 @@ public class Person : MonoBehaviour
 
     void Update() {
         if (Mathf.Abs(tilePos.x - Player.tilePos.x) < 1.1f && Mathf.Abs(tilePos.y - Player.tilePos.y) < 1.1f) {
+            if (!inPlayerRange) {
+                ZIndicator.pos = transform.position + new Vector3(0, 0.8f, 0);
+                ZIndicator.show = true;
+            }
             inPlayerRange = true;
         }
         else {
-            if (inPlayerRange) FindObjectOfType<DialogueManager>().EndDialogue();
+            if (inPlayerRange) {
+                FindObjectOfType<DialogueManager>().EndDialogue();
+                ZIndicator.show = false;
+            }
             inPlayerRange = false;
         }
 

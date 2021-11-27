@@ -25,6 +25,7 @@ public class WinMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
+        BugMenu.menuOpened = false;
         bugManager.SetActive(false);
         string extra0 = "";
         if (60 - Timer.seconds < 10) extra0 = "0";
