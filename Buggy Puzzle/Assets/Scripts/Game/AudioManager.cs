@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(string name) {
         if (name == "damage") sources[0].Play();
         if (name == "victory") StartCoroutine(Victory());
+        if (name == "fail") sources[3].Play();
     }
 
     IEnumerator Victory() {

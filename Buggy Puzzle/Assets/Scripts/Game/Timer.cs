@@ -15,6 +15,10 @@ public class Timer : MonoBehaviour
         timerTextUI = gameObject.GetComponentInChildren<TextMeshPro>();
     }
 
+    void OnEnable() {
+        timerTextUI.color = Color.black;
+    }
+
     public void Reset() {
         timerText = "";
     }
@@ -53,5 +57,15 @@ public class Timer : MonoBehaviour
 
         minutes = timerMinutes[level-1];
         seconds = 0;
+    }
+
+    IEnumerator FailTimer() {
+        timerTextUI.color = Color.red;
+        yield return new WaitForSeconds(Time.deltaTime * 30);
+        timerTextUI.color = Color.black;
+    }
+
+    public void Fail() {
+        StartCoroutine(FailTimer());
     }
 }

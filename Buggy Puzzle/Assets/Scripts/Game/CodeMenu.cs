@@ -116,11 +116,14 @@ public class CodeMenu : MonoBehaviour
                     FindObjectOfType<Timer>().StopTimer();
                 }
                 else {
+                    FindObjectOfType<AudioManager>().PlaySound("fail");
+                    FindObjectOfType<Timer>().Fail();
                     if (Timer.minutes < 1) {
                         Timer.seconds = 0;
                         Unconfirm();
                     }
                     else Timer.minutes -= 1;
+                    Unconfirm();
                 }
             }
         }

@@ -69,6 +69,7 @@ public class LevelMenu : MonoBehaviour
     {
         if (selectedOption == 10) Back();
         else if (selectedOption + 1 <= FindObjectOfType<PlayerData>().level) StartCoroutine(FindObjectOfType<GameManager>().Play(selectedOption + 1));
+        else FindObjectOfType<AudioManager>().PlaySound("fail");
     }
 
     public void Back()
