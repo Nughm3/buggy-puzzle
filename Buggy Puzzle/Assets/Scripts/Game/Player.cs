@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     public static Vector2 tilePos = new Vector2(22,17);
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0)};
 
+    Animator animator;
+    int animationState = 4;
+
     public GameObject tiles;
     public GameObject borderTiles;
     public GameObject codeMenu;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
 
     public void Spawn(int level)
     {
+        facingDir = Enums.Direction.Right;
         transform.position = new Vector3(-6.8f, 0, 0);
         myPos = transform.position;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
@@ -146,6 +150,12 @@ public class Player : MonoBehaviour
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Z) && CodeMachine.inPlayerRange && !CodeMenu.menuOpened && !PauseMenu.menuOpened && !BugMenu.menuOpened && Timer.minutes + Timer.seconds > 0) OpenCodeMenu();
+
+        if (facingDir == Enums.Direction.Up) animationState = 1;
+        if (facingDir == Enums.Direction.Down) animationState = 2;
+        if (facingDir == Enums.Direction.Left) animationState = 3;
+        if (facingDir == Enums.Direction.Right) animationState = 4;
+        animator.SetInteger("State", animationState);
     }
 
     public void Reset()
@@ -161,5 +171,6 @@ public class Player : MonoBehaviour
 
     void Awake() {
         tileMask = LayerMask.GetMask("Tiles");
+        animator = GetComponent<Animator>();
     }
 }
