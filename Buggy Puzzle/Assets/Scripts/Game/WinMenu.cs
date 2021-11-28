@@ -25,6 +25,7 @@ public class WinMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
+        FindObjectOfType<AudioManager>().PlaySound("victory");
         BugMenu.menuOpened = false;
         bugManager.SetActive(false);
         string extra0 = "";

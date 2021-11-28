@@ -11,5 +11,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(string name) {
         if (name == "damage") sources[0].Play();
+        if (name == "victory") sources[2].Play();
     }
 }
