@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     Enums.Direction maxDirection;
     public GameObject alertPrefab;
     GameObject myAlert;
-    public Animator animator;
+    Animator animator;
 
     LayerMask tileMask;
     LayerMask safeMask;

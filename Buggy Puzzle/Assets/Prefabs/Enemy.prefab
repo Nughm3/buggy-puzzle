@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertPrefab: {fileID: 685975939848017129, guid: 72d8bc90bab823d44bd58fe498d83932, type: 3}
-  animator: {fileID: 0}
+  animator: {fileID: 1385481464}
   safeTiles: {fileID: 0}
 --- !u!95 &1385481464
 Animator:

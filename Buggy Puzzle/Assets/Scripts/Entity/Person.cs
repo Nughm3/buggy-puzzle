@@ -8,6 +8,9 @@ public class Person : MonoBehaviour
     public Vector2 tilePos;
     bool inPlayerRange = false;
 
+    Animator animator;
+    int animationState;
+
     void Update() {
         if (Mathf.Abs(tilePos.x - Player.tilePos.x) < 1.1f && Mathf.Abs(tilePos.y - Player.tilePos.y) < 1.1f) {
             if (!inPlayerRange) {
