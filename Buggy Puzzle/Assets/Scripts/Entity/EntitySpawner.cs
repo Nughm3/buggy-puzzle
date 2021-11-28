@@ -215,6 +215,7 @@ public class EntitySpawner : MonoBehaviour
     public GameObject instantiatedObject;
     Vector2 spawnPos;
 
+    int[][] coords;
     string[,] dialogue1, dialogue2, dialogue3, dialogue4, dialogue5, dialogue6, dialogue7, dialogue8, dialogue9, dialogue10 = new string[35, 62];
     string[] digitPrefix = {"1st", "2nd", "3rd", "4th"};
 
@@ -291,24 +292,40 @@ public class EntitySpawner : MonoBehaviour
             randomOrder[i] = temp;
         }
 
-        string[] dialogueArray = {$"The 3rd digit is {code[2]}.", $"The 2nd digit is {code[1]}.", $"The 4th digit is {code[3]}.", $"The 1st digit is {code[0]}."};
-        dialogue1[28,17] = dialogueArray[randomOrder[0]];
-        dialogue1[39,1] = dialogueArray[randomOrder[1]];
-        dialogue1[4,9] = dialogueArray[randomOrder[2]];
-        dialogue1[31,29] = dialogueArray[randomOrder[3]];
+        coords = new int[][]{new int[] {28,17}, new int[] {39,1}, new int[] {4,9}, new int[] {31,29}};
+        coords = RandomizeCoords(coords);
 
-        dialogue2[39,5] = $"The 1st digit is {code[0]}.";
-        dialogue2[2,17] = $"The 2nd digit is {code[1]}.";
-        dialogue2[1,1] = $"The 3rd digit is {code[2]}.";
+        dialogue1[coords[0][0], coords[0][1]] = $"The 3rd digit is {code[2]}.";
+        dialogue1[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+        dialogue1[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
+        dialogue1[coords[3][0], coords[3][1]] = $"The 1st digit is {code[0]}.";
+
+        coords = new int[][]{new int[] {39,5}, new int[] {2,17}, new int[] {1,1}, new int[] {7,30}};
+        coords = RandomizeCoords(coords);
+
+        dialogue2[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
+        dialogue2[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+        dialogue2[coords[2][0], coords[2][1]] = $"The 3rd digit is {code[2]}.";
         int random = Random.Range(0,3);
-        if (code[3] < code[random]) dialogue2[7,30] = $"The 4th digit is {code[random] - code[3]} less than the {digitPrefix[random]} digit.";
-        if (code[3] > code[random]) dialogue2[7,30] = $"The 4th digit is {code[3] - code[random]} more than the {digitPrefix[random]} digit.";
-        if (code[3] == code[random]) dialogue2[7,30] = $"The 4th digit is the same as the {digitPrefix[random]} digit.";
+        if (code[3] < code[random]) dialogue2[coords[3][0], coords[3][1]] = $"The 4th digit is {code[random] - code[3]} less than the {digitPrefix[random]} digit.";
+        if (code[3] > code[random]) dialogue2[coords[3][0], coords[3][1]] = $"The 4th digit is {code[3] - code[random]} more than the {digitPrefix[random]} digit.";
+        if (code[3] == code[random]) dialogue2[coords[3][0], coords[3][1]] = $"The 4th digit is the same as the {digitPrefix[random]} digit.";
 
         // dialogue5[28,17] = $"The 3rd digit is {code[2]}.";
         // dialogue5[39,1] = $"The 2nd digit is {code[1]}.";
         // dialogue5[4,9] = $"The 4th digit is {code[3]}.";
         // dialogue5[31,29] = $"The 1st digit is {code[0]}.";
+    }
+
+    int[][] RandomizeCoords(int[][] ordered) {
+        for (int i = 0; i < ordered.Length - 1; i++) 
+        {
+            int rand = Random.Range(i, ordered.Length);
+            int[] temp = ordered[rand];
+            ordered[rand] = ordered[i];
+            ordered[i] = temp;
+        }
+        return ordered;
     }
 
     void Awake() {
