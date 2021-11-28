@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public static Enums.Direction facingDir;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public static Vector2 tilePos = new Vector2(22,17);
-    public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
+    public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0)};
 
     public GameObject tiles;
     public GameObject borderTiles;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     public void Spawn(int level)
     {
-        transform.position = spawnPoints[level - 1];
+        transform.position = new Vector3(-6.8f, 0, 0);
         myPos = transform.position;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
     }
