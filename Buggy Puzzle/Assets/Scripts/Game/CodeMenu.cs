@@ -10,7 +10,7 @@ public class CodeMenu : MonoBehaviour
 
     int selectedOption = 0;
     int options = 13;
-    string codeInput = "____";
+    string codeInput;
     int codeInputIndex = 0;
     string[] codeArray = new string[4];
     public static bool codeIsReversed = false;
@@ -25,6 +25,8 @@ public class CodeMenu : MonoBehaviour
     }
 
     public void Show() {
+        if (GameManager.currentLevel <= 1) codeInput = "___";
+        else codeInput = "____";
         gameObject.SetActive(true);
         transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
         menuOpened = true;
@@ -79,13 +81,12 @@ public class CodeMenu : MonoBehaviour
     {
         selectedOption = 0;
         codeInputIndex = 0;
-        codeInput = "____";
         gameObject.SetActive(false);
         menuOpened = false;
     }
 
     void ChooseButton(int number) {
-        if ((selectedOption < 9 || selectedOption == 10) && codeInputIndex < 4) {
+        if ((selectedOption < 9 || selectedOption == 10) && codeInputIndex < GameManager.code.Length) {
             var tempCode = codeInput;
             tempCode = tempCode.Remove(codeInputIndex, 1);
             if (selectedOption != 10) tempCode = tempCode.Insert(codeInputIndex, (selectedOption + 1).ToString());
@@ -94,14 +95,14 @@ public class CodeMenu : MonoBehaviour
             codeInputIndex += 1;
         }
         if (selectedOption == 9) {
-            if (codeInputIndex == 4) {
+            if (codeInputIndex == GameManager.code.Length) {
                 int loopIndex = 0;
                 foreach (char temp in codeInput) {
                     codeArray[loopIndex] = temp.ToString();
                     loopIndex += 1;
                 }
                 int correctDigits = 0;
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < GameManager.code.Length; i++) {
                     if (!codeIsReversed) {
                         if (codeArray[i] == GameManager.code[i].ToString()) correctDigits += 1;
                     }
@@ -109,7 +110,7 @@ public class CodeMenu : MonoBehaviour
                         if (codeArray[i] == GameManager.code[3-i].ToString()) correctDigits += 1;
                     }
                 }
-                if (correctDigits >= 4) {
+                if (correctDigits >= GameManager.code.Length) {
                     winMenu.SetActive(true);
                     Unconfirm();
                     Player.allowMove = false;

@@ -39,10 +39,10 @@ public class GameManager : MonoBehaviour
     }
 
     void GenerateCode(int level) {
-        if (level <= 2) code = new int[4];
-        else code = new int[5];
+        if (level == 1) code = new int[3];
+        else code = new int[4];
 
-        if (level <= 2) {
+        if (true) {
             for (int i = 0; i < code.Length; i++) {
                 code[i] = Random.Range(0,10);
             }

@@ -14,39 +14,39 @@ public class EntitySpawner : MonoBehaviour
         level1 = new int[35, 62] {
            //0                                       //21                                      //42                                  //61
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, //0
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,X,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {X,X,X,X,X,X,X,X,0,0,0,0,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,0,0,0,0,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,0,0,0,0,X,X,X,X,X,X,X,X},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, //12
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {X,X,X,X,X,X,X,X,0,0,0,0,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,0,0,0,0,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,0,0,0,0,X,X,X,X,X,X,X,X},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, //24
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} //34
         };
 
@@ -216,7 +216,7 @@ public class EntitySpawner : MonoBehaviour
     Vector2 spawnPos;
 
     int[][] coords;
-    string[,] dialogue1, dialogue2, dialogue3, dialogue4, dialogue5, dialogue6, dialogue7, dialogue8, dialogue9, dialogue10 = new string[35, 62];
+    string[,] dialogue = new string[35, 62];
     string[] digitPrefix = {"1st", "2nd", "3rd", "4th"};
 
     public void SpawnEntities(int level) {
@@ -238,16 +238,7 @@ public class EntitySpawner : MonoBehaviour
                     spawnPos = new Vector2(posx, posy);
                     instantiatedObject = Instantiate(personPrefab, spawnPos, transform.rotation);
                     instantiatedObject.GetComponent<Person>().tilePos = new Vector2(x,y);
-                    if (level == 1) instantiatedObject.GetComponent<Person>().dialogue = dialogue1[x, y];
-                    if (level == 2) instantiatedObject.GetComponent<Person>().dialogue = dialogue2[x, y];
-                    if (level == 3) instantiatedObject.GetComponent<Person>().dialogue = dialogue3[x, y];
-                    if (level == 4) instantiatedObject.GetComponent<Person>().dialogue = dialogue4[x, y];
-                    if (level == 5) instantiatedObject.GetComponent<Person>().dialogue = dialogue5[x, y];
-                    if (level == 6) instantiatedObject.GetComponent<Person>().dialogue = dialogue6[x, y];
-                    if (level == 7) instantiatedObject.GetComponent<Person>().dialogue = dialogue7[x, y];
-                    if (level == 8) instantiatedObject.GetComponent<Person>().dialogue = dialogue8[x, y];
-                    if (level == 9) instantiatedObject.GetComponent<Person>().dialogue = dialogue9[x, y];
-                    if (level == 10) instantiatedObject.GetComponent<Person>().dialogue = dialogue10[x, y];
+                    instantiatedObject.GetComponent<Person>().dialogue = dialogue[x, y];
                 }
             }
         }
@@ -272,16 +263,7 @@ public class EntitySpawner : MonoBehaviour
     }
 
     public void AssignDialogue(int[] code) {
-        dialogue1 = emptyDialogue;
-        dialogue2 = emptyDialogue;
-        dialogue3 = emptyDialogue;
-        dialogue4 = emptyDialogue;
-        dialogue5 = emptyDialogue;
-        dialogue6 = emptyDialogue;
-        dialogue7 = emptyDialogue;
-        dialogue8 = emptyDialogue;
-        dialogue9 = emptyDialogue;
-        dialogue10 = emptyDialogue;
+        dialogue = emptyDialogue;
 
         int[] randomOrder = {0, 1, 2, 3};
         for (int i = 0; i < randomOrder.Length - 1; i++) 
@@ -292,29 +274,33 @@ public class EntitySpawner : MonoBehaviour
             randomOrder[i] = temp;
         }
 
-        coords = new int[][]{new int[] {28,17}, new int[] {39,1}, new int[] {4,9}, new int[] {31,29}};
-        coords = RandomizeCoords(coords);
+        if (GameManager.currentLevel == 1) {
+            coords = new int[][]{new int[] {60,17}, new int[] {60,29}, new int[] {23,33}};
+            dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+            dialogue[coords[2][0], coords[2][1]] = $"The 3rd digit is {code[2]}.";
+        }
+        
+        if (GameManager.currentLevel == 2) {
+            coords = new int[][]{new int[] {39,5}, new int[] {2,17}, new int[] {1,1}, new int[] {7,30}};
+            coords = RandomizeCoords(coords);
+            dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+            dialogue[coords[2][0], coords[2][1]] = $"The 3rd digit is {code[2]}.";
+            int random = Random.Range(0,3);
+            if (code[3] < code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 4th digit is {code[random] - code[3]} less than the {digitPrefix[random]} digit.";
+            if (code[3] > code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 4th digit is {code[3] - code[random]} more than the {digitPrefix[random]} digit.";
+            if (code[3] == code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 4th digit is the same as the {digitPrefix[random]} digit.";
+        }
 
-        dialogue1[coords[0][0], coords[0][1]] = $"The 3rd digit is {code[2]}.";
-        dialogue1[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
-        dialogue1[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
-        dialogue1[coords[3][0], coords[3][1]] = $"The 1st digit is {code[0]}.";
-
-        coords = new int[][]{new int[] {39,5}, new int[] {2,17}, new int[] {1,1}, new int[] {7,30}};
-        coords = RandomizeCoords(coords);
-
-        dialogue2[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
-        dialogue2[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
-        dialogue2[coords[2][0], coords[2][1]] = $"The 3rd digit is {code[2]}.";
-        int random = Random.Range(0,3);
-        if (code[3] < code[random]) dialogue2[coords[3][0], coords[3][1]] = $"The 4th digit is {code[random] - code[3]} less than the {digitPrefix[random]} digit.";
-        if (code[3] > code[random]) dialogue2[coords[3][0], coords[3][1]] = $"The 4th digit is {code[3] - code[random]} more than the {digitPrefix[random]} digit.";
-        if (code[3] == code[random]) dialogue2[coords[3][0], coords[3][1]] = $"The 4th digit is the same as the {digitPrefix[random]} digit.";
-
-        // dialogue5[28,17] = $"The 3rd digit is {code[2]}.";
-        // dialogue5[39,1] = $"The 2nd digit is {code[1]}.";
-        // dialogue5[4,9] = $"The 4th digit is {code[3]}.";
-        // dialogue5[31,29] = $"The 1st digit is {code[0]}.";
+        if (GameManager.currentLevel == 5) {
+            coords = new int[][]{new int[] {28,17}, new int[] {39,1}, new int[] {4,9}, new int[] {31,29}};
+            coords = RandomizeCoords(coords);
+            dialogue[coords[0][0], coords[0][1]] = $"The 3rd digit is {code[2]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+            dialogue[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
+            dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is {code[0]}.";
+        }
     }
 
     int[][] RandomizeCoords(int[][] ordered) {
