@@ -9,7 +9,7 @@ public class BugManager : MonoBehaviour
     public static string bug;
     public static int damageMultiplier;
     public static int speedMultiplier;
-    string[] bugList = {"Speed", "Scary", "Sneak"};
+    string[] bugList = {"Speed", "Scary", "Sneak", "Time"};
 
     void Update() {
         if (bug == "Speed") {
@@ -23,7 +23,7 @@ public class BugManager : MonoBehaviour
     }
 
     public IEnumerator BugTimer() {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(15 * PauseManager.defaultTimeScale);
             if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
                 string currentBug = bug;
                 Reset();
@@ -38,7 +38,7 @@ public class BugManager : MonoBehaviour
                 }
             }
         while (true) {
-            yield return new WaitForSeconds(20);
+            yield return new WaitForSeconds(20 * PauseManager.defaultTimeScale);
             if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
                 string currentBug = bug;
                 Reset();

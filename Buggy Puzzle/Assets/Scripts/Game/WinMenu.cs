@@ -27,6 +27,7 @@ public class WinMenu : MonoBehaviour
         menuOpened = true;
         FindObjectOfType<AudioManager>().PlaySound("victory");
         BugMenu.menuOpened = false;
+        BugManager.bug = "None";
         bugManager.SetActive(false);
         string extra0 = "";
         if (60 - Timer.seconds < 10) extra0 = "0";

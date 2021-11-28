@@ -72,7 +72,7 @@ public class BugMenu : MonoBehaviour
         allowInput = false;
         foreach (TextMeshPro text in info) {text.color = new Color(text.color[0], text.color[1], text.color[2], 0);}
         fade.color = new Color(1, 1, 1, 0);
-        Time.timeScale = 1f;
+        Time.timeScale = PauseManager.defaultTimeScale;
         menuOpened = false;
         instruction.SetActive(false);
     }

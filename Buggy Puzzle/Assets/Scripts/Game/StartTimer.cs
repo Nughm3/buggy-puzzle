@@ -20,10 +20,10 @@ public class StartTimer : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(0.2f);
-        while (fade.color.a < 0.5f)
+        while (fade.color.a < 0.7f)
         {
             codeText.color += new Color(0, 0, 0, 0.08f);
-            fade.color += new Color(0, 0, 0, 0.04f);
+            fade.color += new Color(0, 0, 0, 0.06f);
             yield return new WaitForFixedUpdate();
         }
         instruction.SetActive(true);
@@ -36,7 +36,7 @@ public class StartTimer : MonoBehaviour
         while (fade.color.a > 0 || codeText.color.a > 0)
         {
             codeText.color -= new Color(0, 0, 0, 0.16f);
-            fade.color -= new Color(0, 0, 0, 0.08f);
+            fade.color -= new Color(0, 0, 0, 0.12f);
             yield return new WaitForFixedUpdate();
         }
         yield return new WaitForSeconds(0.2f);

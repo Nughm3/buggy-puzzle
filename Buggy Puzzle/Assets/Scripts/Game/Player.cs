@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
                     if (dir == Enums.Direction.Down) transform.position += new Vector3(0, -speed * num, 0);
                     if (dir == Enums.Direction.Left) transform.position += new Vector3(-speed * num, 0, 0);
                     if (dir == Enums.Direction.Right) transform.position += new Vector3(speed * num, 0, 0);
-                    yield return new WaitForSeconds(Time.deltaTime * speedMultiplier);
+                    yield return new WaitForSeconds(Time.deltaTime * speedMultiplier * (1 / PauseManager.defaultTimeScale));
                 }
                 yield return new WaitForSeconds(Time.deltaTime * speedMultiplier);
                 myPos = transform.position;
