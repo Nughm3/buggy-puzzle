@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
             sources[4].Play();
         }
         if (name == "bug") sources[5].Play();
+        if (name == "death") sources[6].Play();
     }
 
     IEnumerator Victory() {
@@ -33,7 +34,7 @@ public class AudioManager : MonoBehaviour
     }
 
     void Update() {
-        if (PauseManager.isPaused || WinMenu.menuOpened || BugMenu.menuOpened) sources[1].volume = 0.5f;
+        if (PauseManager.isPaused || WinMenu.menuOpened || DeathMenu.menuOpened || BugMenu.menuOpened) sources[1].volume = 0.5f;
         else sources[1].volume = 0.9f;
     }
 }

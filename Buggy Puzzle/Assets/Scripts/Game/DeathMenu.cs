@@ -23,10 +23,13 @@ public class DeathMenu : MonoBehaviour
 
     void OnEnable() {
         menuOpened = true;
+        FindObjectOfType<AudioManager>().PlaySound("death");
         BugMenu.menuOpened = false;
         BugManager.bug = "None";
         bugManager.SetActive(false);
-        codeText.text = GameManager.code[0].ToString() + GameManager.code[1].ToString() + GameManager.code[2].ToString() + GameManager.code[3].ToString();
+        string tempText = GameManager.code[0].ToString() + GameManager.code[1].ToString() + GameManager.code[2].ToString();
+        if (GameManager.code.Length == 4) tempText += GameManager.code[3].ToString();
+        codeText.text = tempText;
     }
 
     public void UpdateSelection()

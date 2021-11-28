@@ -46,11 +46,13 @@ public class Enemy : MonoBehaviour
         }
         if (inMove) Destroy(myAlert);
 
-        if (Player.facingDir == Enums.Direction.Up && transform.position.y > FindObjectOfType<Player>().transform.position.y) playerIsLooking = true;
-        else if (Player.facingDir == Enums.Direction.Down && transform.position.y < FindObjectOfType<Player>().transform.position.y) playerIsLooking = true;
-        else if (Player.facingDir == Enums.Direction.Left && transform.position.x < FindObjectOfType<Player>().transform.position.x) playerIsLooking = true;
-        else if (Player.facingDir == Enums.Direction.Right && transform.position.x > FindObjectOfType<Player>().transform.position.x) playerIsLooking = true;
-        else playerIsLooking = false;
+        if (Player.isAlive) {
+            if (Player.facingDir == Enums.Direction.Up && transform.position.y > FindObjectOfType<Player>().transform.position.y) playerIsLooking = true;
+            else if (Player.facingDir == Enums.Direction.Down && transform.position.y < FindObjectOfType<Player>().transform.position.y) playerIsLooking = true;
+            else if (Player.facingDir == Enums.Direction.Left && transform.position.x < FindObjectOfType<Player>().transform.position.x) playerIsLooking = true;
+            else if (Player.facingDir == Enums.Direction.Right && transform.position.x > FindObjectOfType<Player>().transform.position.x) playerIsLooking = true;
+            else playerIsLooking = false;
+        }
     }
 
     void CheckVision() {
