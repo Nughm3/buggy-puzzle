@@ -59,6 +59,10 @@ public class BugMenu : MonoBehaviour
             info[1].text = "Enemies can't see you";
             info[2].text = "Hard to see yourself";
         }
+        if (bug == "Time") {
+            info[1].text = "Enemies slow down";
+            info[2].text = "Hey, it also affects you";
+        }
 
         int random = Random.Range(0,5);
         if (random == 0) info[3].text = "What the-?";

@@ -9,12 +9,12 @@ public class Person : MonoBehaviour
     bool inPlayerRange = false;
 
     Animator animator;
-    int animationState;
+    int animationState = 5;
 
     void Update() {
-        if (Mathf.Abs(tilePos.x - Player.tilePos.x) < 1.1f && Mathf.Abs(tilePos.y - Player.tilePos.y) < 1.1f) {
+        if (Mathf.Abs(tilePos.x - Player.tilePos.x) <= 1 && Mathf.Abs(tilePos.y - Player.tilePos.y) <= 1) {
             if (!inPlayerRange) {
-                ZIndicator.pos = transform.position + new Vector3(0, 0.8f, 0);
+                ZIndicator.pos = transform.position + new Vector3(0, 0.9f, 0);
                 ZIndicator.show = true;
             }
             inPlayerRange = true;
@@ -22,14 +22,19 @@ public class Person : MonoBehaviour
         else {
             if (inPlayerRange) {
                 FindObjectOfType<DialogueManager>().EndDialogue();
+                animationState = 5;
                 ZIndicator.show = false;
             }
             inPlayerRange = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Z) && inPlayerRange && !CodeMenu.menuOpened && !BugMenu.menuOpened) {
-            if (DialogueManager.inDialogue) FindObjectOfType<DialogueManager>().EndDialogue();
+            if (DialogueManager.inDialogue) {
+                FindObjectOfType<DialogueManager>().EndDialogue();
+                animationState = 5;
+            } 
             else {
+                SetDirection();
                 if (BugManager.bug == "Scary") {
                     int random = Random.Range(0,10);
                     if (random < 7) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
@@ -38,5 +43,19 @@ public class Person : MonoBehaviour
                 else FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
             }
         }
+
+        animator.SetInteger("State", animationState);
+    }
+
+    void SetDirection() {
+        if (Player.tilePos == tilePos) animationState = 5;
+        else if (Player.tilePos.y < tilePos.y && Player.tilePos.x >= tilePos.x) animationState = 1;
+        else if (Player.tilePos.y > tilePos.y && Player.tilePos.x <= tilePos.x) animationState = 2;
+        else if (Player.tilePos.x < tilePos.x && Player.tilePos.y <= tilePos.y) animationState = 3;
+        else animationState = 4;
+    }
+
+    void Start() {
+        animator = GetComponent<Animator>();
     }
 }
