@@ -14,6 +14,15 @@ public class AudioManager : MonoBehaviour
         if (name == "damage") sources[0].Play();
         if (name == "victory") StartCoroutine(Victory());
         if (name == "fail") sources[3].Play();
+        if (name == "tick") {
+            sources[4].pitch = 1;
+            sources[4].Play();
+        }
+        if (name == "tick2") {
+            sources[4].pitch = 2;
+            sources[4].Play();
+        }
+        if (name == "bug") sources[5].Play();
     }
 
     IEnumerator Victory() {
@@ -24,7 +33,7 @@ public class AudioManager : MonoBehaviour
     }
 
     void Update() {
-        if (PauseManager.isPaused || WinMenu.menuOpened) sources[1].volume = 0.5f;
+        if (PauseManager.isPaused || WinMenu.menuOpened || BugMenu.menuOpened) sources[1].volume = 0.5f;
         else sources[1].volume = 0.9f;
     }
 }

@@ -41,12 +41,16 @@ public class StartTimer : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         timerText.text = "3";
+        FindObjectOfType<AudioManager>().PlaySound("tick");
         yield return new WaitForSeconds(waitTime);
         timerText.text = "2";
+        FindObjectOfType<AudioManager>().PlaySound("tick");
         yield return new WaitForSeconds(waitTime);
         timerText.text = "1";
+        FindObjectOfType<AudioManager>().PlaySound("tick");
         yield return new WaitForSeconds(waitTime);
         timerText.text = "Start!";
+        FindObjectOfType<AudioManager>().PlaySound("tick2");
         Player.allowMove = true;
         FindObjectOfType<Timer>().stopTimer = false;
         StartCoroutine(FindObjectOfType<Timer>().ReduceTimer());

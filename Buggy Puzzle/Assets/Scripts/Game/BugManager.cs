@@ -24,15 +24,18 @@ public class BugManager : MonoBehaviour
 
     public IEnumerator BugTimer() {
         yield return new WaitForSeconds(15);
-            if (Player.isAlive) {
+            if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
                 string currentBug = bug;
                 Reset();
                 while (true) {
                     bug = bugList[Random.Range(0, bugList.Length)];
                     if (bug != currentBug) break;
                 }
-                if (bug == "Sneak") StartCoroutine(FindObjectOfType<Player>().SneakPulse());
-                bugMenu.SetActive(true);
+                if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
+                    FindObjectOfType<AudioManager>().PlaySound("bug");
+                    if (bug == "Sneak") StartCoroutine(FindObjectOfType<Player>().SneakPulse());
+                    bugMenu.SetActive(true);
+                }
             }
         while (true) {
             yield return new WaitForSeconds(20);
@@ -43,8 +46,11 @@ public class BugManager : MonoBehaviour
                     bug = bugList[Random.Range(0, bugList.Length)];
                     if (bug != currentBug) break;
                 }
-                if (bug == "Sneak") StartCoroutine(FindObjectOfType<Player>().SneakPulse());
-                bugMenu.SetActive(true);
+                if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
+                    FindObjectOfType<AudioManager>().PlaySound("bug");
+                    if (bug == "Sneak") StartCoroutine(FindObjectOfType<Player>().SneakPulse());
+                    bugMenu.SetActive(true);
+                }
             }
         }
     }
