@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public static bool isAlive = true;
     float speedMultiplier = 0.75f;
     
+    public static Enums.Direction facingDir;
     public Vector3 myPos = new Vector3(-6.8f, 0, 0);
     public static Vector2 tilePos = new Vector2(22,17);
     public Vector3[] spawnPoints = { new Vector3(-6.8f, 0, 0), new Vector3(-6.8f, 0, 0) };
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
         if (allowMove && !CodeMenu.menuOpened)
         {
             inMove = true;
+            facingDir = dir;
             int[] movePixels = { 2, 3, 3, 3, 3, 2 };
             speedMultiplier = 0.75f;
             if (BugManager.speedMultiplier == 2) {

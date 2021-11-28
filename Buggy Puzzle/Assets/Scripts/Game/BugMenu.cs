@@ -14,9 +14,9 @@ public class BugMenu : MonoBehaviour
     bool done = false;
 
     public IEnumerator Show() {
-        while (fade.color.a < 0.5f) {
+        while (fade.color.a < 0.7f) {
             foreach (TextMeshPro text in info) {text.color += new Color(0, 0, 0, 0.08f);}
-            fade.color += new Color(0, 0, 0, 0.04f);
+            fade.color += new Color(0, 0, 0, 0.06f);
             yield return null;
         }
         for (int i = 0; i < 20; i++) yield return null;
@@ -29,7 +29,7 @@ public class BugMenu : MonoBehaviour
         instruction.SetActive(false);
         while (fade.color.a > 0) {
             foreach (TextMeshPro text in info) {text.color -= new Color(0, 0, 0, 0.16f);}
-            fade.color -= new Color(0, 0, 0, 0.08f);
+            fade.color -= new Color(0, 0, 0, 0.12f);
             yield return null;
         }
         Reset();
@@ -52,8 +52,8 @@ public class BugMenu : MonoBehaviour
             info[2].text = "x2 Damage Taken";
         }
         if (bug == "Scary") {
-            info[1].text = "Enemies run away";
-            info[2].text = "50% for NPCs to ignore you";
+            info[1].text = "Enemies run away when you look at them";
+            info[2].text = "30% for NPCs to ignore you";
         }
         if (bug == "Sneak") {
             info[1].text = "Enemies can't see you";

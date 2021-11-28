@@ -28,8 +28,8 @@ public class Person : MonoBehaviour
             if (DialogueManager.inDialogue) FindObjectOfType<DialogueManager>().EndDialogue();
             else {
                 if (BugManager.bug == "Scary") {
-                    int random = Random.Range(0,2);
-                    if (random == 0) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
+                    int random = Random.Range(0,10);
+                    if (random < 7) FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);
                     else FindObjectOfType<DialogueManager>().TriggerDialogue("You don't look familiar...");
                 }
                 else FindObjectOfType<DialogueManager>().TriggerDialogue(dialogue);

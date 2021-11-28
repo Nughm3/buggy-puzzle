@@ -23,7 +23,7 @@ public class BugManager : MonoBehaviour
     }
 
     public IEnumerator BugTimer() {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
             if (Player.isAlive) {
                 string currentBug = bug;
                 Reset();
@@ -35,7 +35,7 @@ public class BugManager : MonoBehaviour
                 bugMenu.SetActive(true);
             }
         while (true) {
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(20);
             if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
                 string currentBug = bug;
                 Reset();
