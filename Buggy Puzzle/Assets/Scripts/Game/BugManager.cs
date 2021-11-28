@@ -22,6 +22,10 @@ public class BugManager : MonoBehaviour
         Reset();
     }
 
+    void OnDisable() {
+        Reset();
+    }
+
     public IEnumerator BugTimer() {
         yield return new WaitForSeconds(15 * PauseManager.defaultTimeScale);
             if (Player.isAlive && !WinMenu.menuOpened && !DeathMenu.menuOpened) {
