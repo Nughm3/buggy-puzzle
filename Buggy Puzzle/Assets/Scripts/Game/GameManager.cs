@@ -42,11 +42,14 @@ public class GameManager : MonoBehaviour
         if (level == 1) code = new int[3];
         else code = new int[4];
 
-        if (true) {
-            for (int i = 0; i < code.Length; i++) {
-                code[i] = Random.Range(0,10);
-            }
-            CodeMenu.codeIsReversed = false;
+        for (int i = 0; i < code.Length; i++) {
+            code[i] = Random.Range(0,10);
+        }
+        if (level < 9) CodeMenu.codeIsReversed = false;
+        else {
+            int random = Random.Range(0, 2);
+            if (random == 0) CodeMenu.codeIsReversed = true;
+            else CodeMenu.codeIsReversed = false;
         }
     }
 

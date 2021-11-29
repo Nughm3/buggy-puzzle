@@ -25,12 +25,13 @@ public class CodeMenu : MonoBehaviour
     }
 
     void OnEnable() {
+        codeInput = "";
         foreach (int i in GameManager.code) codeInput += "_";
     }
 
+    
+
     public void Show() {
-        codeInput = "";
-        foreach (int i in GameManager.code) codeInput += "_";
         gameObject.SetActive(true);
         transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
         menuOpened = true;
