@@ -1,7 +1,4 @@
 using UnityEngine;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 
 public class LevelMenu : MonoBehaviour
@@ -102,7 +99,7 @@ public class LevelMenu : MonoBehaviour
     void ColorButtons() {
         int level = FindObjectOfType<PlayerData>().level;
         for (int i = 0; i < level-1; i++) buttons[i].color = new Color(0,0.8f,0);
-        buttons[level-1].color = new Color(1,1,0);
+        if (level <= 10) buttons[level-1].color = new Color(1,1,0);
         for (int i = level; i < 10; i++) buttons[i].color = new Color(1,0,0);
     }
 }

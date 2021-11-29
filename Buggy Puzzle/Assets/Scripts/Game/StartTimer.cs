@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 
 public class StartTimer : MonoBehaviour
@@ -10,6 +9,7 @@ public class StartTimer : MonoBehaviour
     public SpriteRenderer fade;
     public GameObject instruction;
     public GameObject tutorial;
+    public GameObject tutorialInstruction;
     float waitTime = 0.5f;
     public static bool timerRunning = false;
     bool digitsShown = false;
@@ -33,7 +33,10 @@ public class StartTimer : MonoBehaviour
     }
 
     IEnumerator ShowTutorial() {
+        tutorialInstruction.SetActive(false);
         tutorial.SetActive(true);
+        yield return new WaitForSeconds(Time.deltaTime * 80);
+        tutorialInstruction.SetActive(true);
         while (!Input.GetKeyDown(KeyCode.Z)) {
             yield return null;
         }

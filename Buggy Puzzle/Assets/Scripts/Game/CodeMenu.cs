@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using TMPro;
 
 public class CodeMenu : MonoBehaviour
@@ -19,17 +18,12 @@ public class CodeMenu : MonoBehaviour
     void Awake()
     {
         UpdateSelection();
-        foreach (int num in GameManager.code) {
-            Debug.Log(num);
-        }
     }
 
     void OnEnable() {
         codeInput = "";
         foreach (int i in GameManager.code) codeInput += "_";
     }
-
-    
 
     public void Show() {
         gameObject.SetActive(true);
