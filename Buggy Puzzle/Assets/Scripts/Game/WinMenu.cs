@@ -80,15 +80,22 @@ public class WinMenu : MonoBehaviour
     }
 
     IEnumerator Next() {
-        allowInput = false;
-        yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
-        pauseMenu.SetActive(true);
-        FindObjectOfType<PauseMenu>().Quit();
-        FindObjectOfType<Fade>().fade.color = new Color(0, 0, 0, 1);
-        FindObjectOfType<GameManager>().Retry(level + 1);
-        menuOpened = false;
-        allowInput = true;
-        gameObject.SetActive(false);
+        if (level == 10) {
+            Quit();
+            yield return null;
+        }
+        else {
+            allowInput = false;
+            yield return StartCoroutine(FindObjectOfType<Fade>().FadeOut());
+            pauseMenu.SetActive(true);
+            FindObjectOfType<PauseMenu>().Quit();
+            FindObjectOfType<Fade>().fade.color = new Color(0, 0, 0, 1);
+            FindObjectOfType<GameManager>().Retry(level + 1);
+            menuOpened = false;
+            allowInput = true;
+            gameObject.SetActive(false);
+        }
+        
     }
 
     IEnumerator Retry()
