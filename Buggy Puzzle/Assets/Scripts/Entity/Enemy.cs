@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null && LineToPlayerSafe.collider == null && !(BugManager.bug == "Sneak" && !DialogueManager.inDialogue)) {
             if (runSpawnAlert) {
                 animator.SetInteger("State", 5);
+                FindObjectOfType<AudioManager>().PlaySound("alert");
                 if (myAlert != null) Destroy(myAlert);
                 myAlert = Instantiate(alertPrefab, transform.position + new Vector3(0,0.9f,0), transform.rotation);
                 StartCoroutine(WaitAlert());

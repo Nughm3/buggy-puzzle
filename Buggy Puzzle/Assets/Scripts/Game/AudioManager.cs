@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
         }
         if (name == "bug") sources[5].Play();
         if (name == "death") sources[6].Play();
+        if (name == "alert") sources[7].Play();
     }
 
     IEnumerator Victory() {
