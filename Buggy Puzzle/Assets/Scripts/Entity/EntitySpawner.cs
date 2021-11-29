@@ -454,19 +454,19 @@ public class EntitySpawner : MonoBehaviour
         }
 
         if (GameManager.currentLevel == 7) {
-            coords = new int[][]{new int[] {}, new int[] {}, new int[] {}, new int[] {}};
+            coords = new int[][]{new int[] {9,2}, new int[] {9,32}, new int[] {39,31}, new int[] {31,5}};
             coords = RandomizeCoords(coords);
             dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
-            dialogue[coords[1][0], coords[1][1]] = $"The 3rd digit is {code[2]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
             dialogue[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
             int random;
             while (true) {
                 random = Random.Range(0,4);
                 if (random != 2) break;
             }
-            if (code[2] < code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is {code[random] * 2 - code[2]} less than double the {digitPrefix[random]} digit.";
-            if (code[2] > code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is {code[2] - code[random] * 2} more than double the {digitPrefix[random]} digit.";
-            if (code[2] == code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is the same as double the {digitPrefix[random]} digit.";
+            if (code[2] < code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 3rd digit is {code[random] * 2 - code[2]} less than double the {digitPrefix[random]} digit.";
+            if (code[2] > code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 3rd digit is {code[2] - code[random] * 2} more than double the {digitPrefix[random]} digit.";
+            if (code[2] == code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 3rd digit is the same as double the {digitPrefix[random]} digit.";
         }
     }
 

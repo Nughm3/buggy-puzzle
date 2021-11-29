@@ -42,10 +42,18 @@ public class Player : MonoBehaviour
     {
         if (!inMove && !cameraIsMoving && transform.position.x - FindObjectOfType<Camera>().myPos.x > -8.3f && transform.position.x - FindObjectOfType<Camera>().myPos.x < 8.3f && transform.position.y - FindObjectOfType<Camera>().myPos.y > -4.7f && transform.position.y - FindObjectOfType<Camera>().myPos.y < 4.7f)
         {
-            if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Up));
-            else if (Input.GetKey(KeyCode.DownArrow)) StartCoroutine(Move(Enums.Direction.Down));
-            else if (Input.GetKey(KeyCode.LeftArrow)) StartCoroutine(Move(Enums.Direction.Left));
-            else if (Input.GetKey(KeyCode.RightArrow)) StartCoroutine(Move(Enums.Direction.Right));
+            if (BugManager.bug == "Confuse") {
+                if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Down));
+                else if (Input.GetKey(KeyCode.DownArrow)) StartCoroutine(Move(Enums.Direction.Up));
+                else if (Input.GetKey(KeyCode.LeftArrow)) StartCoroutine(Move(Enums.Direction.Right));
+                else if (Input.GetKey(KeyCode.RightArrow)) StartCoroutine(Move(Enums.Direction.Left));
+            }
+            else {
+                if (Input.GetKey(KeyCode.UpArrow)) StartCoroutine(Move(Enums.Direction.Up));
+                else if (Input.GetKey(KeyCode.DownArrow)) StartCoroutine(Move(Enums.Direction.Down));
+                else if (Input.GetKey(KeyCode.LeftArrow)) StartCoroutine(Move(Enums.Direction.Left));
+                else if (Input.GetKey(KeyCode.RightArrow)) StartCoroutine(Move(Enums.Direction.Right));
+            }
         }
     }
 

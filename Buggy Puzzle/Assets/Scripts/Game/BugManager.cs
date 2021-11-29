@@ -9,12 +9,16 @@ public class BugManager : MonoBehaviour
     public static string bug;
     public static int damageMultiplier;
     public static int speedMultiplier;
-    string[] bugList = {"Speed", "Scary", "Sneak", "Time"};
+    string[] bugList = {"Speed", "Scary", "Sneak", "Time", "Confuse"};
 
     void Update() {
         if (bug == "Speed") {
             damageMultiplier = 2;
             speedMultiplier = 2;
+        }
+        else {
+            damageMultiplier = 1;
+            speedMultiplier = 1;
         }
     }
 
@@ -61,8 +65,6 @@ public class BugManager : MonoBehaviour
 
     public void Reset() {
         bug = "None";
-        damageMultiplier = 1;
-        speedMultiplier = 1;
     }
 
     void Awake() {

@@ -63,6 +63,10 @@ public class BugMenu : MonoBehaviour
             info[1].text = "Enemies slow down";
             info[2].text = "Hey, it also affects you";
         }
+        if (bug == "Confuse") {
+            info[1].text = "Enemies are very slow";
+            info[2].text = "Your movement is reversed";
+        }
 
         int random = Random.Range(0,5);
         if (random == 0) info[3].text = "What the-?";

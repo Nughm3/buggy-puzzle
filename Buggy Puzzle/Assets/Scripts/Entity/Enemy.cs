@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     float waitMoveSpeed = 0.3f;
     bool runSpawnAlert = false;
     bool playerIsLooking = false;
+    int speedDivider = 1;
 
     bool inPlayerRange = false;
     float seePlayerRange = 10f;
@@ -53,6 +54,9 @@ public class Enemy : MonoBehaviour
             else if (Player.facingDir == Enums.Direction.Right && transform.position.x > FindObjectOfType<Player>().transform.position.x) playerIsLooking = true;
             else playerIsLooking = false;
         }
+
+        if (BugManager.bug == "Confuse") speedDivider = 2;
+        else speedDivider = 1;
     }
 
     void CheckVision() {
@@ -88,7 +92,7 @@ public class Enemy : MonoBehaviour
             if (inPlayerRange && !inMove) {
                 while (inPlayerRange) {
                     if (Player.isAlive) CalculateDistance();
-                    yield return new WaitForSeconds(waitMoveSpeed + Random.Range(-0.1f,0.1f));
+                    yield return new WaitForSeconds((waitMoveSpeed + Random.Range(-0.1f,0.1f)) * speedDivider);
                 }
             }
             else yield return new WaitForFixedUpdate();
