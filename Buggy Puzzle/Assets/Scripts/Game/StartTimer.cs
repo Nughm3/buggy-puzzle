@@ -9,12 +9,14 @@ public class StartTimer : MonoBehaviour
     public TextMeshPro codeText;
     public SpriteRenderer fade;
     public GameObject instruction;
+    public GameObject tutorial;
     float waitTime = 0.5f;
     public static bool timerRunning = false;
     bool digitsShown = false;
 
     public IEnumerator ShowDigits() {
         timerRunning = true;
+        if (GameManager.currentLevel == 1) yield return StartCoroutine(ShowTutorial());
         codeText.text = "The code is\n" + GameManager.code.Length + " digits long";
         while (FindObjectOfType<Fade>().GetComponent<SpriteRenderer>().color.a > 0) {
             yield return null;
@@ -28,6 +30,14 @@ public class StartTimer : MonoBehaviour
         }
         instruction.SetActive(true);
         digitsShown = true;
+    }
+
+    IEnumerator ShowTutorial() {
+        tutorial.SetActive(true);
+        while (!Input.GetKeyDown(KeyCode.Z)) {
+            yield return null;
+        }
+        tutorial.SetActive(false);
     }
 
     IEnumerator Timer() {
