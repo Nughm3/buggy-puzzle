@@ -24,6 +24,10 @@ public class CodeMenu : MonoBehaviour
         }
     }
 
+    void OnEnable() {
+        foreach (int i in GameManager.code) codeInput += "_";
+    }
+
     public void Show() {
         codeInput = "";
         foreach (int i in GameManager.code) codeInput += "_";
