@@ -25,8 +25,8 @@ public class CodeMenu : MonoBehaviour
     }
 
     public void Show() {
-        if (GameManager.currentLevel <= 1) codeInput = "___";
-        else codeInput = "____";
+        codeInput = "";
+        foreach (int i in GameManager.code) codeInput += "_";
         gameObject.SetActive(true);
         transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
         menuOpened = true;
