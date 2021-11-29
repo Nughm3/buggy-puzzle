@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
     void CheckVision() {
         RaycastHit2D lineToPlayer = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos, tileMask);
         RaycastHit2D LineToPlayerSafe = Physics2D.Linecast(transform.position, FindObjectOfType<Player>().myPos, safeMask);
-        if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null && LineToPlayerSafe.collider == null && BugManager.bug != "Sneak") {
+        if (Vector3.Distance(myPos,FindObjectOfType<Player>().myPos) <= seePlayerRange && lineToPlayer.collider == null && LineToPlayerSafe.collider == null && !(BugManager.bug == "Sneak" && !DialogueManager.inDialogue)) {
             if (runSpawnAlert) {
                 animator.SetInteger("State", 5);
                 if (myAlert != null) Destroy(myAlert);

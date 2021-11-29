@@ -56,7 +56,7 @@ public class BugMenu : MonoBehaviour
             info[2].text = "30% for NPCs to ignore you";
         }
         if (bug == "Sneak") {
-            info[1].text = "Enemies can't see you";
+            info[1].text = "Enemies can't see you when not talking";
             info[2].text = "Hard to see yourself";
         }
         if (bug == "Time") {

@@ -128,22 +128,26 @@ public class Player : MonoBehaviour
     public IEnumerator SneakPulse() {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.25f);
         while (BugManager.bug == "Sneak") {
-            while (gameObject.GetComponent<SpriteRenderer>().color.a > 0 && BugManager.bug == "Sneak") {
+            while (gameObject.GetComponent<SpriteRenderer>().color.a > 0 && BugManager.bug == "Sneak" && !DialogueManager.inDialogue) {
                 gameObject.GetComponent<SpriteRenderer>().color -= new Color(0,0,0,0.02f);
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
             }
             for (int i = 0; i < 40; i++) {
+                if (BugManager.bug != "Sneak" || DialogueManager.inDialogue) break;
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
-                if (BugManager.bug != "Sneak") break;
             }
-            while (gameObject.GetComponent<SpriteRenderer>().color.a < 0.25 && BugManager.bug == "Sneak") {
+            while (gameObject.GetComponent<SpriteRenderer>().color.a < 0.25 && BugManager.bug == "Sneak" && !DialogueManager.inDialogue) {
                 gameObject.GetComponent<SpriteRenderer>().color += new Color(0,0,0,0.015f);
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
             }
             for (int i = 0; i < 10; i++) {
+                if (BugManager.bug != "Sneak" || DialogueManager.inDialogue) break;
                 yield return new WaitForSeconds(Time.deltaTime * 0.75f);
-                if (BugManager.bug != "Sneak") break;
             }
+            if (BugManager.bug == "Sneak" && DialogueManager.inDialogue) {
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+            }
+            yield return new WaitForFixedUpdate();
         }
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,1f);
     }
