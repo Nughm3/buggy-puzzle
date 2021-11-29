@@ -224,7 +224,7 @@ public class EntitySpawner : MonoBehaviour
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0},
             {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -389,22 +389,25 @@ public class EntitySpawner : MonoBehaviour
         if (GameManager.currentLevel == 5) {
             coords = new int[][]{new int[] {28,17}, new int[] {39,1}, new int[] {4,9}, new int[] {31,29}};
             coords = RandomizeCoords(coords);
-            dialogue[coords[0][0], coords[0][1]] = $"The 3rd digit is {code[2]}.";
-            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+            dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 3rd digit is {code[2]}.";
             dialogue[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
-            dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is {code[0]}.";
+            int random = Random.Range(0,3);
+            if (code[1] < code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 2nd digit is {code[random] - code[1]} less than the {digitPrefix[random]} digit.";
+            if (code[1] > code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 2nd digit is {code[1] - code[random]} more than the {digitPrefix[random]} digit.";
+            if (code[1] == code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 2nd digit is the same as the {digitPrefix[random]} digit.";
         }
 
         if (GameManager.currentLevel == 6) {
-            coords = new int[][]{new int[] {39,5}, new int[] {2,17}, new int[] {1,1}, new int[] {7,30}};
+            coords = new int[][]{new int[] {}, new int[] {}, new int[] {}, new int[] {}};
             coords = RandomizeCoords(coords);
-            dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
-            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
-            dialogue[coords[2][0], coords[2][1]] = $"The 3rd digit is {code[2]}.";
+            dialogue[coords[0][0], coords[0][1]] = $"The 2nd digit is {code[1]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 3rd digit is {code[2]}.";
+            dialogue[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
             int random = Random.Range(0,3);
-            if (code[3] < code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 4th digit is {code[random] - code[3]} less than the {digitPrefix[random]} digit.";
-            if (code[3] > code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 4th digit is {code[3] - code[random]} more than the {digitPrefix[random]} digit.";
-            if (code[3] == code[random]) dialogue[coords[3][0], coords[3][1]] = $"The 4th digit is the same as the {digitPrefix[random]} digit.";
+            if (code[0] < code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is {code[random] * 2 - code[0]} less than double the {digitPrefix[random]} digit.";
+            if (code[0] > code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is {code[0] - code[random] * 2} more than double the {digitPrefix[random]} digit.";
+            if (code[0] == code[random] * 2) dialogue[coords[3][0], coords[3][1]] = $"The 1st digit is the same as double the {digitPrefix[random]} digit.";
         }
     }
 
