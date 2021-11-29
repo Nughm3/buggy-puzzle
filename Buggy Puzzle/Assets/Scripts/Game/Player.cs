@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public static bool cameraIsMoving = false;
 
     bool inHurt = false;
-    public static int health = 5;
-    public static int maxHealth = 5;
+    public static int health = 3;
+    public static int maxHealth = 3;
     public static bool isAlive = true;
     float speedMultiplier = 0.75f;
     

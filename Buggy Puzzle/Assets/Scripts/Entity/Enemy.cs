@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
     }
 
     IEnumerator WaitAlert() {
-        yield return new WaitForSeconds(Time.deltaTime * 30);
+        yield return new WaitForSeconds(Time.deltaTime * 25);
         inPlayerRange = true;
     }
 
