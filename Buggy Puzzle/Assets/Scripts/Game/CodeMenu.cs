@@ -27,6 +27,8 @@ public class CodeMenu : MonoBehaviour
     void OnEnable() {
         codeInput = "";
         foreach (int i in GameManager.code) codeInput += "_";
+        foreach (int i in GameManager.code) Debug.Log(i);
+        Debug.Log(codeModifier);
     }
 
     public void Show() {
@@ -114,8 +116,8 @@ public class CodeMenu : MonoBehaviour
                     loopIndex += 1;
                 }
                 int correctDigits = 0;
-                if (codeModifier == 2) {
-                    ascendingCode = GameManager.code;
+                if (codeModifier >= 2) {
+                    ascendingCode = new int[] {GameManager.code[0],GameManager.code[1],GameManager.code[2],GameManager.code[3]};
                     for (int j = 0; j <= ascendingCode.Length - 2; j++) {
                         for (int i = 0; i <= ascendingCode.Length - 2; i++) {
                             if (ascendingCode[i] > ascendingCode[i + 1]) {
@@ -140,6 +142,7 @@ public class CodeMenu : MonoBehaviour
                         if (codeArray[i] == ascendingCode[(GameManager.code.Length - 1)-i].ToString()) correctDigits += 1;
                     }
                 }
+                Debug.Log(correctDigits);
                 if (correctDigits >= GameManager.code.Length) {
                     winMenu.SetActive(true);
                     Unconfirm();
