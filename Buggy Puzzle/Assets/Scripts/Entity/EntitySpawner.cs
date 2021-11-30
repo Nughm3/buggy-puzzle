@@ -617,7 +617,7 @@ public class EntitySpawner : MonoBehaviour
             coords = new int[][]{new int[] {6, 21}, new int[] {34,28}, new int[] {43,33}, new int[] {1,5}, new int[] {55,21}};
             coords = RandomizeCoords(coords);
             dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
-            dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
+            dialogue[coords[1][0], coords[1][1]] = $"The 3rd digit is {code[2]}.";
             dialogue[coords[2][0], coords[2][1]] = $"The 4th digit is {code[3]}.";
             int random;
             while (true) {
