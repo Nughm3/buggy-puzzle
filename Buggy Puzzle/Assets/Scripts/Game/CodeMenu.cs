@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using TMPro;
 
 public class CodeMenu : MonoBehaviour
@@ -12,7 +13,8 @@ public class CodeMenu : MonoBehaviour
     string codeInput;
     int codeInputIndex = 0;
     string[] codeArray = new string[4];
-    public static bool codeIsReversed = false;
+    public static int codeModifier = 0;
+    int[] ascendingCode;
     public static bool menuOpened;
 
     void Awake()
@@ -26,6 +28,7 @@ public class CodeMenu : MonoBehaviour
     }
 
     public void Show() {
+        // foreach (int i in GameManager.code) Debug.Log(i);
         gameObject.SetActive(true);
         transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
         menuOpened = true;
@@ -101,12 +104,30 @@ public class CodeMenu : MonoBehaviour
                     loopIndex += 1;
                 }
                 int correctDigits = 0;
+                if (codeModifier == 2) {
+                    ascendingCode = GameManager.code;
+                    for (int j = 0; j <= ascendingCode.Length - 2; j++) {
+                        for (int i = 0; i <= ascendingCode.Length - 2; i++) {
+                            if (ascendingCode[i] > ascendingCode[i + 1]) {
+                                int temp = ascendingCode[i + 1];
+                                ascendingCode[i + 1] = ascendingCode[i];
+                                ascendingCode[i] = temp;
+                            }
+                        }
+                    }
+                }
                 for (int i = 0; i < GameManager.code.Length; i++) {
-                    if (!codeIsReversed) {
+                    if (codeModifier == 0) {
                         if (codeArray[i] == GameManager.code[i].ToString()) correctDigits += 1;
                     }
-                    else {
-                        if (codeArray[i] == GameManager.code[3-i].ToString()) correctDigits += 1;
+                    else if (codeModifier == 1) {
+                        if (codeArray[i] == GameManager.code[(GameManager.code.Length - 1)-i].ToString()) correctDigits += 1;
+                    }
+                    else if (codeModifier == 2) {
+                        if (codeArray[i] == ascendingCode[i].ToString()) correctDigits += 1;
+                    }
+                    else if (codeModifier == 3) {
+                        if (codeArray[i] == ascendingCode[(GameManager.code.Length - 1)-i].ToString()) correctDigits += 1;
                     }
                 }
                 if (correctDigits >= GameManager.code.Length) {

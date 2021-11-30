@@ -365,11 +365,11 @@ public class EntitySpawner : MonoBehaviour
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, //0
             {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,X,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -558,7 +558,7 @@ public class EntitySpawner : MonoBehaviour
         }
 
         if (GameManager.currentLevel == 6) {
-            coords = new int[][]{new int[] {35,17}, new int[] {39,1}, new int[] {4,9}, new int[] {31,29}};
+            coords = new int[][]{new int[] {31,33}, new int[] {2,17}, new int[] {15,29}, new int[] {25,2}};
             coords = RandomizeCoords(coords);
             dialogue[coords[0][0], coords[0][1]] = $"The 1st digit is {code[0]}.";
             dialogue[coords[1][0], coords[1][1]] = $"The 2nd digit is {code[1]}.";
@@ -628,8 +628,10 @@ public class EntitySpawner : MonoBehaviour
             if (code[1] > code[random] * 3) dialogue[coords[3][0], coords[3][1]] = $"The 2nd digit is {code[1] - code[random] * 3} more than triple the {digitPrefix[random]} digit.";
             if (code[1] == code[random] * 3) dialogue[coords[3][0], coords[3][1]] = $"The 2nd digit is the same as triple the {digitPrefix[random]} digit.";
 
-            if (CodeMenu.codeIsReversed) dialogue[coords[4][0], coords[4][1]] = $"The code is in reverse order.";
-            else dialogue[coords[4][0], coords[4][1]] = $"The code is in the right order order.";
+            if (CodeMenu.codeModifier == 1) dialogue[coords[4][0], coords[4][1]] = $"The code needs to be entered in reverse order.";
+            if (CodeMenu.codeModifier == 2) dialogue[coords[4][0], coords[4][1]] = $"The code needs to be entered in ascending order.";
+            if (CodeMenu.codeModifier == 3) dialogue[coords[4][0], coords[4][1]] = $"The code needs to be entered in descending order.";
+            else dialogue[coords[4][0], coords[4][1]] = "I like potatoes";
         }
     }
 

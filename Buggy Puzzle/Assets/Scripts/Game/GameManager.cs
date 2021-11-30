@@ -44,12 +44,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < code.Length; i++) {
             code[i] = Random.Range(0,10);
         }
-        if (level < 9) CodeMenu.codeIsReversed = false;
-        else {
-            int random = Random.Range(0, 2);
-            if (random == 0) CodeMenu.codeIsReversed = true;
-            else CodeMenu.codeIsReversed = false;
-        }
+        if (level <= 9) CodeMenu.codeModifier = 0;
+        else CodeMenu.codeModifier = Random.Range(0, 4);
     }
 
     void Awake()
