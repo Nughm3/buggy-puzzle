@@ -68,6 +68,7 @@ public class PauseMenu : MonoBehaviour
         PauseManager.isPaused = false;
         Time.timeScale = 1f;
 
+        LevelMenu.selectedOption = GameManager.currentLevel - 1;
         FindObjectOfType<DialogueManager>().EndDialogue();
         FindObjectOfType<EntitySpawner>().RemoveEnemies();
         FindObjectOfType<EntitySpawner>().RemovePeople();

@@ -31,6 +31,10 @@ public class LevelMenu : MonoBehaviour
         ColorButtons();
     }
 
+    void OnEnable() {
+        UpdateSelection();
+    }
+
     public void UpdateSelection()
     {
         TextMeshPro[] buttons = { levelButton1, levelButton2, levelButton3, levelButton4, levelButton5, levelButton6, levelButton7, levelButton8, levelButton9, levelButton10, backButton };

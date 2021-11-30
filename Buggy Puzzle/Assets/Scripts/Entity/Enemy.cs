@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
             else playerIsLooking = false;
         }
 
-        if (BugManager.bug == "Confuse") speedDivider = 2;
+        if (BugManager.bug == "Confuse") speedDivider = 3;
         else speedDivider = 1;
     }
 
