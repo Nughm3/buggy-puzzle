@@ -6,6 +6,8 @@ public class CodeMenu : MonoBehaviour
 {
     public TextMeshPro[] buttonsList;
     public TextMeshPro codeText;
+    public GameObject tickOff;
+    public GameObject tickOn;
     public GameObject winMenu;
 
     int selectedOption = 0;
@@ -28,7 +30,6 @@ public class CodeMenu : MonoBehaviour
     }
 
     public void Show() {
-        // foreach (int i in GameManager.code) Debug.Log(i);
         gameObject.SetActive(true);
         transform.position = new Vector3(FindObjectOfType<Camera>().myPos.x, FindObjectOfType<Camera>().myPos.y, 0);
         menuOpened = true;
@@ -45,6 +46,15 @@ public class CodeMenu : MonoBehaviour
         }
         buttonsList[selectedOption].color = Color.green;
         buttonsList[selectedOption].fontStyle = FontStyles.Bold;
+
+        if (selectedOption == 9) {
+            tickOn.SetActive(true);
+            tickOff.SetActive(false);
+        }
+        else {
+            tickOff.SetActive(true);
+            tickOn.SetActive(false);
+        }
     }
 
     void SelectLeft()
